@@ -1,7 +1,24 @@
 package org.projekt3_gruppe_3.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
 
 @Controller
 public class LejeaftaleController {
+
+
+    @PostMapping("/html/CreateLejeaftale")
+    public String CreateLejeaftale(
+            @RequestParam("id") int id,
+            @RequestParam("bilId") int bilId,
+            @RequestParam("kundeId") int kundeId,
+            @RequestParam("skadeMatrix") int skadeMatrix,
+            @RequestParam("startDato")Date startDato,
+            @RequestParam("laengeDays") int laengeDays,
+            @RequestParam("pris") double pris){
+
+    }
 }
