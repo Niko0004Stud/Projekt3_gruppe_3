@@ -16,7 +16,7 @@ public class LejeaftaleController {
     LejeaftaleService lejeaftaleService;
 
 
-        @PostMapping("/create")
+        @PostMapping("/lejeaftale/create")
         public String createLejeaftale(
                 @RequestParam("id") Long id,
                 @RequestParam("bilId") Long bilId,
@@ -26,13 +26,14 @@ public class LejeaftaleController {
                 @RequestParam("laengeDays") int laengeDays,
                 @RequestParam("pris") double pris
         ) {
+            System.out.println("du kom til createlejeaftale");
 
             lejeaftaleService.createLejeaftale(
                     id, bilId, kundeId, skadeMatrix, startDato, laengeDays, pris
             );
 
-            return "redirect:/lejeaftale/list";
-        }
+//            return "redirect:/lejeaftale/list";
+//        }
 
         @PostMapping("/delete")
         public String deleteLejeaftale(@RequestParam("id") Long id) {
