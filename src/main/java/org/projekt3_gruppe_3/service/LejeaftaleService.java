@@ -10,10 +10,4 @@ import java.util.ArrayList;
 @Service
 public class LejeaftaleService {
 
-    @Autowired
-    LejeaftaleRepo lejeaftaleRepo;
-
-    public ArrayList<Lejeaftale> getAllLejeaftaler(){
-        return lejeaftaleRepo.readAllLejeaftaler();
-    }
 }
