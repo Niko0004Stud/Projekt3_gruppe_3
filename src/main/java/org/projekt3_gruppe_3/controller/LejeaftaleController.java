@@ -21,15 +21,15 @@ public class LejeaftaleController {
                 @RequestParam("id") Long id,
                 @RequestParam("bilId") Long bilId,
                 @RequestParam("kundeId") Long kundeId,
-                @RequestParam("skadeMatrix") int skadeMatrix,
+                @RequestParam("skadeMatrixId") int skadeMatrix,
                 @RequestParam("startDato") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDato,
                 @RequestParam("laengeDays") int laengeDays,
-                @RequestParam("pris") double pris
-        ) {
+                @RequestParam("pris") double pris,
+                @RequestParam("slutDato") @DateTimeFormat(pattern = "yyyy-MM-dd")Date slutDato) {
             System.out.println("du kom til createlejeaftale");
 
             lejeaftaleService.createLejeaftale(
-                    id, bilId, kundeId, skadeMatrix, startDato, laengeDays, pris
+                    id, bilId, kundeId, skadeMatrix, startDato, laengeDays, slutDato, pris
             );
 
 //            return "redirect:/lejeaftale/list";
