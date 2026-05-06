@@ -22,7 +22,7 @@ public class LejeaftaleController {
 
     @GetMapping("/showAllLejeaftaler")
     public String showAllLejeaftaler(){
-
+        System.out.println("Du kon ind i showaalllejeaftaler af");
         System.out.println(lejeaftaleRepo.readAllLejeaftaler());
 
         return"/";
@@ -30,13 +30,13 @@ public class LejeaftaleController {
 
     @PostMapping("/lejeaftale/create")
     public String createLejeaftale(
-            @RequestParam("id") Long id,
+            /*@RequestParam("id") Long id,*/
             @RequestParam("bilId") Long bilId,
             @RequestParam("kundeId") Long kundeId,
             @RequestParam("skadeMatrixId") int skadeMatrix,
             @RequestParam("startDato") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDato,
-            @RequestParam("laengeDays") int laengeDays,
-            @RequestParam("pris") double pris,
+            @RequestParam("laengdeDays") int laengeDays,
+            @RequestParam("prisKr") double pris,
             @RequestParam("slutDato") @DateTimeFormat(pattern = "yyyy-MM-dd")Date slutDato) {
         System.out.println("du kom til createlejeaftale");
         return "redirect:/lejeaftale/list";

@@ -15,22 +15,28 @@
         <input type="number" name="bilId">
 
         <label> Kunde Id:</label>
-        <input type="number" name="kundeID">
+        <input type="number" name="kundeId">
 
         <label> Startsdato:</label>
-        <input type="date" name="kundeId">
+        <input type="date" name="startDato">
 
         <label> Leangde days:</label>
         <input type="number" name="laengdeDays">
+
+        <label>SlutDato:</label>
+        <input type="date" name="slutDato">
 
         <label>Pris kr:</label>
         <input type="number" name="prisKr">
 
         <label> Skadematrix Id:</label>
-        <input type="number" name="skadematrixId">
+        <input type="number" name="skadeMatrixId">
 
         <button type="submit">Opret ny lejeaftale</button>
     </form>
+    <button type="submit">Vis oversigt over lejeaftaler</button>
+    <a th:href="@{'showAllLejeaftaler'}" > Vis Alle Lejeaftalerne</a>
+
 
 </main>
 
