@@ -18,8 +18,8 @@ CREATE TABLE Bil(
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     vognnummer VARCHAR(50) NOT NULL,
                     stelnummer VARCHAR(50) NOT NULL,
-                    mærke VARCHAR(50) NOT NULL,
-                    udsryrsniveau INTEGER NOT NULL,
+                    maerke VARCHAR(50) NOT NULL,
+                    udstyrsniveau INTEGER NOT NULL,
                     staalpris decimal NOT NULL,
                     regAfgift decimal NOT NULL,
                     co2Udledning decimal NOT NULL
@@ -31,7 +31,7 @@ CREATE TABLE Lejeaftale(
                             FOREIGN KEY (id) REFERENCES Bil(id),
                             FOREIGN KEY (id) REFERENCES Kunde(id),
                             startDate date NOT NULL,
-                            længdeDays INTEGER NOT NULL,
+                            laengdeDays INTEGER NOT NULL,
                             prisKr decimal NOT NULL,
                             skadeMatrixId INTEGER NOT NULL
 );
@@ -40,6 +40,6 @@ CREATE TABLE Skade(
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     FOREIGN KEY (id) REFERENCES Lejeaftale(id),
                     beskrivelse VARCHAR(100) NOT NULL,
-                    prispåskade decimal NOT NULL,
+                    prispaaskade decimal NOT NULL,
                     registreringsDate date
 );
