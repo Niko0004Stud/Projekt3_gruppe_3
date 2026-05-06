@@ -27,17 +27,18 @@ public class LejeaftaleController {
                 @RequestParam("pris") double pris,
                 @RequestParam("slutDato") @DateTimeFormat(pattern = "yyyy-MM-dd")Date slutDato) {
             System.out.println("du kom til createlejeaftale");
+            return "redirect:/lejeaftale/list";
 
-            lejeaftaleService.createLejeaftale(
-                    id, bilId, kundeId, skadeMatrix, startDato, laengeDays, slutDato, pris
-            );
+//            lejeaftaleService.createLejeaftale(
+//                    id, bilId, kundeId, skadeMatrix, startDato, laengeDays, slutDato, pris
+//            );
 
 //            return "redirect:/lejeaftale/list";
 //        }
 
-        @PostMapping("/delete")
-        public String deleteLejeaftale(@RequestParam("id") Long id) {
-            lejeaftaleService.deleteLejeaftale(id);
-            return "redirect:/lejeaftale/list";
-        }
-    }
+//        @PostMapping("/delete")
+//        public String deleteLejeaftale(@RequestParam("id") Long id) {
+//            lejeaftaleService.deleteLejeaftale(id);
+//            return "redirect:/lejeaftale/list";
+//        }
+    }}
