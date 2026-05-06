@@ -28,9 +28,9 @@ CREATE TABLE Bil(
 
 CREATE TABLE Lejeaftale(
                             id INT AUTO_INCREMENT PRIMARY KEY,
-                            FOREIGN KEY (bilId) REFERENCES Bil(id),
-                            FOREIGN KEY (kundeId) REFERENCES Kunde(id),
-                            FOREIGN KEY (skadeMatrixId) REFERENCES SkadeMatrix(id),
+                            FOREIGN KEY (id) REFERENCES Bil(id),
+                            FOREIGN KEY (id) REFERENCES Kunde(id),
+                            FOREIGN KEY (id) REFERENCES SkadeMatrix(id),
                             startDate DATE NOT NULL,
                             laengdeDays INTEGER NOT NULL,
                             slutDato DATE NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE Lejeaftale(
 
 CREATE TABLE SkadeMatrix(
                     id INT AUTO_INCREMENT PRIMARY KEY,
-                    FOREIGN KEY (lejeaftaleId) REFERENCES Lejeaftale(id),
+                    FOREIGN KEY (id) REFERENCES Lejeaftale(id),
                     beskrivelse VARCHAR(100) NOT NULL,
                     prisPaaSkade DECIMAL NOT NULL,
                     registreringsDate DATE NOT NULL
