@@ -1,5 +1,10 @@
 package org.projekt3_gruppe_3.controller;
 
+import org.projekt3_gruppe_3.repository.LejeaftaleRepo;
+import org.projekt3_gruppe_3.service.LejeaftaleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.projekt3_gruppe_3.service.LejeaftaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,6 +18,16 @@ import java.util.Date;
 public class LejeaftaleController {
 
     @Autowired
+    LejeaftaleRepo lejeaftaleRepo;
+
+    @GetMapping("/showAllLejeaftaler")
+    public String showAllLejeaftaler(){
+
+        System.out.println(lejeaftaleRepo.readAllLejeaftaler());
+
+        return"/";
+    }
+}
     LejeaftaleService lejeaftaleService;
 
 
