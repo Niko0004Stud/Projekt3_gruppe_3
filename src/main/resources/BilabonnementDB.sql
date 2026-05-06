@@ -20,26 +20,28 @@ CREATE TABLE Bil(
                     stelnummer VARCHAR(50) NOT NULL,
                     maerke VARCHAR(50) NOT NULL,
                     udstyrsniveau INTEGER NOT NULL,
-                    staalpris decimal NOT NULL,
-                    regAfgift decimal NOT NULL,
-                    co2Udledning decimal NOT NULL
+                    staalpris DECIMAL NOT NULL,
+                    regAfgift DECIMAL NOT NULL,
+                    co2Udledning DECIMAL NOT NULL
 );
 
 
 CREATE TABLE Lejeaftale(
                             id INT AUTO_INCREMENT PRIMARY KEY,
-                            FOREIGN KEY (id) REFERENCES Bil(id),
-                            FOREIGN KEY (id) REFERENCES Kunde(id),
-                            startDate date NOT NULL,
+                            FOREIGN KEY (bilId) REFERENCES Bil(id),
+                            FOREIGN KEY (kundeId) REFERENCES Kunde(id),
+                            FOREIGN KEY (skadeMatrixId) REFERENCES SkadeMatrix(id),
+                            startDate DATE NOT NULL,
                             laengdeDays INTEGER NOT NULL,
-                            prisKr decimal NOT NULL,
-                            skadeMatrixId INTEGER NOT NULL
+                            slutDato DATE NOT NULL,
+                            prisKr DECIMAL NOT NULL
+
 );
 
-CREATE TABLE Skade(
+CREATE TABLE SkadeMatrix(
                     id INT AUTO_INCREMENT PRIMARY KEY,
-                    FOREIGN KEY (id) REFERENCES Lejeaftale(id),
+                    FOREIGN KEY (lejeaftaleId) REFERENCES Lejeaftale(id),
                     beskrivelse VARCHAR(100) NOT NULL,
-                    prispaaskade decimal NOT NULL,
-                    registreringsDate date
+                    prisPaaSkade DECIMAL NOT NULL,
+                    registreringsDate DATE NOT NULL
 );
