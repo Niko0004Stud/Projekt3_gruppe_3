@@ -14,10 +14,10 @@ public class Lejeaftale {
     private int skadeMatrixId;//lidt i tvivl, der er snak
     private LocalDate startDato;
     private int laengeDays;
-    private Date slutDato;
+    private LocalDate slutDato;
     private BigDecimal prisKr;
 
-    public Lejeaftale(int id, int bilId, int kundeId, int skadeMatrixId, Date startDato, int laengeDays, Date slutDato, BigDecimal prisKr) {
+    public Lejeaftale(int id, int bilId, int kundeId, int skadeMatrixId, LocalDate startDato, int laengeDays, LocalDate slutDato, BigDecimal prisKr) {
         this.id = id;
         this.bilId = bilId;
         this.kundeId = kundeId;

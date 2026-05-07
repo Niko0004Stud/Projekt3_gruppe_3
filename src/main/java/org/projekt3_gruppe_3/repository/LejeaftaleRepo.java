@@ -51,9 +51,9 @@ public void createLejeaftale(Lejeaftale lejeaftale){
         statement.setInt(2, lejeaftale.getBilId());
         statement.setInt(3, lejeaftale.getKundeId());
         statement.setInt(4, lejeaftale.getSkadeMatrixId());
-        statement.setDate(5, Date.valueOf(LocalDate) lejeaftale.getStartDato());
+        statement.setDate(5, Date.valueOf(LocalDate),lejeaftale.getStartDato());
         statement.setInt(6, lejeaftale.getLaengeDays());
-        statement.setDate(7, Date.valueOf(LocalDate) lejeaftale.getSlutDato());
+        statement.setDate(7, Date.valueOf(LocalDate),lejeaftale.getSlutDato());
         statement.setBigDecimal(8, lejeaftale.getPrisKr());
         statement.executeUpdate();
     }catch (SQLException e){
