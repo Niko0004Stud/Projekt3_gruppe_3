@@ -1,24 +1,17 @@
 package org.projekt3_gruppe_3.model;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Lejeaftale {
 
-    private int id;
     private int bilId;
     private int kundeId;
     private int skadeMatrixId;//lidt i tvivl, der er snak
     private LocalDate startDato;
     private int laengeDays;
     private LocalDate slutDato;
-    private BigDecimal prisKr;
+    private double prisKr;
 
-    public Lejeaftale(int id, int bilId, int kundeId, int skadeMatrixId, LocalDate startDato, int laengeDays, LocalDate slutDato, BigDecimal prisKr) {
-        this.id = id;
+    public Lejeaftale(int bilId, int kundeId, int skadeMatrixId, LocalDate startDato, int laengeDays, LocalDate slutDato, double prisKr) {
         this.bilId = bilId;
         this.kundeId = kundeId;
         this.skadeMatrixId = skadeMatrixId;
@@ -28,13 +21,6 @@ public class Lejeaftale {
         this.prisKr = prisKr;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getBilId() {
         return bilId;
@@ -84,11 +70,11 @@ public class Lejeaftale {
         this.slutDato = slutDato;
     }
 
-    public BigDecimal getPrisKr() {
+    public double getPrisKr() {
         return prisKr;
     }
 
-    public void setPrisKr(BigDecimal prisKr) {
+    public void setPrisKr(double prisKr) {
         this.prisKr = prisKr;
     }
 

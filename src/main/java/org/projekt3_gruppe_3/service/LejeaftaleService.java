@@ -5,19 +5,36 @@ import org.projekt3_gruppe_3.repository.LejeaftaleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
+
 
 @Service
 public class LejeaftaleService {
+        @Autowired
+        private LejeaftaleRepo lejeaftaleRepo;
 
-    public void valideringLejeaftale(Lejeaftale lejeaftale){
-        valideringBilId(lejeaftale.getBilId());
-        valideringKundeId(lejeaftale.getKundeId());
-        valideringskadeMatrixId(lejeaftale.getSkadeMatrixId());
-        valideringstartDato(lejeaftale.getStartDato().toString());
-        valideringLaengdeDays(lejeaftale.getLaengeDays());
-        valideringslutDato(lejeaftale.getSlutDato().toString());
-        valideringprisKr(lejeaftale.getPrisKr());
+        private Lejeaftale lejeaftale;
+
+        public void createLejeaftale(int bilId, int kundeId, int skadeMatrixId,
+                                     LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr) {
+
+            valideringLejeaftale(bilId, kundeId, skadeMatrixId, startDato, laengdeDays, slutDato, prisKr);
+
+            Lejeaftale lejeaftale = new Lejeaftale(
+                    bilId, kundeId, skadeMatrixId, startDato, laengdeDays, slutDato,  prisKr);
+
+            lejeaftaleRepo.createLejeaftale(lejeaftale);
+        }
+
+    public void valideringLejeaftale(int bilId, int kundeId, int skadeMatrixId,
+                                     LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr){
+        valideringBilId(bilId);
+        valideringKundeId(kundeId);
+        valideringskadeMatrixId(skadeMatrixId);
+        valideringstartDato(startDato.toString());
+        valideringLaengdeDays(laengdeDays);
+        valideringslutDato(slutDato.toString());
+        valideringprisKr(prisKr);
     }
 
     // bilId INT NOT NULL,
@@ -65,8 +82,8 @@ public class LejeaftaleService {
     }
 
     //prisKr DECIMAL NOT NULL
-    public void valideringprisKr(BigDecimal pris){
-        if(pris==null || pris.compareTo(BigDecimal.valueOf(0))<=0){
+    public void valideringprisKr(double pris){
+        if(pris<=0){
             throw new IllegalArgumentException("prisKr kan ikke være 0 eller mindre end 0");
         }
     }
