@@ -16,6 +16,7 @@ import java.time.LocalDate;
 
 @Repository
 public class LejeaftaleRepo {
+    //1.3 metode C from CRUD: CREATE
 
     @Autowired
     private DataSource dataSource;
@@ -59,4 +60,7 @@ public class LejeaftaleRepo {
             e.printStackTrace();
         }
     }
+}
+
+
 }
