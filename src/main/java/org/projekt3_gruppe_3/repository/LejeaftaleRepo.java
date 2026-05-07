@@ -23,18 +23,25 @@ public class LejeaftaleRepo {
 
     public ArrayList<Lejeaftale> readAllLejeaftaler(){
         ArrayList<Lejeaftale> lejeaftaler = new ArrayList<>();
-        String sql = "SELECT * FROM lejeaftaler";
+        String sql = "SELECT * FROM Lejeaftale";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
 
             ResultSet resultSet = statement.executeQuery();
 
-//            while (resultSet.next()){
-//                lejeaftaler.add(new Lejeaftale(
-//                        /* attributter*/
-//                ));
-//            }
+            while (resultSet.next()){
+                lejeaftaler.add(new Lejeaftale(
+                        resultSet.getInt("id"),
+                        resultSet.getInt("bilId"),
+                        resultSet.getInt("kundeId"),
+                        resultSet.getInt("skadeMatrixId"),
+                        resultSet.getDate("startDate").toLocalDate(),
+                        resultSet.getInt("laengdeDays"),
+                        resultSet.getDate("slutDato").toLocalDate(),
+                        resultSet.getDouble("prisKr")
+                ));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

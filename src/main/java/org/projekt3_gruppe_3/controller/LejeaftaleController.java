@@ -24,10 +24,9 @@ public class LejeaftaleController {
 
     @GetMapping("/showAllLejeaftaler")
     public String showAllLejeaftaler(){
-        System.out.println("Du kon ind i showaalllejeaftaler af");
         System.out.println(lejeaftaleRepo.readAllLejeaftaler());
 
-        return"/";
+        return"redirect:/";
     }
 
     @PostMapping("/lejeaftale/create")
