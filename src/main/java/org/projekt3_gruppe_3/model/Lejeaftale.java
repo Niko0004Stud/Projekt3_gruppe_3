@@ -1,10 +1,5 @@
 package org.projekt3_gruppe_3.model;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Lejeaftale {
 

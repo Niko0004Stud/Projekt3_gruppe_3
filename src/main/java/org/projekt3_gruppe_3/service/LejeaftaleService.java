@@ -6,18 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import org.springframework.stereotype.Service;
-import java.util.Date;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import java.util.Date;
-import java.math.BigDecimal;
+
 
 @Service
 public class LejeaftaleService {
         @Autowired
         private LejeaftaleRepo lejeaftaleRepo;
+
+        private Lejeaftale lejeaftale;
 
         public void createLejeaftale(int bilId, int kundeId, int skadeMatrixId,
                                      LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr) {
@@ -30,37 +26,15 @@ public class LejeaftaleService {
             lejeaftaleRepo.createLejeaftale(lejeaftale);
         }
 
-
-
-        public void validate(int bilId,int kundeId, int skadeMatrixId,
-                             LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr) {
-
-            if (bilId <=0) throw new IllegalArgumentException("Bil mangler");
-            if (kundeId <=0) throw new IllegalArgumentException("Kunde mangler");
-
-            if (skadeMatrixId < 0)
-                throw new IllegalArgumentException("Ugyldig skadeMatrixId");
-
-            if (startDato == null)
-                throw new IllegalArgumentException("Startdato mangler");
-
-            if (slutDato == null)
-                throw new IllegalArgumentException("Slutdato mangler");
-
-            if (slutDato.isBefore(startDato))
-                throw new IllegalArgumentException("Slutdato må ikke være før startdato");
-
-            if (laengdeDays <= 0)
-                throw new IllegalArgumentException("Længde skal være over 0 dage");
-
-    public void valideringLejeaftale(Lejeaftale lejeaftale){
-        valideringBilId(lejeaftale.getBilId());
-        valideringKundeId(lejeaftale.getKundeId());
-        valideringskadeMatrixId(lejeaftale.getSkadeMatrixId());
-        valideringstartDato(lejeaftale.getStartDato().toString());
-        valideringLaengdeDays(lejeaftale.getLaengeDays());
-        valideringslutDato(lejeaftale.getSlutDato().toString());
-        valideringprisKr(lejeaftale.getPrisKr());
+    public void valideringLejeaftale(int bilId, int kundeId, int skadeMatrixId,
+                                     LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr){
+        valideringBilId(bilId);
+        valideringKundeId(kundeId);
+        valideringskadeMatrixId(skadeMatrixId);
+        valideringstartDato(startDato.toString());
+        valideringLaengdeDays(laengdeDays);
+        valideringslutDato(slutDato.toString());
+        valideringprisKr(prisKr);
     }
 
     // bilId INT NOT NULL,
@@ -108,8 +82,8 @@ public class LejeaftaleService {
     }
 
     //prisKr DECIMAL NOT NULL
-    public void valideringprisKr(BigDecimal pris){
-        if(pris==null || pris.compareTo(BigDecimal.valueOf(0))<=0){
+    public void valideringprisKr(double pris){
+        if(pris<=0){
             throw new IllegalArgumentException("prisKr kan ikke være 0 eller mindre end 0");
         }
     }

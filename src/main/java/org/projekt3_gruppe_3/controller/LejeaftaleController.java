@@ -5,6 +5,7 @@ import org.projekt3_gruppe_3.repository.LejeaftaleRepo;
 import org.projekt3_gruppe_3.service.LejeaftaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,25 +37,18 @@ public class LejeaftaleController {
             @RequestParam("kundeId") int kundeId,
             @RequestParam("skadeMatrixId") int skadeMatrix,
             @RequestParam("startDato") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDato,
-            @RequestParam("laengdeDays") int laengeDays,
+            @RequestParam("laengdeDays") int laengdeDays,
             @RequestParam("slutDato") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate slutDato,
-            @RequestParam("prisKr") double prisKr) {
-        System.out.println("du kom til createlejeaftale");
-        Lejeaftale lejeaftale = new Lejeaftale(bilId, kundeId, skadeMatrix, startDato, laengeDays, slutDato, prisKr);
-        lejeaftaleRepo.createLejeaftale(lejeaftale);
+            @RequestParam("prisKr") double prisKr,
+            Model model) {
+
+      try{
+        lejeaftaleService.createLejeaftale(bilId, kundeId, skadeMatrix,
+                startDato, laengdeDays, slutDato, prisKr
+        );
         return "redirect:/lejeaftale/list";
-
-//           lejeaftaleService.createLejeaftale(
-//                   id, bilId, kundeId, skadeMatrix, startDato, laengeDays, slutDato, pris
-//            );
-
-//            return "redirect:/lejeaftale/list";
-//        }
-
-//        @PostMapping("/delete")
-//        public String deleteLejeaftale(@RequestParam("id") Long id) {
-//            lejeaftaleService.deleteLejeaftale(id);
-//            return "redirect:/lejeaftale/list";
-//        }
+      }catch (IllegalArgumentException e){
+          model.addAttribute("error", e.getMessage());
+          return "LejeaftaleForm";}
     }
 }
