@@ -14,6 +14,7 @@ CREATE TABLE Kunde(
     status VARCHAR(10) NOT NULL
 );
 
+
 CREATE TABLE Bil(
     id INT AUTO_INCREMENT PRIMARY KEY,
     vognnummer VARCHAR(50) NOT NULL,
@@ -38,10 +39,8 @@ CREATE TABLE Lejeaftale(
     id INT AUTO_INCREMENT PRIMARY KEY,
     bilId INT NOT NULL,
     FOREIGN KEY (bilId) REFERENCES Bil(id),
-    kundeId INT NOT NULL,
-    FOREIGN KEY (kundeId) REFERENCES Kunde(id),
+    kundeId INT  NOT NULL,
     skadeMatrixId INT NOT NULL,
-    FOREIGN KEY (skadeMatrixId) REFERENCES SkadeMatrix(id),
     startDate DATE NOT NULL,
     laengdeDays INTEGER NOT NULL,
     slutDato DATE NOT NULL,

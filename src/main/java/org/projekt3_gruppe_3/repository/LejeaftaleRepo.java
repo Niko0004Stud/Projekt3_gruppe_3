@@ -41,20 +41,19 @@ public class LejeaftaleRepo {
     }
 
     public void createLejeaftale(Lejeaftale lejeaftale){
-        String sql="INSERT INTO lejeaftale (Lejeaftaleid, BilId, KundeId,skadeMatrixId, startDato, laengdeDays, slutDato, prisKr) " +
-                "VALUES(?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO Lejeaftale (BilId, KundeId,skadeMatrixId, startDate, laengdeDays, slutDato, prisKr) " +
+                "VALUES(?,?,?,?,?,?,?)";
 
 
         try(Connection connection=dataSource.getConnection();
             PreparedStatement statement=connection.prepareStatement(sql)) {
-            statement.setInt(1, lejeaftale.getId());
-            statement.setInt(2, lejeaftale.getBilId());
-            statement.setInt(3, lejeaftale.getKundeId());
-            statement.setInt(4, lejeaftale.getSkadeMatrixId());
-            statement.setDate(5, Date.valueOf((LocalDate) lejeaftale.getStartDato()));
-            statement.setInt(6, lejeaftale.getLaengeDays());
-            statement.setDate(7, Date.valueOf((LocalDate) lejeaftale.getSlutDato()));
-            statement.setBigDecimal(8, lejeaftale.getPrisKr());
+            statement.setInt(1, lejeaftale.getBilId());
+            statement.setInt(2, lejeaftale.getKundeId());
+            statement.setInt(3, lejeaftale.getSkadeMatrixId());
+            statement.setDate(4, Date.valueOf((LocalDate) lejeaftale.getStartDato()));
+            statement.setInt(5, lejeaftale.getLaengeDays());
+            statement.setDate(6, Date.valueOf((LocalDate) lejeaftale.getSlutDato()));
+            statement.setDouble(7, lejeaftale.getPrisKr());
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
