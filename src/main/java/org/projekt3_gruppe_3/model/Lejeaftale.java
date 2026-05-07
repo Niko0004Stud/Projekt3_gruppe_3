@@ -2,7 +2,7 @@ package org.projekt3_gruppe_3.model;
 import java.time.LocalDate;
 
 public class Lejeaftale {
-
+    private int id;
     private int bilId;
     private int kundeId;
     private int skadeMatrixId;//lidt i tvivl, der er snak
@@ -11,6 +11,19 @@ public class Lejeaftale {
     private LocalDate slutDato;
     private double prisKr;
 
+    // Til at oprette fra eksisterende objekt i DB
+    public Lejeaftale(int id, int bilId, int kundeId, int skadeMatrixId, LocalDate startDato, int laengeDays, LocalDate slutDato, double prisKr) {
+        this.id = id;
+        this.bilId = bilId;
+        this.kundeId = kundeId;
+        this.skadeMatrixId = skadeMatrixId;
+        this.startDato = startDato;
+        this.laengeDays = laengeDays;
+        this.slutDato = slutDato;
+        this.prisKr = prisKr;
+    }
+
+    // Til at oprette nyt objekt til DB
     public Lejeaftale(int bilId, int kundeId, int skadeMatrixId, LocalDate startDato, int laengeDays, LocalDate slutDato, double prisKr) {
         this.bilId = bilId;
         this.kundeId = kundeId;
@@ -21,6 +34,9 @@ public class Lejeaftale {
         this.prisKr = prisKr;
     }
 
+    public String toString(){
+        return "Id: "+id+" Bil id: "+bilId+" Kunde id: "+kundeId+" Skade Matrix id: "+skadeMatrixId+" startDate: "+startDato+" LængdeDays: "+laengeDays+" slutDato: "+slutDato+" pris: "+prisKr;
+    }
 
     public int getBilId() {
         return bilId;

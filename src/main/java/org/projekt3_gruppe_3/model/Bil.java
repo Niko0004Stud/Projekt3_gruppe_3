@@ -13,7 +13,7 @@ public class Bil {
     private double co2Udledning;
 
 
-public Bil(double co2Udledning){
-    this.co2Udledning=co2Udledning;
-}
+    public Bil(double co2Udledning){
+        this.co2Udledning=co2Udledning;
+    }
 }
