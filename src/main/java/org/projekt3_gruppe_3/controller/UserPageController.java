@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserPageController {
 
     @GetMapping("/userpage")
-    public String userpage(HttpSession session){
+    public String cUserpage(HttpSession session){
         //Hvad er der med den her?
         //SuperUser user = (SuperUser) session.getAttribute("user");
 
@@ -18,7 +18,7 @@ public class UserPageController {
     }
 
     @GetMapping("/getCreatePage")
-    public String getCreatePage(@RequestParam("opretPageType") String opretPageType){
+    public String cGetCreatePage(@RequestParam("opretPageType") String opretPageType){
 
         return "/opretPage";
     }
