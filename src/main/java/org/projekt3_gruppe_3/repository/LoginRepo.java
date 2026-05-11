@@ -2,7 +2,6 @@ package org.projekt3_gruppe_3.repository;
 
 import org.projekt3_gruppe_3.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
