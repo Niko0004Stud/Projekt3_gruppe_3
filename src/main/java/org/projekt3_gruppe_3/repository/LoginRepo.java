@@ -1,9 +1,7 @@
 package org.projekt3_gruppe_3.repository;
 
-import org.projekt3_gruppe_3.model.Admin;
-import org.projekt3_gruppe_3.model.SuperUser;
+import org.projekt3_gruppe_3.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -31,19 +29,30 @@ public class LoginRepo {
 
         try(ResultSet resultSet = statement.executeQuery()){
             if(resultSet.next()){
-                switch (resultSet.getInt("sysRole")){
-                    case 0: user=rGetUserAdmin(
+                user = switch (resultSet.getInt("sysRole")) {
+                    case 0 -> rGetUserAdmin(
                             resultSet.getInt("id"),
                             resultSet.getString("username"),
                             resultSet.getString("password"),
-                            resultSet.getString("sysRole")
-                    );
-                        break;
-
-                    case 1: //user
-                        break;
-
-                }
+                            resultSet.getString("sysRole"));
+                    case 1 -> rGetUserDr(
+                            resultSet.getInt("id"),
+                            resultSet.getString("username"),
+                            resultSet.getString("password"),
+                            resultSet.getString("sysRole"));
+                    case 2 -> rGetUserFU(
+                            resultSet.getInt("id"),
+                            resultSet.getString("username"),
+                            resultSet.getString("password"),
+                            resultSet.getString("sysRole"));
+                    case 3 -> rGetUserBilTech(
+                            resultSet.getInt("id"),
+                            resultSet.getString("username"),
+                            resultSet.getString("password"),
+                            resultSet.getString("sysRole"),
+                            resultSet.getString("sysRoleType"));
+                    default -> user;
+                };
             } else {
                 return null;
             }
@@ -59,5 +68,15 @@ public class LoginRepo {
         return new Admin(id, username, password, sysRole);
     }
 
+    public Dataregistrerer rGetUserDr(int id, String username, String password, String sysRole){
+        return new Dataregistrerer(id, username, password, sysRole);
+    }
 
+    public Forretningsudvikler rGetUserFU(int id, String username, String password, String sysRole){
+        return new Forretningsudvikler(id, username, password, sysRole);
+    }
+
+    public BilTech rGetUserBilTech(int id, String username, String password, String sysRole, String sysRoleType){
+        return new BilTech(id, username, password, sysRole, sysRoleType);
+    }
 }
