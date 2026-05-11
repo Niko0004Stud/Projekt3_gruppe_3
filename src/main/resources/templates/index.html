@@ -2,43 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Lejeaftaler</title>
+    <title>Login page</title>
 </head>
 <body>
-<header class="Lejeaftaler">
-    <h1>Lejeaftaler</h1>
-</header>
-
 <main>
-    <form th:action="@{/lejeaftale/create}" method="post">
-        <label> Bil Id:</label>
-        <input type="number" name="bilId">
-
-        <label> Kunde Id:</label>
-        <input type="number" name="kundeId">
-
-        <label> Startsdato:</label>
-        <input type="date" name="startDato">
-
-        <label> Leangde days:</label>
-        <input type="number" name="laengdeDays">
-
-        <label>SlutDato:</label>
-        <input type="date" name="slutDato">
-
-        <label>Pris kr:</label>
-        <input type="number" name="prisKr">
-
-        <label> Skadematrix Id:</label>
-        <input type="number" name="skadeMatrixId">
-
-        <button type="submit">Opret ny lejeaftale</button>
-    </form>
-    <button type="submit">Vis oversigt over lejeaftaler</button>
-    <a th:href="@{'showAllLejeaftaler'}" > Vis Alle Lejeaftalerne</a>
-
-
+    <div>
+        <form th:action="@{/tryLogin}" method="post">
+            <label for="usernameField">Brugernavn:</label>
+            <input type="text" name="username" id="usernameField" required>
+            <label for="passwordField">Password:</label>
+            <input type="password" name="password" id="passwordField" required>
+            <button type="submit">Log ind</button>
+        </form>
+    </div>
 </main>
-
 </body>
 </html>
