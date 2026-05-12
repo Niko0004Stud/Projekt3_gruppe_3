@@ -20,7 +20,6 @@ public class LoginRepo {
     SuperUser user = null;
     String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-
     try(Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)){
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Brugerside</title>
+</head>
+<body>
+<main>
+  <div>
+      <form th:action="@{/getCreatePage}">
+          <label for="opret">Opret</label>
+          <select name="opretPageType" id="opret">
+              <option value="createUser">Opret Bruger</option>
+          </select>
+      </form>
+
+  </div>
+</main>
+</body>
+</html>
