@@ -7,3 +7,5 @@ insert into SkadeMatrix (beskrivelse, prisPaaSkade, registreringsDate)
 VALUES  ('big dmg', '555555', 09-)
 INSERT INTO User(username, password, sysrole)
 VALUES ('testAdmin', 'testpassword', 'admin');
+INSERT INTO User(username, password, sysrole)
+VALUES ('testDR', 'testpassword', 'dataregistrerer');
