@@ -29,7 +29,7 @@ public class LejeaftaleController {
         return"redirect:/";
     }
 
-    @PostMapping("/lejeaftale/create")
+    @PostMapping("opretLejeaftale")
     public String createLejeaftale(
             @RequestParam("bilId") int bilId,
             @RequestParam("kundeId") int kundeId,
@@ -44,7 +44,7 @@ public class LejeaftaleController {
         lejeaftaleService.createLejeaftale(bilId, kundeId, skadeMatrix,
                 startDato, laengdeDays, slutDato, prisKr
         );
-        return "redirect:/lejeaftale/list";
+        return "redirect:/userpage";
       }catch (IllegalArgumentException e){
           model.addAttribute("error", e.getMessage());
           return "LejeaftaleForm";}
