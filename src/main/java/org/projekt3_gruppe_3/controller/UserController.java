@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("opretBruger")
+    @PostMapping("opretUser")
     public String cCreateUser(@RequestParam("username")String username,
                               @RequestParam("password")String password,
                               @RequestParam("sysRole")String sysRole){

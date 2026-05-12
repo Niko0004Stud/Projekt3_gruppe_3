@@ -7,11 +7,25 @@
 <body>
 <main>
     <div>
-        <form th:action="@{/opret}" method="post">
-            <label for="input1">test</label>
-            <input id="input1" type="text" name="input1" required>
-            <label for="input2">test2</label>
-            <input id="input2" type="text">
+        <form th:action="@{/opretUser}" th:if="${opretPageType == 'createUser'}" method="post">
+            <label for="usernameField">Username:</label>
+            <input name="username" id="usernameField" type="text"  required>
+            <label for="passwordField">Password:</label>
+            <input name="password" id="passwordField" type="text" >
+            <label for="sysRoleDropdown">Systemrolle</label>
+            <ul id="sysRoleDropdown">
+                <li>
+                    <label for="adminRadio">Admin:</label>
+                    <input name="sysRole" value="admin" id="adminRadio" type="radio">
+                    <label for="drRadio">Dataregistrerer:</label>
+                    <input name="sysRole" value="dataregistrerer" id="drRadio">
+                    <label for="suRadio">Skade Og Udbedring:</label>
+                    <input name="sysRole" value="skadeOgUdbedring" id="suRadio">
+                    <label for="fuRadio">Forretningsudvikler:</label>
+                    <input name="sysRole" value="forretningsudvikling" id="fuRadio">
+                </li>
+            </ul>
+            <button type="submit">Opret</button>
         </form>
     </div>
 </main>

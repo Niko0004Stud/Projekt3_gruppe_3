@@ -3,8 +3,10 @@ package org.projekt3_gruppe_3.controller;
 import jakarta.servlet.http.HttpSession;
 import org.projekt3_gruppe_3.model.SuperUser;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UserPageController {
@@ -18,7 +20,9 @@ public class UserPageController {
     }
 
     @GetMapping("/getCreatePage")
-    public String cGetCreatePage(@RequestParam("opretPageType") String opretPageType){
+    public String cGetCreatePage(@RequestParam("opretPageType") String opretPageType, Model model){
+
+        model.addAttribute("opretPageType", opretPageType);
 
         return "/opretPage";
     }
