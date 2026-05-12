@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Brugerside</title>
+</head>
+<body>
+<main>
+  <div> <!--Alle opretninger tilføjes her -->
+      <form th:action="@{/getCreatePage}" method="get">
+          <label for="opret">Opret</label>
+          <select name="opretPageType" id="opret" onchange="this.form.submit()">
+              <option hidden>Vælg opretning</option>
+              <option th:if="${user.getSysRole() == 'admin'}" value="createUser" >Opret Bruger</option>
+              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createLejeaftale">Opret Lejeaftale</option>
+              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createBil">Opret Bil</option>
+              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createForhaandsaftale">Opret Forhåndsaftale</option>
+              <option th:if="${user.getSysRole() == 'admin'}"></option>
+          </select>
+      </form>
+  </div>
+</main>
+</body>
+</html>
