@@ -2,9 +2,11 @@ package org.projekt3_gruppe_3.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.projekt3_gruppe_3.model.SuperUser;
+import org.projekt3_gruppe_3.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -12,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserPageController {
 
     @GetMapping("/userpage")
-    public String cUserpage(HttpSession session){
-        //Hvad er der med den her?
-        //SuperUser user = (SuperUser) session.getAttribute("user");
+    public String cUserpage(HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user",user);
 
         return "userpage";
     }
 
     @GetMapping("/getCreatePage")
     public String cGetCreatePage(@RequestParam("opretPageType") String opretPageType, Model model){
-
+        System.out.println("Du kom til getcreatepage");
         model.addAttribute("opretPageType", opretPageType);
 
-        return "/opretPage";
+        return "opretPage";
     }
 }

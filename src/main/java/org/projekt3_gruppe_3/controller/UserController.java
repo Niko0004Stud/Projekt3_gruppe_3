@@ -1,6 +1,7 @@
 package org.projekt3_gruppe_3.controller;
 
 
+import org.projekt3_gruppe_3.model.SuperUser;
 import org.projekt3_gruppe_3.model.User;
 import org.projekt3_gruppe_3.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,10 @@ public class UserController {
     public String cCreateUser(@RequestParam("username")String username,
                               @RequestParam("password")String password,
                               @RequestParam("sysRole")String sysRole){
-        User user = new User(username, password, sysRole);
-        userService.sCreateUser(user);
+        userService.sCreateUser(username, password, sysRole);
+
+//        User user = new User(username, password, sysRole);
+//        userService.sCreateUser(user);
         return "redirect:/userpage";
     }
 }

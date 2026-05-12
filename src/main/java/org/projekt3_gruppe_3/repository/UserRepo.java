@@ -16,7 +16,7 @@ public class UserRepo {
     DataSource dataSource;
 
     public void rCreateUser(User user){
-        String sql = "INSERT INTO user (username, password, sysRole) " +
+        String sql = "INSERT INTO User (username, password, sysrole) " +
                 "VALUES( ?, ?, ?)";
 
         try(Connection connection = dataSource.getConnection();

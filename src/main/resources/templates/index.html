@@ -7,11 +7,11 @@
 <body>
 <main>
     <div>
-        <form th:action="@{/tryLogin}" method="post">
+        <form th:action="@{/tryLogin}" method="get">
             <label for="usernameField">Brugernavn:</label>
-            <input type="text" name="username" id="usernameField" required>
+            <input type="text" name="username" id="usernameField" value="testAdmin" required>
             <label for="passwordField">Password:</label>
-            <input type="password" name="password" id="passwordField" required>
+            <input type="password" name="password" id="passwordField" value="testpassword" required>
             <button type="submit">Log ind</button>
         </form>
     </div>

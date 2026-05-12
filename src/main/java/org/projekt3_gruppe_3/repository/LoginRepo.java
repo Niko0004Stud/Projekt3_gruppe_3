@@ -16,9 +16,9 @@ public class LoginRepo {
     @Autowired
     DataSource dataSource;
 
-    public SuperUser rTryLogin(String username, String password){
-    SuperUser user = null;
-    String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+    public User rTryLogin(String username, String password){
+    User user = null;
+    String sql = "SELECT * FROM User WHERE username = ? AND password = ?";
 
     try(Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)){
@@ -28,7 +28,11 @@ public class LoginRepo {
 
         try(ResultSet resultSet = statement.executeQuery()){
             if(resultSet.next()){
-                user = switch (resultSet.getInt("sysRole")) {
+                user = new User(resultSet.getInt("id"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getString("sysrole"));
+                /*user = switch (resultSet.getInt("sysRole")) {
                     case 0 -> rGetUserAdmin(
                             resultSet.getInt("id"),
                             resultSet.getString("username"),
@@ -51,7 +55,7 @@ public class LoginRepo {
                             resultSet.getString("sysRole"),
                             resultSet.getString("sysRoleType"));
                     default -> user;
-                };
+                }; */
             } else {
                 return null;
             }
@@ -60,10 +64,10 @@ public class LoginRepo {
         e.printStackTrace();
     }
 
-    return user;
+        return user;
     }
 
-    public Admin rGetUserAdmin(int id, String username, String password, String sysRole){
+    /*public Admin rGetUserAdmin(int id, String username, String password, String sysRole){
         return new Admin(id, username, password, sysRole);
     }
 
@@ -77,5 +81,5 @@ public class LoginRepo {
 
     public BilTech rGetUserBilTech(int id, String username, String password, String sysRole, String sysRoleType){
         return new BilTech(id, username, password, sysRole, sysRoleType);
-    }
+    }*/
 }
