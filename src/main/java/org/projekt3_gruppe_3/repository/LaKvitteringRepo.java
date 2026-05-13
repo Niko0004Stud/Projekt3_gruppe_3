@@ -32,7 +32,9 @@ public class LaKvitteringRepo {
                         resultSet.getDate("startDate").toLocalDate(),
                         resultSet.getDate("slutDate").toLocalDate(),
                         resultSet.getDouble("totalPrisKr"),
-                        resultSet.getString("type")
+                        resultSet.getString("type"),
+                        resultSet.getInt("lejeaftaleId"),
+                        resultSet.getDouble("foerstegangsydelseKr")
                 ));
             }
         }catch (SQLException e){
@@ -57,6 +59,8 @@ public class LaKvitteringRepo {
                     laKvittering.setSlutDate(resultSet.getDate("slutDate").toLocalDate());
                     laKvittering.setTotalPrisKr(resultSet.getDouble("totalPrisKr"));
                     laKvittering.setType(resultSet.getString("type"));
+                    laKvittering.setLejeaftaleId(resultSet.getInt("lejeaftaleId"));
+                    laKvittering.setFoerstegangsydelseKr(resultSet.getDouble("foerstegangsydelseKr"));
                 }
             }
         }catch (SQLException e){
@@ -65,5 +69,18 @@ public class LaKvitteringRepo {
         return laKvittering;
     }
 
+    public void automatiskKvittering(LaKvittering laKvittering){
+        String sql="INSERT INTO laKvittering (lejeaftaleId, skadeMatrixId, foerstegangsydelseKr, totalPrisKr)VALUES( ?, ?, ?, ?)";
+        try(Connection connection=dataSource.getConnection();
+        PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setInt(1, laKvittering.getLejeaftaleId());
+            statement.setInt(2, laKvittering.getSkadeMatrixId());
+            statement.setDouble(3, laKvittering.getFoerstegangsydelseKr());
+            statement.setDouble(4, laKvittering.getTotalPrisKr());
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
 }

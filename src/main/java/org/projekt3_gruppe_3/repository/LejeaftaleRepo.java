@@ -1,5 +1,6 @@
 package org.projekt3_gruppe_3.repository;
 
+import org.projekt3_gruppe_3.model.LaKvittering;
 import org.projekt3_gruppe_3.model.Lejeaftale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,8 @@ public class LejeaftaleRepo {
 
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private LaKvitteringRepo laKvitteringRepo;
 
     public ArrayList<Lejeaftale> readAllLejeaftaler(){
         ArrayList<Lejeaftale> lejeaftaler = new ArrayList<>();
@@ -50,8 +53,7 @@ public class LejeaftaleRepo {
 
     public void createLejeaftale(Lejeaftale lejeaftale){
         String sql="INSERT INTO Lejeaftale (BilId, KundeId,skadeMatrixId, startDate, laengdeDays, slutDato, prisKr) " +
-                "VALUES(?,?,?,?,?,?,?)";
-
+                "VALUES( ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection connection=dataSource.getConnection();
             PreparedStatement statement=connection.prepareStatement(sql)) {
@@ -63,6 +65,13 @@ public class LejeaftaleRepo {
             statement.setDate(6, Date.valueOf((LocalDate) lejeaftale.getSlutDato()));
             statement.setDouble(7, lejeaftale.getPrisKr());
             statement.executeUpdate();
+
+            LaKvittering laKvittering=new LaKvittering();
+            laKvittering.setLejeaftaleId(1);
+            laKvittering.setSkadeMatrixId(lejeaftale.getSkadeMatrixId());
+            laKvittering.setFoerstegangsydelseKr(lejeaftale.getPrisKr());
+            laKvittering.setTotalPrisKr(lejeaftale.getPrisKr());
+            laKvitteringRepo.automatiskKvittering(laKvittering);
         }catch (SQLException e){
             e.printStackTrace();
         }
