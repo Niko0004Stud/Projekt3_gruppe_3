@@ -9,7 +9,7 @@ CREATE TABLE Kunde(
     fornavn VARCHAR (50) NOT NULL,
     efternavn VARCHAR (50) NOT NULL,
     tlfNummer INTEGER NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
     adresse VARCHAR (100) NOT NULL,
     status VARCHAR(10) NOT NULL
 );
