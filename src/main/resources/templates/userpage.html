@@ -6,16 +6,25 @@
 </head>
 <body>
 <main>
-  <div> <!--Alle opretninger tilføjes her -->
+  <div> <!--Alle opretninger tilføjes her. Husk at definere hvilke roller der må se dem -->
       <form th:action="@{/getCreatePage}" method="get">
-          <label for="opret">Opret</label>
+          <label for="opret">Opretninger</label>
           <select name="opretPageType" id="opret" onchange="this.form.submit()">
               <option hidden>Vælg opretning</option>
-              <option th:if="${user.getSysRole() == 'admin'}" value="createUser" >Opret Bruger</option>
-              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createLejeaftale">Opret Lejeaftale</option>
-              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createBil">Opret Bil</option>
-              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createForhaandsaftale">Opret Forhåndsaftale</option>
+              <option value="createUser" th:if="${user.getSysRole() == 'admin'}"  >Opret Bruger</option>
+              <option value="createLejeaftale" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" >Opret Lejeaftale</option>
+              <option value="createBil" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" >Opret Bil</option>
+              <option value="createForhaandsaftale" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" >Opret Forhåndsaftale</option>
               <option th:if="${user.getSysRole() == 'admin'}"></option>
+          </select>
+      </form>
+  </div>
+  <div>
+      <form th:action="@{/getOverviewPage}" method="get">
+        <label for="oversigt">Oversigter</label>
+          <select name="oversigtPageType" id="oversigt" onchange="this.form.submit()">
+              <option hidden>Vælg Oversigt</option>
+              <option value="oversigtBil" th:if="${user.getSysRole() == 'admin' or 'dataregistrerer' or 'skadeOgUdbedring' or 'forretningsudvikler'}">Biler</option>
           </select>
       </form>
   </div>

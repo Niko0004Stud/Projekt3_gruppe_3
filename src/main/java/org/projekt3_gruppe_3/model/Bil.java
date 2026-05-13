@@ -25,5 +25,117 @@ public class Bil {
     private double regAfgift;
     private double co2Udledning;
 
+    public Bil(
+            int id,
+            String vognnummer,
+            String stelnummer,
+            String maerke,
+            String model,
+            int udstyrsniveau,
+            double staalpris,
+            double regAfgift,
+            double co2Udledning) {
 
+        this.id = id;
+        this.vognnummer = vognnummer;
+        this.stelnummer = stelnummer;
+        this.maerke = maerke;
+        this.model = model;
+        this.udstyrsniveau = udstyrsniveau;
+        this.staalpris = staalpris;
+        this.regAfgift = regAfgift;
+        this.co2Udledning = co2Udledning;
+    }
+
+    public Bil(
+            String vognnummer,
+            String stelnummer,
+            String maerke,
+            String model,
+            int udstyrsniveau,
+            double staalpris,
+            double regAfgift,
+            double co2Udledning) {
+
+        this.vognnummer = vognnummer;
+        this.stelnummer = stelnummer;
+        this.maerke = maerke;
+        this.model = model;
+        this.udstyrsniveau = udstyrsniveau;
+        this.staalpris = staalpris;
+        this.regAfgift = regAfgift;
+        this.co2Udledning = co2Udledning;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getVognnummer() {
+        return vognnummer;
+    }
+
+    public void setVognnummer(String vognnummer) {
+        this.vognnummer = vognnummer;
+    }
+
+    public String getStelnummer() {
+        return stelnummer;
+    }
+
+    public void setStelnummer(String stelnummer) {
+        this.stelnummer = stelnummer;
+    }
+
+    public String getMaerke() {
+        return maerke;
+    }
+
+    public void setMaerke(String maerke) {
+        this.maerke = maerke;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getUdstyrsniveau() {
+        return udstyrsniveau;
+    }
+
+    public void setUdstyrsniveau(int udstyrsniveau) {
+        this.udstyrsniveau = udstyrsniveau;
+    }
+
+    public double getStaalpris() {
+        return staalpris;
+    }
+
+    public void setStaalpris(double staalpris) {
+        this.staalpris = staalpris;
+    }
+
+    public double getRegAfgift() {
+        return regAfgift;
+    }
+
+    public void setRegAfgift(double regAfgift) {
+        this.regAfgift = regAfgift;
+    }
+
+    public double getCo2Udledning() {
+        return co2Udledning;
+    }
+
+    public void setCo2Udledning(double co2Udledning) {
+        this.co2Udledning = co2Udledning;
+    }
 }

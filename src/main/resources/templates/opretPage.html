@@ -5,15 +5,15 @@
     <title>Opretningspage</title>
 </head>
 <body>
-<main>
-    <div>
+<main>      <!-- Andre former for opretning tilføjes med nye <form></form>, som -->
+    <div>   <!-- alle sender til "/opretUser", men har forskellige slags opretPageType-->
         <form th:action="@{/opretUser}" th:if="${opretPageType == 'createUser'}" method="post">
             <label for="usernameField">Username:</label>
             <input name="username" id="usernameField" type="text"  required>
             <label for="passwordField">Password:</label>
-            <input name="password" id="passwordField" type="text" >
+            <input name="password" id="passwordField" type="text" required >
             <label for="sysRoleDropdown">Systemrolle</label>
-            <ul id="sysRoleDropdown">
+            <ul id="sysRoleDropdown" >
                 <li>
                     <label for="adminRadio">Admin:</label>
                     <input name="sysRole" value="admin" id="adminRadio" type="radio">
@@ -27,7 +27,24 @@
             </ul>
             <button type="submit">Opret</button>
         </form>
-
+        <form th:action="@{/opretBil}" th:if="${opretPageType == 'createBil'}">
+            <label for="vognnummerField">Vognnummer:</label>
+            <input name="vognnummer" id="vognnummerField" type="text">
+            <label for="stelnummerField">Stelnummer:</label>
+            <input name="stelnummer" id="stelnummerField" type="text">
+            <label for="maerkeField">Mærke:</label>
+            <input name="maerke" id="maerkeField" type="text">
+            <label for="modelField">Model:</label>
+            <input name="model" id="modelField" type="text">
+            <label for="udstyrsniveauField">Udstyrsniveau:</label>
+            <input name="udstyrsniveau" id="udstyrsniveauField" type="number">
+            <label for="staalprisField">Stålpris:</label>
+            <input name="staalpris" id="staalprisField" type="number">
+            <label for="regAfgiftField">Registreringsafgift:</label>
+            <input name="regAfgift" id="regAfgiftField" type="number">
+            <label for="co2UdledningField">co2Udledning:</label>
+            <input name="co2Udledning" id="co2UdledningField" type="number">
+        </form>
     </div>
 </main>
 </body>
