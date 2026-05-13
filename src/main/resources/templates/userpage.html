@@ -6,7 +6,7 @@
 </head>
 <body>
 <main>
-  <div> <!--Alle opretninger tilføjes her -->
+  <div> <!--Alle opretninger tilføjes her. Husk at definere hvilke roller der må se dem -->
       <form th:action="@{/getCreatePage}" method="get">
           <label for="opret">Opret</label>
           <select name="opretPageType" id="opret" onchange="this.form.submit()">
