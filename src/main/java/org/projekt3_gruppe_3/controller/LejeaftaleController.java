@@ -22,6 +22,7 @@ public class LejeaftaleController {
     @Autowired
     LejeaftaleService lejeaftaleService;
 
+    //estera & sebastian
     @GetMapping("/showAllLejeaftaler")
     public String showAllLejeaftaler(){
         System.out.println(lejeaftaleRepo.readAllLejeaftaler());
@@ -29,6 +30,7 @@ public class LejeaftaleController {
         return"redirect:/";
     }
 
+    //estera & sebastian
     @PostMapping("/lejeaftale/create")
     public String createLejeaftale(
             @RequestParam("bilId") int bilId,

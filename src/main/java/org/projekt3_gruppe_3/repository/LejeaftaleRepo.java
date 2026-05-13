@@ -52,7 +52,7 @@ public class LejeaftaleRepo {
     }
 
     public void createLejeaftale(Lejeaftale lejeaftale){
-        String sql="INSERT INTO Lejeaftale (BilId, KundeId,skadeMatrixId, startDate, laengdeDays, slutDato, prisKr) " +
+        String sql="INSERT INTO Lejeaftale (BilId, KundeId,skadeMatrixId, startDate, laengdeDays, slutDate, prisKr) " +
                 "VALUES( ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection connection=dataSource.getConnection();
@@ -60,9 +60,9 @@ public class LejeaftaleRepo {
             statement.setInt(1, lejeaftale.getBilId());
             statement.setInt(2, lejeaftale.getKundeId());
             statement.setInt(3, lejeaftale.getSkadeMatrixId());
-            statement.setDate(4, Date.valueOf((LocalDate) lejeaftale.getStartDato()));
+            statement.setDate(4, Date.valueOf((LocalDate) lejeaftale.getStartDate()));
             statement.setInt(5, lejeaftale.getLaengeDays());
-            statement.setDate(6, Date.valueOf((LocalDate) lejeaftale.getSlutDato()));
+            statement.setDate(6, Date.valueOf((LocalDate) lejeaftale.getSlutDate()));
             statement.setDouble(7, lejeaftale.getPrisKr());
             statement.executeUpdate();
 

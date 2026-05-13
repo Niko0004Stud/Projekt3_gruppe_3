@@ -17,6 +17,7 @@ public class LaKvitteringController {
     @Autowired
     LaKvitteringRepo laKvitteringRepo;
 
+    //estera
     @GetMapping("/showAlleLaKvitteringer")
     public String showAlleLaKvitteringer(@RequestParam("id") int id ,Model model){
         model.addAttribute("laKvitteringer", laKvitteringRepo.readAlleLaKvitteringer());
@@ -24,6 +25,7 @@ public class LaKvitteringController {
         return "showAlleLaKvitteringer";
     }
 
+    //estera
     @GetMapping("/showLaKvittering")
     public String showLaKvittering(@RequestParam("id") int id ,Model model){
         model.addAttribute("LaKvittering", laKvitteringRepo.readById(id));
