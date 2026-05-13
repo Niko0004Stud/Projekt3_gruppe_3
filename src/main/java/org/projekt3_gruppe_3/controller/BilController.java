@@ -3,6 +3,8 @@ package org.projekt3_gruppe_3.controller;
 import org.projekt3_gruppe_3.service.BilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,5 +26,13 @@ public class BilController {
 
         return bilService.sCreateBil(vognnummer, stelnummer, maerke, model, udstyrsniveau, staalpris, regAfgift, co2Udledning);
     }
+
+    @GetMapping("visAlleBiler")
+    public String cReadAllBil(Model model){
+
+        return bilService.sReadAllBil(model);
+    }
+
+
 
 }

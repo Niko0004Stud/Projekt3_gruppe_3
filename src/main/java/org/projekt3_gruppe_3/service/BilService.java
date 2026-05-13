@@ -4,6 +4,9 @@ import org.projekt3_gruppe_3.model.Bil;
 import org.projekt3_gruppe_3.repository.BilRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Service
 public class BilService {
@@ -24,4 +27,9 @@ public class BilService {
         return "redirect:/userpage";
     }
 
+    public String sReadAllBil(Model model){
+
+        model.addAttribute("bilList", bilRepo.readAllBil());
+        return "/oversigt";
+    }
 }

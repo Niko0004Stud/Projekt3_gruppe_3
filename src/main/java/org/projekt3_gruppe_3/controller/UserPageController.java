@@ -23,9 +23,14 @@ public class UserPageController {
 
     @GetMapping("/getCreatePage")
     public String cGetCreatePage(@RequestParam("opretPageType") String opretPageType, Model model){
-        System.out.println("Du kom til getcreatepage");
         model.addAttribute("opretPageType", opretPageType);
 
         return "opretPage";
+    }
+
+    @GetMapping("/getOverviewPage")
+    public String cGetOverviewPage(@RequestParam("oversigtPageType") String oversigtPageType, Model model){
+
+        return "oversigtPage";
     }
 }
