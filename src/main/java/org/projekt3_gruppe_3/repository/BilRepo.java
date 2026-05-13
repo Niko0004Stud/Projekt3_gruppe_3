@@ -52,7 +52,7 @@ public class BilRepo implements CrudRepository<Bil> {
 
     public Bilmodel getBilmodelById(int id){
         Bilmodel bilmodel = null;
-        String sql = "SELECT FROM Model WHERE id = ?";
+        String sql = "SELECT * FROM Model WHERE id = ?";
 
         try(Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)){

@@ -1,5 +1,7 @@
 package org.projekt3_gruppe_3.controller;
 
+import jakarta.servlet.http.HttpSession;
+import org.projekt3_gruppe_3.model.User;
 import org.projekt3_gruppe_3.service.BilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +31,9 @@ public class BilController {
     }
 
     @GetMapping("/oversigtBil")
-    public String cReadAllBil(Model model){
-
+    public String cReadAllBil(HttpSession session, Model model, Model modelU){
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", modelU);
         return bilService.sReadAllBil(model);
     }
 
