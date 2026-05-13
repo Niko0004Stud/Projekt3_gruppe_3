@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opretningspage</title>
+</head>
+<body>
+<main>
+    <div>
+        <form th:action="@{/opretUser}" th:if="${opretPageType == 'createUser'}" method="post">
+            <label for="usernameField">Username:</label>
+            <input name="username" id="usernameField" type="text"  required>
+            <label for="passwordField">Password:</label>
+            <input name="password" id="passwordField" type="text" >
+            <label for="sysRoleDropdown">Systemrolle</label>
+            <ul id="sysRoleDropdown">
+                <li>
+                    <label for="adminRadio">Admin:</label>
+                    <input name="sysRole" value="admin" id="adminRadio" type="radio">
+                    <label for="drRadio">Dataregistrerer:</label>
+                    <input name="sysRole" value="dataregistrerer" id="drRadio" type="radio">
+                    <label for="suRadio">Skade Og Udbedring:</label>
+                    <input name="sysRole" value="skadeOgUdbedring" id="suRadio" type="radio">
+                    <label for="fuRadio">Forretningsudvikler:</label>
+                    <input name="sysRole" value="forretningsudvikling" id="fuRadio" type="radio">
+                </li>
+            </ul>
+            <button type="submit">Opret</button>
+        </form>
+
+    </div>
+</main>
+</body>
+</html>
