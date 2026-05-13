@@ -15,6 +15,7 @@ public class LejeaftaleService {
 
         private Lejeaftale lejeaftale;
 
+        //estera & sebastian
         public void createLejeaftale(int bilId, int kundeId, int skadeMatrixId,
                                      LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr) {
 
@@ -26,6 +27,7 @@ public class LejeaftaleService {
             lejeaftaleRepo.createLejeaftale(lejeaftale);
         }
 
+    //estera & sebastian
     public void valideringLejeaftale(int bilId, int kundeId, int skadeMatrixId,
                                      LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr){
         valideringBilId(bilId);
@@ -37,28 +39,28 @@ public class LejeaftaleService {
         valideringprisKr(prisKr);
     }
 
-    // bilId INT NOT NULL,
+    // bilId INT NOT NULL, estera & sebastian
     public void valideringBilId(int id){
         if(id<=0){
             throw new IllegalArgumentException("BilId kan ikke være 0");
         }
     }
 
-    //kundeId INT NOT NULL,
+    //kundeId INT NOT NULL, estera & sebastian
     public void valideringKundeId(int id){
         if(id<=0){
             throw new IllegalArgumentException("KundeId kan ikke være 0");
         }
     }
 
-    //skadeMatrixId INT NOT NULL,
+    //skadeMatrixId INT NOT NULL, estera & sebastian
     public void valideringskadeMatrixId(int id){
         if(id<=0){
             throw new IllegalArgumentException("skadeMatrixId kan ikke være 0");
         }
     }
 
-    //startDato DATE NOT NULL,
+    //startDato DATE NOT NULL, estera & sebastian
     public void valideringstartDato(String startDato){
         String trimmed=startDato.trim();
         if(trimmed.length()<4||trimmed.length()>12){
@@ -66,14 +68,14 @@ public class LejeaftaleService {
         }
     }
 
-    //laengdeDays INTEGER NOT NULL,
+    //laengdeDays INTEGER NOT NULL,estera & sebastian
     public void valideringLaengdeDays(int dage){
         if(dage<=0){
             throw new IllegalArgumentException("LaengdeDays kan ikke være 0");
         }
     }
 
-    //slutDato DATE NOT NULL,
+    //slutDato DATE NOT NULL,estera & sebastian
     public void valideringslutDato(String slutDato){
         String trimmed=slutDato.trim();
         if(trimmed.length()<4||trimmed.length()>12){
@@ -81,7 +83,7 @@ public class LejeaftaleService {
         }
     }
 
-    //prisKr DECIMAL NOT NULL
+    //prisKr DECIMAL NOT NULL, estera & sebastian
     public void valideringprisKr(double pris){
         if(pris<=0){
             throw new IllegalArgumentException("prisKr kan ikke være 0 eller mindre end 0");

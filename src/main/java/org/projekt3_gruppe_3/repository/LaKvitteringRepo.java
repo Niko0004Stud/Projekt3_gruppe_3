@@ -17,6 +17,7 @@ public class LaKvitteringRepo {
     @Autowired
     private DataSource dataSource;
 
+    //estera
     public ArrayList<LaKvittering> readAlleLaKvitteringer(){
         ArrayList<LaKvittering>laKvittering=new ArrayList<>();
         String sql="SELECT * FROM LaKvittering";
@@ -41,6 +42,7 @@ public class LaKvitteringRepo {
         return laKvittering;
     }
 
+    //estera
     public LaKvittering readById(int id){
         LaKvittering laKvittering=null;
         String sql="SELECT * FROM LaKvittering WHERE id=?";
@@ -65,6 +67,7 @@ public class LaKvitteringRepo {
         return laKvittering;
     }
 
+    //estera
     public void automatiskKvittering(LaKvittering laKvittering){
         String sql="INSERT INTO laKvittering (skadeMatrixId, totalPrisKr)VALUES( ?, ?)";
         try(Connection connection=dataSource.getConnection();

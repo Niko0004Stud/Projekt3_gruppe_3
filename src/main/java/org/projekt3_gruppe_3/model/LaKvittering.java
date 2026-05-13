@@ -2,6 +2,7 @@ package org.projekt3_gruppe_3.model;
 
 import java.time.LocalDate;
 
+//estera
 public class LaKvittering {
     private  int id;
     private  int skadeMatrixId;
