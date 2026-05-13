@@ -68,10 +68,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
             statement.executeUpdate();
 
             //automatisk oprettelse af kvittering ved oprettelse af en lejeaftale
-            LaKvittering laKvittering=new LaKvittering();
-            laKvittering.setSkadeMatrixId(lejeaftale.getSkadeMatrixId());
-            laKvittering.setTotalPrisKr(lejeaftale.getPrisKr());
-            laKvitteringRepo.create(laKvittering);
+            laKvitteringRepo.create();
         }catch (SQLException e){
             e.printStackTrace();
         }

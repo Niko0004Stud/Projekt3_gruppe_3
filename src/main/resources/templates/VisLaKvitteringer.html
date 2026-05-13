@@ -6,8 +6,9 @@
 </head>
 <body>
 
+<!--estera -->
 <h1>Se alle kvitteringer</h1>
-<a th:href="@{'showAlleLaKvitteringer'}" > Vis alle lejeaftaler kvitteringer</a>
+<a th:href="@{'getAll'}" > Vis alle lejeaftaler kvitteringer</a>
 
 <table>
     <tr>
@@ -32,7 +33,7 @@
 </table>
 
 <h1>Se kvittering ByID</h1>
-<a th:href="@{'showLaKvittering'}" > Vis lejeaftale kvittering ById</a>
+<a th:href="@{'getById'}" > Vis lejeaftale kvittering ById</a>
 
 <table th:if="${laKvittering!=null}">
     <tr>

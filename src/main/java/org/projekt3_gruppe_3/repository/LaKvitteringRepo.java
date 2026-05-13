@@ -69,12 +69,10 @@ public class LaKvitteringRepo implements CruRepository {
     }
 
     //estera
-    public void create(LaKvittering laKvittering){
-        String sql="INSERT INTO laKvittering (skadeMatrixId, totalPrisKr)VALUES( ?, ?)";
+    public void create(){
+        String sql="INSERT INTO laKvittering (skadeMatrixId)VALUES( ?)";
         try(Connection connection=dataSource.getConnection();
         PreparedStatement statement=connection.prepareStatement(sql)){
-            statement.setInt(1, laKvittering.getSkadeMatrixId());
-            statement.setDouble(2, laKvittering.getTotalPrisKr());
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
