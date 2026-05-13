@@ -67,9 +67,7 @@ public class LejeaftaleRepo {
             statement.executeUpdate();
 
             LaKvittering laKvittering=new LaKvittering();
-            laKvittering.setLejeaftaleId(1);
             laKvittering.setSkadeMatrixId(lejeaftale.getSkadeMatrixId());
-            laKvittering.setFoerstegangsydelseKr(lejeaftale.getPrisKr());
             laKvittering.setTotalPrisKr(lejeaftale.getPrisKr());
             laKvitteringRepo.automatiskKvittering(laKvittering);
         }catch (SQLException e){
@@ -77,4 +75,6 @@ public class LejeaftaleRepo {
         }
     }
 }
+
+
 
