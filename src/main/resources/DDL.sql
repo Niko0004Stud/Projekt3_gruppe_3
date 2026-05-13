@@ -70,7 +70,7 @@ CREATE TABLE SkadeMatrix(
 
 CREATE TABLE LaKvittering(
      id INT AUTO_INCREMENT PRIMARY KEY,
-     skadeMatrixId INT NOT NULL,
+     skadeMatrixId INT,
      FOREIGN KEY (skadeMatrixId) REFERENCES SkadeMatrix(id),
      startDate DATE NOT NULL,
      slutDate DATE NOT NULL,
