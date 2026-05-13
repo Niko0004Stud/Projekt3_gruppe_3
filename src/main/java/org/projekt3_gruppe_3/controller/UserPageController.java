@@ -30,9 +30,9 @@ public class UserPageController {
     }
 
     @GetMapping("getOverviewPage")
-    public String cGetOverviewPage(@RequestParam("oversigtPageType") String oversigtPageType, Model model){
-        model.addAttribute("oversigtPageType", oversigtPageType);
-
+    public String cGetOverviewPage(HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user",user);
 
         return "oversigtPage";
     }

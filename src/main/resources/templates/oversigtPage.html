@@ -5,14 +5,23 @@
     <title>Oversigtspage</title>
 </head>
 <body>
+<header>
+    <div>
+        <div th:if="${user.getSysRole() == 'admin' or 'dataregistrerer'}">
+            <a th:href="@{/oversigtBil}" type="button">Biloversigt</a>
+        </div>
+    </div>
+</header>
 <main>
     <div>
-        <div th: th:each="bil : ${bilList}" th:if="${opretPageType == 'oversigtBil'}">
-            <div>
-                <h3 th:text="${bil.id}' '${bil.vognnummer}"></h3>
-            </div>
-        </div>
+
     </div>
 </main>
 </body>
 </html>
+
+<!--<div th: th:each="bil : ${bilList}" th:if="${opretPageType == 'oversigtBil'}">-->
+<!--    <div>-->
+<!--        <h3 th:text="${bil.id}' '${bil.vognnummer}"></h3>-->
+<!--    </div>-->
+<!--</div>-->
