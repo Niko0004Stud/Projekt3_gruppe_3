@@ -20,16 +20,16 @@ public class LaKvitteringController {
     //estera
     @GetMapping("/showAlleLaKvitteringer")
     public String showAlleLaKvitteringer(@RequestParam("id") int id ,Model model){
-        model.addAttribute("laKvitteringer", laKvitteringRepo.readAlleLaKvitteringer());
-        System.out.println(laKvitteringRepo.readAlleLaKvitteringer());
+        model.addAttribute("laKvitteringer", laKvitteringRepo.getAll());
+        System.out.println(laKvitteringRepo.getAll());
         return "showAlleLaKvitteringer";
     }
 
     //estera
     @GetMapping("/showLaKvittering")
     public String showLaKvittering(@RequestParam("id") int id ,Model model){
-        model.addAttribute("LaKvittering", laKvitteringRepo.readById(id));
-        System.out.println(laKvitteringRepo.readById(id));
+        model.addAttribute("LaKvittering", laKvitteringRepo.getById(id));
+        System.out.println(laKvitteringRepo.getById(id));
         return "showLaKvittering";
     }
 

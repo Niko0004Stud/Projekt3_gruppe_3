@@ -24,7 +24,7 @@ public class LejeaftaleService {
             Lejeaftale lejeaftale = new Lejeaftale(
                     bilId, kundeId, skadeMatrixId, startDato, laengdeDays, slutDato,  prisKr);
 
-            lejeaftaleRepo.createLejeaftale(lejeaftale);
+            lejeaftaleRepo.create(lejeaftale);
         }
 
     //estera & sebastian

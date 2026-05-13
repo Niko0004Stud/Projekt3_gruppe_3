@@ -2,6 +2,7 @@ package org.projekt3_gruppe_3.repository;
 
 import org.projekt3_gruppe_3.model.LaKvittering;
 import org.projekt3_gruppe_3.model.Lejeaftale;
+import org.projekt3_gruppe_3.repository.interfaces.CruRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,15 +17,14 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 @Repository
-public class LejeaftaleRepo {
-    //1.3 metode C from CRUD: CREATE
+public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
 
     @Autowired
     private DataSource dataSource;
     @Autowired
     private LaKvitteringRepo laKvitteringRepo;
 
-    public ArrayList<Lejeaftale> readAllLejeaftaler(){
+    public ArrayList<Lejeaftale> getAll(){
         ArrayList<Lejeaftale> lejeaftaler = new ArrayList<>();
         String sql = "SELECT * FROM Lejeaftale";
 
@@ -51,7 +51,8 @@ public class LejeaftaleRepo {
         return lejeaftaler;
     }
 
-    public void createLejeaftale(Lejeaftale lejeaftale){
+
+    public void create(Lejeaftale lejeaftale){
         String sql="INSERT INTO Lejeaftale (BilId, KundeId,skadeMatrixId, startDate, laengdeDays, slutDate, prisKr) " +
                 "VALUES( ?, ?, ?, ?, ?, ?, ?)";
 
@@ -66,14 +67,27 @@ public class LejeaftaleRepo {
             statement.setDouble(7, lejeaftale.getPrisKr());
             statement.executeUpdate();
 
+            //automatisk oprettelse af kvittering ved oprettelse af en lejeaftale
             LaKvittering laKvittering=new LaKvittering();
             laKvittering.setSkadeMatrixId(lejeaftale.getSkadeMatrixId());
             laKvittering.setTotalPrisKr(lejeaftale.getPrisKr());
-            laKvitteringRepo.automatiskKvittering(laKvittering);
+            laKvitteringRepo.create(laKvittering);
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void update(Lejeaftale entity) {
+
+    }
+
+    @Override
+    public Lejeaftale getById(int id) {
+        return null;
+    }
+
+
 }
 
 

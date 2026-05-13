@@ -25,7 +25,7 @@ public class LejeaftaleController {
     //estera & sebastian
     @GetMapping("/showAllLejeaftaler")
     public String showAllLejeaftaler(){
-        System.out.println(lejeaftaleRepo.readAllLejeaftaler());
+        System.out.println(lejeaftaleRepo.getAll());
 
         return"redirect:/";
     }

@@ -1,6 +1,7 @@
 package org.projekt3_gruppe_3.repository;
 
 import org.projekt3_gruppe_3.model.LaKvittering;
+import org.projekt3_gruppe_3.repository.interfaces.CruRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,13 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Repository
-public class LaKvitteringRepo {
+public class LaKvitteringRepo implements CruRepository {
 
     @Autowired
     private DataSource dataSource;
 
     //estera
-    public ArrayList<LaKvittering> readAlleLaKvitteringer(){
+    public ArrayList<LaKvittering> getAll(){
         ArrayList<LaKvittering>laKvittering=new ArrayList<>();
         String sql="SELECT * FROM LaKvittering";
 
@@ -43,7 +44,7 @@ public class LaKvitteringRepo {
     }
 
     //estera
-    public LaKvittering readById(int id){
+    public LaKvittering getById(int id){
         LaKvittering laKvittering=null;
         String sql="SELECT * FROM LaKvittering WHERE id=?";
 
@@ -68,7 +69,7 @@ public class LaKvitteringRepo {
     }
 
     //estera
-    public void automatiskKvittering(LaKvittering laKvittering){
+    public void create(LaKvittering laKvittering){
         String sql="INSERT INTO laKvittering (skadeMatrixId, totalPrisKr)VALUES( ?, ?)";
         try(Connection connection=dataSource.getConnection();
         PreparedStatement statement=connection.prepareStatement(sql)){
@@ -79,5 +80,18 @@ public class LaKvitteringRepo {
             e.printStackTrace();
         }
     }
+
+
+    //hvis jeg sletter den der kan programmet ikke lide den så den bliver??
+    @Override
+    public void create(Object entity) {
+
+    }
+
+    @Override
+    public void update(Object entity) {
+
+    }
+
 
 }
