@@ -1,10 +1,10 @@
 insert into Bil (vognnummer, stelnummer, modelId, udstyrsniveau,
                  staalpris, regAfgift, co2Udledning)
-VALUES  ('1','2', 'opel', 5, 500,
-         400, 200);
+VALUES  (6, 3, 6, 7, 100,
+         40.09, 10.60);
 
 insert into SkadeMatrix (skadeId, bilId, omkostninger,registreringsDate)
-VALUES  ('big dmg', '555555', 2020-06-09);
+VALUES  (1,4, 5555, 2010-05-04);
 
 INSERT INTO User(username, password, sysrole)
 VALUES ('testAdmin', 'testpassword', 'admin');
