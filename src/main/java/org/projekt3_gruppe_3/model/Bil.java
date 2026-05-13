@@ -6,6 +6,10 @@ public class Bil {
     private String vognnummer;
     private String stelnummer;
     private int modelId;
+    private int udstyrsNiveau;
+    private double staalpris;
+    private double regAfgift;
+    private double co2Udledning;
 
     public Bil(int id, String vognnummer, String stelnummer,
                int modelId, int udstyrsNiveau, double staalpris, double regAfgift,
@@ -20,48 +24,19 @@ public class Bil {
         this.co2Udledning = co2Udledning;
     }
 
-    private int udstyrsNiveau;
-    private double staalpris;
-    private double regAfgift;
-    private double co2Udledning;
-
-    public Bil(
-            int id,
-            String vognnummer,
-            String stelnummer,
-            String maerke,
-            String model,
-            int udstyrsniveau,
-            double staalpris,
-            double regAfgift,
-            double co2Udledning) {
-
-        this.id = id;
-        this.vognnummer = vognnummer;
-        this.stelnummer = stelnummer;
-        this.maerke = maerke;
-        this.model = model;
-        this.udstyrsniveau = udstyrsniveau;
-        this.staalpris = staalpris;
-        this.regAfgift = regAfgift;
-        this.co2Udledning = co2Udledning;
-    }
-
     public Bil(
             String vognnummer,
             String stelnummer,
-            String maerke,
-            String model,
-            int udstyrsniveau,
+            int modelId,
+            int udstyrsNiveau,
             double staalpris,
             double regAfgift,
             double co2Udledning) {
 
         this.vognnummer = vognnummer;
         this.stelnummer = stelnummer;
-        this.maerke = maerke;
-        this.model = model;
-        this.udstyrsniveau = udstyrsniveau;
+        this.modelId = modelId;
+        this.udstyrsNiveau = udstyrsNiveau;
         this.staalpris = staalpris;
         this.regAfgift = regAfgift;
         this.co2Udledning = co2Udledning;
@@ -91,28 +66,20 @@ public class Bil {
         this.stelnummer = stelnummer;
     }
 
-    public String getMaerke() {
-        return maerke;
+    public int getModelId() {
+        return modelId;
     }
 
-    public void setMaerke(String maerke) {
-        this.maerke = maerke;
+    public void setModel(int modelId) {
+        this.modelId = modelId;
     }
 
-    public String getModel() {
-        return model;
+    public int getUdstyrsNiveau() {
+        return udstyrsNiveau;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getUdstyrsniveau() {
-        return udstyrsniveau;
-    }
-
-    public void setUdstyrsniveau(int udstyrsniveau) {
-        this.udstyrsniveau = udstyrsniveau;
+    public void setUdstyrsNiveau(int udstyrsniveau) {
+        this.udstyrsNiveau = udstyrsniveau;
     }
 
     public double getStaalpris() {

@@ -21,7 +21,7 @@ public class BilRepo implements CrudRepository<Bil> {
 
     @Override
     public List<Bil> getAll() {
-        List<Bil> biler = new ArrayList<>();
+        List<Bil> bilList = new ArrayList<>();
 
         String sql = "SELECT * FROM Bil";
 
@@ -31,8 +31,6 @@ public class BilRepo implements CrudRepository<Bil> {
 
         ) {
             while (resultSet.next()) {
-
-
                 Bil bil = new Bil(
                         resultSet.getInt("id"),
                         resultSet.getString("vognnummer"),
@@ -43,29 +41,21 @@ public class BilRepo implements CrudRepository<Bil> {
                         resultSet.getDouble("regAfgift"),
                         resultSet.getDouble("co2Udledning")
                 );
-                biler.add(bil);
-
+                bilList.add(bil);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return biler;
+        return bilList;
     }
+
     @Override
     public Bil getById(int id){
         return null;
     }
     @Override
     public void create(Bil bil){
-    }
-    @Override
-    public void update(Bil bil){
-    }
-    @Override
-    public void delete(int id){
-    }
-    public void rCreateBil(Bil bil){
-        String sql = "INSERT INTO Bil (vognnummer, stelnummer, maerke, model, udstyrsniveau, staalpris, regAfgift, co2Udledning)"+
+        String sql = "INSERT INTO Bil (vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning)"+
                 "VALUES (?,?,?,?,?,?,?,?)";
 
         try(Connection connection = dataSource.getConnection();
@@ -73,47 +63,22 @@ public class BilRepo implements CrudRepository<Bil> {
 
             statement.setString(1, bil.getVognnummer());
             statement.setString(2, bil.getStelnummer());
-            statement.setString(3, bil.getMaerke());
-            statement.setString(4, bil.getModel());
-            statement.setInt(5, bil.getUdstyrsniveau());
-            statement.setDouble(6, bil.getStaalpris());
-            statement.setDouble(7, bil.getRegAfgift());
-            statement.setDouble(8, bil.getCo2Udledning());
+            statement.setInt(3, bil.getModelId());
+            statement.setInt(4, bil.getUdstyrsNiveau());
+            statement.setDouble(5, bil.getStaalpris());
+            statement.setDouble(6, bil.getRegAfgift());
+            statement.setDouble(7, bil.getCo2Udledning());
 
             statement.executeUpdate();
 
         } catch (SQLException e){
             e.printStackTrace();
         }
-
     }
-
-    public List<Bil> readAllBil(){
-        ArrayList<Bil> bilList = new ArrayList<>();
-
-        String sql = "SELECT * FROM Bil";
-
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)){
-            ResultSet resultSet = statement.executeQuery();
-
-            while(resultSet.next()){
-                bilList.add(new Bil(
-                        resultSet.getInt("id"),
-                        resultSet.getString("vognnummer"),
-                        resultSet.getString("stelnummer"),
-                        resultSet.getString("maerke"),
-                        resultSet.getString("model"),
-                        resultSet.getInt("udstyrsniveau"),
-                        resultSet.getDouble("staalpris"),
-                        resultSet.getDouble("regAfgift"),
-                        resultSet.getDouble("co2udledning")));
-            }
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return bilList;
+    @Override
+    public void update(Bil bil){
     }
-
+    @Override
+    public void delete(int id){
+    }
 }
