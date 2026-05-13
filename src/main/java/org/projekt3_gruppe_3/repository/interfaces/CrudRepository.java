@@ -1,4 +1,4 @@
-package org.projekt3_gruppe_3.repository;
+package org.projekt3_gruppe_3.repository.interfaces;
 
 import java.util.List;
 

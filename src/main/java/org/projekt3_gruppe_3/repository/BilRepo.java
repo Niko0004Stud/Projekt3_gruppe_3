@@ -1,6 +1,7 @@
 package org.projekt3_gruppe_3.repository;
 
 import org.projekt3_gruppe_3.model.Bil;
+import org.projekt3_gruppe_3.repository.interfaces.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
