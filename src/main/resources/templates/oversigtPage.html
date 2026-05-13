@@ -7,9 +7,9 @@
 <body>
 <main>
     <div>
-        <div th:each="bil : ${bilList}">
+        <div th: th:each="bil : ${bilList}" th:if="${opretPageType == 'oversigtBil'}">
             <div>
-                <h3 th:text="${bil.id}' '${bil.status}"></h3>
+                <h3 th:text="${bil.id}' '${bil.vognnummer}"></h3>
             </div>
         </div>
     </div>

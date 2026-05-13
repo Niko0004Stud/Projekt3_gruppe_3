@@ -1,6 +1,7 @@
 package org.projekt3_gruppe_3.service;
 
 import org.projekt3_gruppe_3.model.Bil;
+import org.projekt3_gruppe_3.model.Bilmodel;
 import org.projekt3_gruppe_3.repository.BilRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,18 +19,20 @@ public class BilService {
                              String stelnummer,
                              String maerke,
                              String model,
-                             int udstyrsniveau,
+                             int udstyrsNiveau,
                              double staalpris,
                              double regAfgift,
-                             double co2Udledning){
+                             double co2Udledning,
+                             String beskrivelse){
 
-        bilRepo.rCreateBil(new Bil(vognnummer, stelnummer, maerke, model, udstyrsniveau, staalpris, regAfgift, co2Udledning));
+
+        bilRepo.createBil(new Bil(vognnummer, stelnummer, udstyrsNiveau, staalpris, regAfgift, co2Udledning), new Bilmodel(model, maerke, beskrivelse));
         return "redirect:/userpage";
     }
 
     public String sReadAllBil(Model model){
 
-        model.addAttribute("bilList", bilRepo.readAllBil());
-        return "/oversigt";
+        model.addAttribute("bilList", bilRepo.getAll());
+        return "oversigtPage";
     }
 }

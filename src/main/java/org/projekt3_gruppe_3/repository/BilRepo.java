@@ -1,6 +1,7 @@
 package org.projekt3_gruppe_3.repository;
 
 import org.projekt3_gruppe_3.model.Bil;
+import org.projekt3_gruppe_3.model.Bilmodel;
 import org.projekt3_gruppe_3.repository.interfaces.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,15 +20,15 @@ public class BilRepo implements CrudRepository<Bil> {
     @Autowired
     DataSource dataSource;
 
-    @Override
+
     public List<Bil> getAll() {
         List<Bil> bilList = new ArrayList<>();
 
         String sql = "SELECT * FROM Bil";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-             ResultSet resultSet = preparedStatement.executeQuery()
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()
 
         ) {
             while (resultSet.next()) {
@@ -35,7 +36,7 @@ public class BilRepo implements CrudRepository<Bil> {
                         resultSet.getInt("id"),
                         resultSet.getString("vognnummer"),
                         resultSet.getString("stelnummer"),
-                        resultSet.getInt("modelId"),
+                        getBilmodelById(resultSet.getInt("modelId")),
                         resultSet.getInt("udstyrsNiveau"),
                         resultSet.getDouble("staalpris"),
                         resultSet.getDouble("regAfgift"),
@@ -49,21 +50,56 @@ public class BilRepo implements CrudRepository<Bil> {
         return bilList;
     }
 
+    public Bilmodel getBilmodelById(int id){
+        Bilmodel bilmodel = null;
+        String sql = "SELECT FROM Model WHERE id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)){
+
+        statement.setInt(1, id);
+
+        try(ResultSet resultSet = statement.executeQuery()){
+            if(resultSet.next()){
+                bilmodel = new Bilmodel(
+                        resultSet.getInt("id"),
+                        resultSet.getString("model"),
+                        resultSet.getString("maerke"),
+                        resultSet.getString("beskrivelse")
+                );
+            } else  {
+                System.out.println("fejl ved resultSet.next()");
+                return null;
+            }
+
+        }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return bilmodel;
+    }
+
     @Override
     public Bil getById(int id){
         return null;
     }
     @Override
     public void create(Bil bil){
+
+    }
+
+    public void createBil(Bil bil, Bilmodel bilmodel){
         String sql = "INSERT INTO Bil (vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning)"+
-                "VALUES (?,?,?,?,?,?,?,?)";
+                "VALUES (?,?,?,?,?,?,?)";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){
 
+
             statement.setString(1, bil.getVognnummer());
             statement.setString(2, bil.getStelnummer());
-            statement.setInt(3, bil.getModelId());
+            statement.setInt(3, createBilmodel(bilmodel));
             statement.setInt(4, bil.getUdstyrsNiveau());
             statement.setDouble(5, bil.getStaalpris());
             statement.setDouble(6, bil.getRegAfgift());
@@ -74,6 +110,34 @@ public class BilRepo implements CrudRepository<Bil> {
         } catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public int createBilmodel(Bilmodel bilmodel){
+        String sql = "INSERT INTO Model (model, maerke, beskrivelse)" +
+                "VALUES (?,?,?)";
+
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
+
+        statement.setString(1, bilmodel.getModel());
+        statement.setString(2, bilmodel.getMaerke());
+        statement.setString(3, bilmodel.getBeskrivelse());
+
+        statement.executeUpdate();
+
+        try(ResultSet generatedKeys = statement.getGeneratedKeys()){
+            if(generatedKeys.next()){
+                return generatedKeys.getInt(1);
+            }
+        }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+
+        return 1;
     }
     @Override
     public void update(Bil bil){

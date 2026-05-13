@@ -19,15 +19,16 @@ public class BilController {
                              @RequestParam("stelnummer") String stelnummer,
                              @RequestParam("maerke") String maerke,
                              @RequestParam("model") String model,
-                             @RequestParam("udstyrsniveau") int udstyrsniveau,
+                             @RequestParam("udstyrsNiveau") int udstyrsNiveau,
                              @RequestParam("staalpris") double staalpris,
                              @RequestParam("regAfgift") double regAfgift,
                              @RequestParam("co2Udledning")double co2Udledning){
-
-        return bilService.sCreateBil(vognnummer, stelnummer, maerke, model, udstyrsniveau, staalpris, regAfgift, co2Udledning);
+        String beskrivelse = "testBeskrivelseloremipsumeblablah";
+        System.out.println("Du kom til cCreateBil");
+        return bilService.sCreateBil(vognnummer, stelnummer, maerke, model, udstyrsNiveau, staalpris, regAfgift, co2Udledning, beskrivelse);
     }
 
-    @GetMapping("visAlleBiler")
+    @GetMapping("/oversigtBil")
     public String cReadAllBil(Model model){
 
         return bilService.sReadAllBil(model);

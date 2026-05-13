@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Opretningspage</title>
 </head>
-<body>
+<body>      <!-- Overordnet struktur og logik af Nicklas -->
 <main>      <!-- Andre former for opretning tilføjes med nye <form></form>, som -->
     <div>   <!-- alle sender til "/opretUser", men har forskellige slags opretPageType-->
         <form th:action="@{/opretUser}" th:if="${opretPageType == 'createUser'}" method="post">
@@ -27,7 +27,7 @@
             </ul>
             <button type="submit">Opret</button>
         </form>
-        <form th:action="@{/opretBil}" th:if="${opretPageType == 'createBil'}">
+        <form th:action="@{/opretBil}" th:if="${opretPageType == 'createBil'}" method="post">
             <label for="vognnummerField">Vognnummer:</label>
             <input name="vognnummer" id="vognnummerField" type="text">
             <label for="stelnummerField">Stelnummer:</label>
@@ -36,14 +36,15 @@
             <input name="maerke" id="maerkeField" type="text">
             <label for="modelField">Model:</label>
             <input name="model" id="modelField" type="text">
-            <label for="udstyrsniveauField">Udstyrsniveau:</label>
-            <input name="udstyrsniveau" id="udstyrsniveauField" type="number">
+            <label for="udstyrsNiveauField">UdstyrsNiveau:</label>
+            <input name="udstyrsNiveau" id="udstyrsNiveauField" type="number">
             <label for="staalprisField">Stålpris:</label>
             <input name="staalpris" id="staalprisField" type="number">
             <label for="regAfgiftField">Registreringsafgift:</label>
             <input name="regAfgift" id="regAfgiftField" type="number">
             <label for="co2UdledningField">co2Udledning:</label>
             <input name="co2Udledning" id="co2UdledningField" type="number">
+            <button type="submit">Opret</button>
         </form>
     </div>
 </main>

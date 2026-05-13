@@ -6,18 +6,20 @@ public class Bil {
     private String vognnummer;
     private String stelnummer;
     private int modelId;
+    private Bilmodel bilmodel;
     private int udstyrsNiveau;
     private double staalpris;
     private double regAfgift;
     private double co2Udledning;
 
+
     public Bil(int id, String vognnummer, String stelnummer,
-               int modelId, int udstyrsNiveau, double staalpris, double regAfgift,
+               Bilmodel bilmodel, int udstyrsNiveau, double staalpris, double regAfgift,
                double co2Udledning) {
         this.id = id;
         this.vognnummer = vognnummer;
         this.stelnummer = stelnummer;
-        this.modelId = modelId;
+        this.bilmodel = bilmodel;
         this.udstyrsNiveau = udstyrsNiveau;
         this.staalpris = staalpris;
         this.regAfgift = regAfgift;
@@ -27,7 +29,7 @@ public class Bil {
     public Bil(
             String vognnummer,
             String stelnummer,
-            int modelId,
+//            Bilmodel bilmodel,
             int udstyrsNiveau,
             double staalpris,
             double regAfgift,
@@ -35,7 +37,7 @@ public class Bil {
 
         this.vognnummer = vognnummer;
         this.stelnummer = stelnummer;
-        this.modelId = modelId;
+//        this.bilmodel = bilmodel;
         this.udstyrsNiveau = udstyrsNiveau;
         this.staalpris = staalpris;
         this.regAfgift = regAfgift;
@@ -66,12 +68,12 @@ public class Bil {
         this.stelnummer = stelnummer;
     }
 
-    public int getModelId() {
-        return modelId;
+    public Bilmodel getBilmodel() {
+        return bilmodel;
     }
 
-    public void setModel(int modelId) {
-        this.modelId = modelId;
+    public void setBilmodel(Bilmodel bilmodel) {
+        this.bilmodel = bilmodel;
     }
 
     public int getUdstyrsNiveau() {

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.service.annotation.PostExchange;
 
 
 @Controller
@@ -28,9 +29,10 @@ public class UserPageController {
         return "opretPage";
     }
 
-    @GetMapping("/getOverviewPage")
+    @GetMapping("getOverviewPage")
     public String cGetOverviewPage(@RequestParam("oversigtPageType") String oversigtPageType, Model model){
         model.addAttribute("oversigtPageType", oversigtPageType);
+
 
         return "oversigtPage";
     }
