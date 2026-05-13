@@ -11,6 +11,7 @@ CREATE TABLE User(
     password VARCHAR(100) NOT NULL,
     sysrole VARCHAR(50) NOT NULL
 );
+
 CREATE TABLE Kunde(
     id INT AUTO_INCREMENT PRIMARY KEY,
     fornavn VARCHAR(50) NOT NULL,
@@ -31,12 +32,14 @@ CREATE TABLE Adresse(
     postnummer INT NOT NULL,
     city VARCHAR(100) NOT NULL
 );
+
 CREATE TABLE Model(
    id INT AUTO_INCREMENT PRIMARY KEY,
    model VARCHAR(50) NOT NULL,
    maerke VARCHAR(50)NOT NULL,
    beskrivelse TEXT NOT NULL
 );
+
 CREATE TABLE Bil(
    id INT AUTO_INCREMENT PRIMARY KEY,
    vognnummer VARCHAR(50) NOT NULL,
@@ -47,12 +50,14 @@ CREATE TABLE Bil(
    regAfgift DECIMAL NOT NULL,
    co2Udledning DECIMAL
 );
+
 CREATE TABLE Skade(
    id INT AUTO_INCREMENT PRIMARY KEY,
    beskrivelse TEXT NOT NULL,
    omkostning DECIMAL NOT NULL,
    registreringsDate DATE NOT NULL
 );
+
 CREATE TABLE SkadeMatrix(
     id INT AUTO_INCREMENT PRIMARY KEY,
     skadeId INT NOT NULL,
@@ -63,8 +68,6 @@ CREATE TABLE SkadeMatrix(
     registreringsDate DATE NOT NULL
 );
 
-
-
 CREATE TABLE LaKvittering(
      id INT AUTO_INCREMENT PRIMARY KEY,
      skadeMatrixId INT NOT NULL,
@@ -74,6 +77,7 @@ CREATE TABLE LaKvittering(
      totalPrisKr DECIMAL NOT NULL,
      type VARCHAR(50) NOT NULL
 );
+
 CREATE TABLE Lejeaftale(
     id INT AUTO_INCREMENT PRIMARY KEY,
     bilId INT NOT NULL,
@@ -86,6 +90,7 @@ CREATE TABLE Lejeaftale(
     slutDate DATE NOT NULL,
     startPrisKr DECIMAL NOT NULL
 );
+
 CREATE TABLE FhaKvittering(
    id INT AUTO_INCREMENT PRIMARY KEY,
    skadeMatrixId INT NOT NULL,
@@ -93,6 +98,7 @@ CREATE TABLE FhaKvittering(
    registreringDate DATE NOT NULL,
    totalPrisKr DECIMAL NOT NULL
 );
+
 CREATE TABLE Forhaansaftale(
     id INT AUTO_INCREMENT PRIMARY KEY,
     bilId INT NOT NULL,
@@ -104,9 +110,6 @@ CREATE TABLE Forhaansaftale(
     registreringsDate DATE NOT NULL,
     startPrisKr DECIMAL NOT NULL
 );
-
-
-
 
 CREATE TABLE Log(
     id INT AUTO_INCREMENT PRIMARY KEY,
