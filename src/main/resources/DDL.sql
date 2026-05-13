@@ -32,47 +32,47 @@ CREATE TABLE Adresse(
     city VARCHAR(100) NOT NULL
 );
 CREATE TABLE Model(
-                      id INT AUTO_INCREMENT PRIMARY KEY,
-                      model VARCHAR(50) NOT NULL,
-                      maerke VARCHAR(50)NOT NULL,
-                      beskrivelse TEXT NOT NULL
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   model VARCHAR(50) NOT NULL,
+   maerke VARCHAR(50)NOT NULL,
+   beskrivelse TEXT NOT NULL
 );
 CREATE TABLE Bil(
-                    id INT AUTO_INCREMENT PRIMARY KEY,
-                    vognnummer VARCHAR(50) NOT NULL,
-                    stelnummer VARCHAR(50) NOT NULL UNIQUE,
-                    modelId INT NOT NULL,
-                    udstyrsNiveau INT NOT NULL,
-                    staalpris DECIMAL NOT NULL,
-                    regAfgift DECIMAL NOT NULL,
-                    co2Udledning DECIMAL
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   vognnummer VARCHAR(50) NOT NULL,
+   stelnummer VARCHAR(50) NOT NULL UNIQUE,
+   modelId INT NOT NULL,
+   udstyrsNiveau INT NOT NULL,
+   staalpris DECIMAL NOT NULL,
+   regAfgift DECIMAL NOT NULL,
+   co2Udledning DECIMAL
 );
 CREATE TABLE Skade(
-                      id INT AUTO_INCREMENT PRIMARY KEY,
-                      beskrivelse TEXT NOT NULL,
-                      omkostning DECIMAL NOT NULL,
-                      registreringsDate DATE NOT NULL
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   beskrivelse TEXT NOT NULL,
+   omkostning DECIMAL NOT NULL,
+   registreringsDate DATE NOT NULL
 );
 CREATE TABLE SkadeMatrix(
-                            id INT AUTO_INCREMENT PRIMARY KEY,
-                            skadeId INT NOT NULL,
-                            FOREIGN KEY (skadeId) REFERENCES Skade(id),
-                            bilId INT NOT NULL,
-                            FOREIGN KEY (bilId) REFERENCES Bil(id),
-                            omkostninger DECIMAL NOT NULL,
-                            registreringsDate DATE NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    skadeId INT NOT NULL,
+    FOREIGN KEY (skadeId) REFERENCES Skade(id),
+    bilId INT NOT NULL,
+    FOREIGN KEY (bilId) REFERENCES Bil(id),
+    omkostninger DECIMAL NOT NULL,
+    registreringsDate DATE NOT NULL
 );
 
 
 
 CREATE TABLE LaKvittering(
-                             id INT AUTO_INCREMENT PRIMARY KEY,
-                             skadeMatrixId INT NOT NULL,
-                             FOREIGN KEY (skadeMatrixId) REFERENCES SkadeMatrix(id),
-                             startDate DATE NOT NULL,
-                             slutDate DATE NOT NULL,
-                             totalPrisKr DECIMAL NOT NULL,
-                             type VARCHAR(50) NOT NULL
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     skadeMatrixId INT NOT NULL,
+     FOREIGN KEY (skadeMatrixId) REFERENCES SkadeMatrix(id),
+     startDate DATE NOT NULL,
+     slutDate DATE NOT NULL,
+     totalPrisKr DECIMAL NOT NULL,
+     type VARCHAR(50) NOT NULL
 );
 CREATE TABLE Lejeaftale(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -87,11 +87,11 @@ CREATE TABLE Lejeaftale(
     startPrisKr DECIMAL NOT NULL
 );
 CREATE TABLE FhaKvittering(
-                              id INT AUTO_INCREMENT PRIMARY KEY,
-                              skadeMatrixId INT NOT NULL,
-                              FOREIGN KEY (skadeMatrixId) REFERENCES SkadeMatrix(id),
-                              registreringDate DATE NOT NULL,
-                              totalPrisKr DECIMAL NOT NULL
+   id INT AUTO_INCREMENT PRIMARY KEY,
+   skadeMatrixId INT NOT NULL,
+   FOREIGN KEY (skadeMatrixId) REFERENCES SkadeMatrix(id),
+   registreringDate DATE NOT NULL,
+   totalPrisKr DECIMAL NOT NULL
 );
 CREATE TABLE Forhaansaftale(
     id INT AUTO_INCREMENT PRIMARY KEY,
