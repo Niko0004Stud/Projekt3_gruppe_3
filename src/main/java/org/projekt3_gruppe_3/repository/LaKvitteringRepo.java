@@ -70,7 +70,8 @@ public class LaKvitteringRepo implements CruRepository {
 
     //estera
     public void create(){
-        String sql="INSERT INTO laKvittering (skadeMatrixId)VALUES( ?)";
+        String sql="INSERT INTO laKvittering (skadeMatrixId)" +
+                "VALUES( ?)";
         try(Connection connection=dataSource.getConnection();
         PreparedStatement statement=connection.prepareStatement(sql)){
             statement.executeUpdate();
@@ -81,12 +82,10 @@ public class LaKvitteringRepo implements CruRepository {
 
 
     //hvis jeg sletter den der kan programmet ikke lide den så den bliver??
-    @Override
     public void create(Object entity) {
 
     }
 
-    @Override
     public void update(Object entity) {
 
     }
