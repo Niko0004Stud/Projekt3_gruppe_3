@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.service.annotation.PostExchange;
 
 
 @Controller
@@ -23,9 +24,16 @@ public class UserPageController {
 
     @GetMapping("/getCreatePage")
     public String cGetCreatePage(@RequestParam("opretPageType") String opretPageType, Model model){
-        System.out.println("Du kom til getcreatepage");
         model.addAttribute("opretPageType", opretPageType);
 
         return "opretPage";
     }
+
+//    @GetMapping("getOverviewPage")
+//    public String cGetOverviewPage(HttpSession session, Model model){
+//        User user = (User) session.getAttribute("user");
+//        model.addAttribute("user",user);
+//
+//        return "oversigtPage";
+//    }
 }
