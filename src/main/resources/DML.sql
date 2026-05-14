@@ -15,3 +15,6 @@ VALUES ('testAdmin', 'testpassword', 'admin');
 
 INSERT INTO User(username, password, sysrole)
 VALUES ('testDR', 'testpassword', 'dataregistrerer');
+
+INSERT INTO LaKvittering(skadeMatrixId, startDate, slutDate, totalPrisKr, type)
+VALUES (NULL, '2000-02-14', '2021-01-12', 36.8, 'bla')
