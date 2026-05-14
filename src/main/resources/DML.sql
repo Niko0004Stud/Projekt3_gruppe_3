@@ -7,6 +7,8 @@ VALUES  ('1','2', LAST_INSERT_ID(), 5, 500,
 
 # insert into SkadeMatrix (skadeId, bilId, omkostninger,registreringsDate)
 # VALUES  ('big dmg', '555555', 2020-06-09);
+insert into SkadeMatrix (skadeId, bilId, omkostninger,registreringsDate)
+VALUES  (1,4, 5555, 2010-05-04);
 
 INSERT INTO User(username, password, sysrole)
 VALUES ('testAdmin', 'testpassword', 'admin');
