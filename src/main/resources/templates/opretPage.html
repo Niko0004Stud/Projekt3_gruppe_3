@@ -46,6 +46,26 @@
             <input name="co2Udledning" id="co2UdledningField" type="number">
             <button type="submit">Opret</button>
         </form>
+
+        <form th:action="@{/opretSkade}" th:if="${OpretPageType=='createSkade'}" method="post">
+            <label for="beskrivelseField">Beskrivelse</label>
+            <input name="beskrivelse" id="beskrivelseField" type="text">
+            <label for="omkostningField">Omkostning</label>
+            <input name="omkostning" id="omkostningField" type="number">
+            <label for="registreringsDateField">RegistreringsDate</label>
+            <input name="registreringsDate" id="registreringsDateField" type="date">
+            <button type="submit">Opret</button>
+        </form>
+
+<!--        skabelon til oprettelse-->
+<!--        <form th:action="@{/opret}" th:if="${OpretPageType==''}" method="post">-->
+<!--           <label for="Field"></label>
+            <input name="" id="Field" type="">
+            <label for="Field"></label>
+            <input name="" id="Field" type="">
+           <button type="submit">Opret</button>-->
+<!--        </form>-->
+
     </div>
 </main>
 </body>

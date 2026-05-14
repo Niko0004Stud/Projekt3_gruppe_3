@@ -18,6 +18,6 @@ public class SkadeController {
     public String getAll(Model model){
         model.addAttribute("skade", skadeRepo.getAll());
         System.out.println(skadeRepo.getAll());
-        return "";//hed ikke om det skal være en html skade??
+        return "redirect:/";//get all eller hvad??
     }
 }
