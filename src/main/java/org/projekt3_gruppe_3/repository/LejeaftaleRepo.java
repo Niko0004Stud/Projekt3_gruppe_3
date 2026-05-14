@@ -1,6 +1,5 @@
 package org.projekt3_gruppe_3.repository;
 
-import org.projekt3_gruppe_3.model.LaKvittering;
 import org.projekt3_gruppe_3.model.Lejeaftale;
 import org.projekt3_gruppe_3.repository.interfaces.CruRepository;
 import org.springframework.beans.factory.annotation.Autowired;
