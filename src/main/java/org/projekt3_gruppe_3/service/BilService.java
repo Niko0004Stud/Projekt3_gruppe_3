@@ -30,9 +30,9 @@ public class BilService {
         return "redirect:/userpage";
     }
 
-    public String sReadAllBil(Model model){
+    public List<Bil> sReadAllBil(){
 
-        model.addAttribute("bilList", bilRepo.getAll());
-        return "oversigtPage";
+
+        return bilRepo.getAll();
     }
 }

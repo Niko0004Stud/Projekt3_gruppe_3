@@ -29,11 +29,11 @@ public class UserPageController {
         return "opretPage";
     }
 
-    @GetMapping("getOverviewPage")
-    public String cGetOverviewPage(HttpSession session, Model model){
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user",user);
-
-        return "oversigtPage";
-    }
+//    @GetMapping("getOverviewPage")
+//    public String cGetOverviewPage(HttpSession session, Model model){
+//        User user = (User) session.getAttribute("user");
+//        model.addAttribute("user",user);
+//
+//        return "oversigtPage";
+//    }
 }

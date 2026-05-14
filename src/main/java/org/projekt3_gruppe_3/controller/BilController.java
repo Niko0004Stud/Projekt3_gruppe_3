@@ -30,13 +30,12 @@ public class BilController {
         return bilService.sCreateBil(vognnummer, stelnummer, maerke, model, udstyrsNiveau, staalpris, regAfgift, co2Udledning, beskrivelse);
     }
 
-    @GetMapping("/oversigtBil")
-    public String cReadAllBil(HttpSession session, Model model, Model modelU){
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", modelU);
-        return bilService.sReadAllBil(model);
+    @GetMapping("/getOversigtBil")
+    public String cReadAllBil(@RequestParam("oversigtPageType") String oversigtPageType, HttpSession session, Model model, Model modelPType){
+        //User user = (User) session.getAttribute("user");
+        modelPType.addAttribute("oversigtPageType", oversigtPageType);
+        model.addAttribute("bilList",bilService.sReadAllBil());
+        return "oversigtPage";
     }
-
-
 
 }
