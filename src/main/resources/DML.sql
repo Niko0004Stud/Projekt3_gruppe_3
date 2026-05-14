@@ -23,5 +23,12 @@ INSERT INTO Skade( beskrivelse, omkostning, registreringsDate)
 VALUES ('nej', 345.2, '2020-02-21');
 
 INSERT INTO SkadeMatrix(skadeId, bilId, omkostninger, registreringsDate)
-VALUES();
+VALUES(1,5,65, '2021-05-12');
+
+INSERT INTO Bil(vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning)
+VALUES (1, '3F', 5, 876, 665.8, 665.9, 987.8);
+
+
+# INSERT INTO ()
+# VALUES();
 
