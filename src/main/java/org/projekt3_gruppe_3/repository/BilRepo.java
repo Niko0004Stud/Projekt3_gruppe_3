@@ -41,7 +41,8 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
                         resultSet.getInt("udstyrsNiveau"),
                         resultSet.getDouble("staalpris"),
                         resultSet.getDouble("regAfgift"),
-                        resultSet.getDouble("co2Udledning")
+                        resultSet.getDouble("co2Udledning"),
+                        resultSet.getString("statusBil")
                 );
                 bilList.add(bil);
             }
@@ -91,7 +92,7 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
     }
 
     public void createBil(Bil bil, Bilmodel bilmodel){
-        String sql = "INSERT INTO Bil (vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning)"+
+        String sql = "INSERT INTO Bil (vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning, statusBil)"+
                 "VALUES (?,?,?,?,?,?,?)";
 
         try(Connection connection = dataSource.getConnection();
@@ -105,6 +106,7 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
             statement.setDouble(5, bil.getStaalpris());
             statement.setDouble(6, bil.getRegAfgift());
             statement.setDouble(7, bil.getCo2Udledning());
+            statement.setString(8, bil.getStatusBil());
 
             statement.executeUpdate();
 
@@ -140,6 +142,23 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
 
         return 1;
     }
+
+    public void updateStatusBil(int id, String updateStatus){
+        String sql = "UPDATE Bil SET statusBil = ? WHERE id = ?";
+
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setString(1, updateStatus);
+            statement.setInt(2, id);
+
+            statement.executeUpdate();
+
+        }   catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void update(Bil bil){
     }

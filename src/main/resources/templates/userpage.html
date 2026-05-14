@@ -22,7 +22,7 @@
   <div>
       <label for="oversigt">Oversigter</label>
       <div  id="oversigt">
-          <form th:action="@{/getOversigtBil}" method="get">
+          <form th:action="@{/getOversigtBil}" th:if="${user.getSysRole() == 'admin'}" method="get">
               <input value="oversigtBil" name="oversigtPageType"  hidden>
               <button type="submit" >Biloversigt</button>
           </form>
