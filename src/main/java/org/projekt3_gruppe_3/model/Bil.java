@@ -11,11 +11,12 @@ public class Bil {
     private double staalpris;
     private double regAfgift;
     private double co2Udledning;
+    private String statusBil;
 
 
     public Bil(int id, String vognnummer, String stelnummer,
                Bilmodel bilmodel, int udstyrsNiveau, double staalpris, double regAfgift,
-               double co2Udledning) {
+               double co2Udledning, String statusBil) {
         this.id = id;
         this.vognnummer = vognnummer;
         this.stelnummer = stelnummer;
@@ -24,6 +25,7 @@ public class Bil {
         this.staalpris = staalpris;
         this.regAfgift = regAfgift;
         this.co2Udledning = co2Udledning;
+        this.statusBil = statusBil;
     }
 
     public Bil(
@@ -33,7 +35,8 @@ public class Bil {
             int udstyrsNiveau,
             double staalpris,
             double regAfgift,
-            double co2Udledning) {
+            double co2Udledning,
+            String statusBil) {
 
         this.vognnummer = vognnummer;
         this.stelnummer = stelnummer;
@@ -42,6 +45,7 @@ public class Bil {
         this.staalpris = staalpris;
         this.regAfgift = regAfgift;
         this.co2Udledning = co2Udledning;
+        this.statusBil = statusBil;
     }
 
     public int getId() {
@@ -106,5 +110,13 @@ public class Bil {
 
     public void setCo2Udledning(double co2Udledning) {
         this.co2Udledning = co2Udledning;
+    }
+
+    public String getStatusBil(){
+        return statusBil;
+    }
+
+    public String setStatusBil(String statusBil){
+        return this.statusBil = statusBil;
     }
 }
