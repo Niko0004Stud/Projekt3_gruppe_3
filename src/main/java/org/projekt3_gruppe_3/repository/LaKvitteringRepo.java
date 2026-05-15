@@ -92,7 +92,7 @@ public class LaKvitteringRepo implements CruRepository {
 
     }
 
-    //update met
+    //estera
     public void update(LaKvittering laKvittering) {
         String sql="UPDATE laKvittering SET skadeMatrixId=?, startDate=?, slutDate=?, totalPrisKr=?, type=? WHERE id=?";
 

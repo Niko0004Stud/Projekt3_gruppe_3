@@ -72,6 +72,25 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
         }
     }
 
+    //updatelejeaftale til at oprette slut kvittering. estera
+    public  void update(Lejeaftale lejeaftale, LaKvittering laKvittering){
+        String sql="UPDATE lejeaftale SET BilId=?, KundeId=?, laKvitteringId=?, startDate=?, slutDate=?, totalPrisKr=?, WHERE id=?";
+
+        try(Connection connection=dataSource.getConnection();
+            PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setInt(1,lejeaftale.getBilId());
+            statement.setInt(2, lejeaftale.getKundeId());
+            statement.setInt(3, lejeaftale.getLaKvitteringId());
+            statement.setDate(4,Date.valueOf((LocalDate)  lejeaftale.getStartDate()) );
+            statement.setDate(5, Date.valueOf((LocalDate) lejeaftale.getSlutDate()));
+            statement.setDouble(6, lejeaftale.getstartPrisKr());
+            statement.setInt(7, lejeaftale.getId());
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void create(Lejeaftale entity) {
 

@@ -35,6 +35,14 @@ public class Lejeaftale {
         return "Id: " + id + " Bil id: " + bilId + " Kunde id: " + kundeId  + " startDate: " + startDate + " slutDate: " + slutDate + " pris: " + startPrisKr;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getBilId() {
         return bilId;
     }
