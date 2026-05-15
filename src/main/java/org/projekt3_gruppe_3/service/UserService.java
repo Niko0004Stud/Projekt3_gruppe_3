@@ -23,34 +23,34 @@ public class UserService {
         userRepo.rCreateUser(new User(username, password, sysRole));
     }
 // getdata lavet af sebastian
-//    public void getUserPageData(User user, Model model){
-//        System.out.println(bilRepo.getAll());
-//        switch(user.getSysRole()){
-//            case "admin":
-//                model.addAttribute("biler",bilRepo.getAll());
-//                model.addAttribute("lejeaftaler",lejeaftaleRepo.readAllLejeaftaler());
-//                model.addAttribute("users", userRepo.getAll());
-//
-//                break;
-//
-//            case "dataregistrerer":
-//                model.addAttribute("biler", bilRepo.getAll());
-//                model.addAttribute("lejeaftaler", lejeaftaleRepo.readAllLejeaftaler());
-//                //der skal laves en specific get på biler med specifik status
-//
-//                break;
-//
-//            case "forretningsudvikler":
-//                model.addAttribute("biler", bilRepo.getAll());
-//                model.addAttribute("lejeaftaler", lejeaftaleRepo.readAllLejeaftaler());
-//                //der skal laves en specific get på biler med specifik status -
-//                // og en specifik attribut.
-//
-//                break;
-//
-//            case "biltech":
-//                    //der skal laves en specific get på biler med specifik status
-//
-//        }
-//    }
+    public void getUserPageData(User user, Model model){
+        System.out.println(bilRepo.getAll());
+        switch(user.getSysRole()){
+            case "admin":
+                model.addAttribute("biler",bilRepo.getAll());
+                model.addAttribute("lejeaftaler",lejeaftaleRepo.getAll());
+                model.addAttribute("users", userRepo.getAll());
+
+                break;
+
+            case "dataregistrerer":
+                model.addAttribute("biler", bilRepo.getAll());
+                model.addAttribute("lejeaftaler", lejeaftaleRepo.getAll());
+                //der skal laves en specific get på biler med specifik status
+
+                break;
+
+            case "forretningsudvikler":
+                model.addAttribute("biler", bilRepo.getAll());
+                model.addAttribute("lejeaftaler", lejeaftaleRepo.getAll());
+                //der skal laves en specific get på biler med specifik status -
+                // og en specifik attribut.
+
+                break;
+
+            case "biltech":
+                    //der skal laves en specific get på biler med specifik status
+
+        }
+    }
 }

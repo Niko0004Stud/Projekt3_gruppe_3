@@ -30,13 +30,13 @@ public class UserPageController {
         return "opretPage";
     }
 
-//    @GetMapping("getUserPageData")
-//    public String cGetUserPage(HttpSession session, Model model){
-//        User user = (User) session.getAttribute("user");
-//
-//        userService.getUserPageData(user, model);
-//        model.addAttribute("user",user);
-//
-//        return "userPage";
-//    }
+    @GetMapping("getUserPageData")
+    public String cGetUserPage(HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+
+        userService.getUserPageData(user, model);
+        model.addAttribute("user",user);
+
+        return "userPage";
+    }
 }
