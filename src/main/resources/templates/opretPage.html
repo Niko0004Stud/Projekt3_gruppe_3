@@ -57,14 +57,29 @@
             <button type="submit">Opret</button>
         </form>
 
+        <form th:action="@{/opretLaKvittering}" th:if="${OpretPageType=='LaKvittering'}" method="post">
+            <label for="skadeMatrixIdField">SkadeMatrixId</label>
+            <input name="skadeMatrixId" id="skadeMatrixIdField" type="number">
+            <label for="startDateField">StartDate</label>
+            <input name="startDate" id="startDateField" type="date">
+            <label for="slutDateField">SlutDate</label>
+            <input name="slutDate" id="slutDateField" type="date">
+            <label for="totalPrisKrField">TotalPrisKr</label>
+            <input name="totalPrisKr" id="totalPrisKrField" type="number">
+            <label for="typeField">Type</label>
+            <input name="type" id="typeField" type="">
+            <button type="submit">Opret</button>
+        </form>
+
+
 <!--        skabelon til oprettelse-->
-<!--        <form th:action="@{/opret}" th:if="${OpretPageType==''}" method="post">-->
-<!--           <label for="Field"></label>
-            <input name="" id="Field" type="">
-            <label for="Field"></label>
-            <input name="" id="Field" type="">
-           <button type="submit">Opret</button>-->
-<!--        </form>-->
+<!--       <form th:action="@{/opret}" th:if="${OpretPageType==''}" method="post">-->
+<!--           <label for="Field"></label>-->
+<!--            <input name="" id="Field" type="">-->
+<!--            <label for="Field"></label>-->
+<!--            <input name="" id="Field" type="">-->
+<!--           <button type="submit">Opret</button>-->
+<!--       </form>-->
 
     </div>
 </main>
