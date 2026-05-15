@@ -12,6 +12,12 @@
           <select name="opretPageType" id="opret" onchange="this.form.submit()">
               <option hidden>Vælg opretning</option>
               <option value="createUser" th:if="${user.getSysRole() == 'admin'}"  >Opret Bruger</option>
+              <option value="createLejeaftale" th:if="${user.getSysRole() == 'admin' or
+               user.getSysRole() == 'dataregistrerer'}" >Opret Lejeaftale</option>
+              <option value="createBil" th:if="${user.getSysRole() == 'admin' or
+               user.getSysRole() ==  'dataregistrerer'}" >Opret Bil</option>
+              <option value="createForhaandsaftale" th:if="${user.getSysRole() == 'admin' or
+               user.getSysRole() == 'dataregistrerer'}" >Opret Forhåndsaftale</option>
               <option value="createLejeaftale" th:if="${user.getSysRole() == 'admin' or 'dataregistrerer'}" >Opret Lejeaftale</option>
               <option value="createBil" th:if="${user.getSysRole() == 'admin' or  'dataregistrerer'}" >Opret Bil</option>
               <option value="createForhaandsaftale" th:if="${user.getSysRole() == 'admin' or 'dataregistrerer'}" >Opret Forhåndsaftale</option>
@@ -24,12 +30,35 @@
   <div>
       <label for="oversigt">Oversigter</label>
       <div  id="oversigt">
-          <form th:action="@{/getOversigtBil}" method="get">
+          <form th:action="@{/getOversigtBil}" th:if="${user.getSysRole() == 'admin'}" method="get">
               <input value="oversigtBil" name="oversigtPageType"  hidden>
               <button type="submit" >Biloversigt</button>
           </form>
       </div>
   </div>
+    <section>
+        <!-- dashboard struktur lavet af sebastian-->
+        <h2>Dashboard</h2>
+
+        <div th:if="${user.getSysRole() == 'admin'}">
+
+            <h3>Biler</h3>
+            <div th:each="bil : ${biler}">
+                <p th:text="${bil.bilmodel.maerke + ' - ' + bil.bilmodel.model}"></p>
+            </div>
+            <h4>Users</h4>
+            <div th:each="u : ${users}">
+                <p th:text="${u.username + ' - ' + u.password}"></p>
+            </div>
+        </div>
+        <div th:if="${user.getSysRole() == 'dataregistrerer'}">
+
+            <h3>Biler</h3>
+            <div th:each="bil : ${biler}">
+                <p th:text="${bil.bilmodel.model}"></p>
+            </div>
+        </div>
+    </section>
 </main>
 </body>
 </html>

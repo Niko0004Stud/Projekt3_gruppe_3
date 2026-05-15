@@ -41,21 +41,23 @@ CREATE TABLE Model(
 );
 
 CREATE TABLE Bil(
-   id INT AUTO_INCREMENT PRIMARY KEY,
-   vognnummer VARCHAR(50) NOT NULL,
-   stelnummer VARCHAR(50) NOT NULL UNIQUE,
-   modelId INT NOT NULL,
-   udstyrsNiveau INT NOT NULL,
-   staalpris DECIMAL NOT NULL,
-   regAfgift DECIMAL NOT NULL,
-   co2Udledning DECIMAL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vognnummer VARCHAR(50) NOT NULL,
+    stelnummer VARCHAR(50) NOT NULL UNIQUE,
+    modelId INT NOT NULL,
+    FOREIGN KEY (modelId) REFERENCES Model(id),
+    udstyrsNiveau INT NOT NULL,
+    staalpris DECIMAL NOT NULL,
+    regAfgift DECIMAL NOT NULL,
+    co2Udledning DECIMAL NOT NULL,
+    statusBil VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Skade(
-   id INT AUTO_INCREMENT PRIMARY KEY,
-   beskrivelse TEXT NOT NULL,
-   omkostning DECIMAL NOT NULL,
-   registreringsDate DATE NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    beskrivelse TEXT NOT NULL,
+    omkostning DECIMAL NOT NULL,
+    registreringsDate DATE NOT NULL
 );
 
 CREATE TABLE SkadeMatrix(

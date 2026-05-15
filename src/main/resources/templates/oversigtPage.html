@@ -17,6 +17,14 @@
         <div th:each="bil : ${bilList}" th:if="${oversigtPageType == 'oversigtBil'}">
             <div>
                 <h3 th:text="${bil.getId()} +' '+${bil.getVognnummer()}"></h3>
+                <form th:action="@{/updateStatusBil}" method="post">
+                    <input name="id" th:value="${bil.getId()}" hidden>
+                    <input name="updateStatus" value="klar" th:if="${bil.getStatusBil()=='nyBil'}" hidden>
+                    <button type="submit">Update</button>
+                </form>
+                <form>
+
+                </form>
             </div>
         </div>
     </div>
