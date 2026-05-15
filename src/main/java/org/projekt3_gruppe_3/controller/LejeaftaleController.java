@@ -36,8 +36,8 @@ public class LejeaftaleController {
             @RequestParam("bilId") int bilId,
             @RequestParam("kundeId") int kundeId,
             @RequestParam(value = "laKvitteringId", required = false) int laKvitteringId,
-            @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-DD") LocalDate startDate,
-            @RequestParam("slutDate") @DateTimeFormat(pattern = "YYYY-MM-DD")LocalDate slutDate,
+            @RequestParam("startDate") @DateTimeFormat(pattern = "dd-mm-yyyy") LocalDate startDate,
+            @RequestParam("slutDate") @DateTimeFormat(pattern = "dd-mm-yyyy")LocalDate slutDate,
             @RequestParam("startPrisKr") double startPrisKr,
             Model model) {
 
