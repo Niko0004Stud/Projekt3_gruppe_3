@@ -87,10 +87,28 @@ public class LaKvitteringRepo implements CruRepository {
 
     }
 
-    //update met
+    @Override
     public void update(Object entity) {
 
     }
 
+    //update met
+    public void update(LaKvittering laKvittering) {
+        String sql="UPDATE laKvittering SET skadeMatrixId=?, startDate=?, slutDate=?, totalPrisKr=?, type=? WHERE id=?";
+
+        try(Connection connection=dataSource.getConnection();
+        PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setInt(1,laKvittering.getSkadeMatrixId());
+            statement.setDate(2, Date.valueOf((LocalDate) laKvittering.getStartDate()));
+            statement.setDate(3, Date.valueOf((LocalDate) laKvittering.getSlutDate()));
+            statement.setDouble(4, laKvittering.getTotalPrisKr());
+            statement.setString(5, laKvittering.getType());
+            statement.setInt(6, laKvittering.getId());
+            statement.executeUpdate();
+        }catch (SQLException e){
+           e.printStackTrace();
+        }
+
+    }
 
 }
