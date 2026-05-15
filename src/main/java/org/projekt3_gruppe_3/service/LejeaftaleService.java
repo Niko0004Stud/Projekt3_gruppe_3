@@ -28,7 +28,7 @@ public class LejeaftaleService {
 
             String type="startKvittering";
             int skadeMatrixId=1;
-            LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, startDate, startPrisKr, type);
+            LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, slutDate, startPrisKr, type);
 
             lejeaftaleRepo.create(lejeaftale, laKvittering);
         }
