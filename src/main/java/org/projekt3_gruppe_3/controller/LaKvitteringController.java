@@ -33,9 +33,4 @@ public class LaKvitteringController {
         return "oversigtPage";
     }
 
-    @GetMapping("/createLaKvittering")
-    public String createLaKvittering (
-            @RequestParam("skadeMatrixId") int skadeMatrix, Model model){
-        return "oversigtPage";
-    }
 }

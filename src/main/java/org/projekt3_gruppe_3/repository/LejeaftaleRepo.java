@@ -1,5 +1,6 @@
 package org.projekt3_gruppe_3.repository;
 
+import org.projekt3_gruppe_3.model.LaKvittering;
 import org.projekt3_gruppe_3.model.Lejeaftale;
 import org.projekt3_gruppe_3.repository.interfaces.CruRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
     }
 
 
-    public void create(Lejeaftale lejeaftale){
+    public void create(Lejeaftale lejeaftale, LaKvittering laKvittering){
         String sql="INSERT INTO Lejeaftale (BilId, KundeId,skadeMatrixId, startDate, laengdeDays, slutDate, prisKr) " +
                 "VALUES( ?, ?, ?, ?, ?, ?, ?)";
 
@@ -67,10 +68,15 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
             statement.executeUpdate();
 
             //automatisk oprettelse af kvittering ved oprettelse af en lejeaftale
-            laKvitteringRepo.create();
+            laKvitteringRepo.create(laKvittering);
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void create(Lejeaftale entity) {
+
     }
 
     @Override
@@ -83,8 +89,4 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
         return null;
     }
 
-
 }
-
-
-

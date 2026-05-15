@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Repository
@@ -69,19 +67,22 @@ public class LaKvitteringRepo implements CruRepository {
     }
 
     //estera
-    public void create(){
-        String sql="INSERT INTO laKvittering (skadeMatrixId)" +
-                "VALUES( ?)";
+    public void create(LaKvittering laKvittering){
+        String sql="INSERT INTO laKvittering (skadeMatrixId,startDate,slutDate,totalPrisKr,type)" +
+                "VALUES( ?, ?, ?, ?, ?)";
         try(Connection connection=dataSource.getConnection();
         PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setInt(1,laKvittering.getSkadeMatrixId());
+            statement.setDate(2, Date.valueOf((LocalDate) laKvittering.getStartDate()));
+            statement.setDate(3, Date.valueOf((LocalDate) laKvittering.getSlutDate()));
+            statement.setDouble(4,laKvittering.getTotalPrisKr());
+            statement.setString(5,laKvittering.getType());
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-
-    //hvis jeg sletter den der kan programmet ikke lide den så den bliver??
     public void create(Object entity) {
 
     }
