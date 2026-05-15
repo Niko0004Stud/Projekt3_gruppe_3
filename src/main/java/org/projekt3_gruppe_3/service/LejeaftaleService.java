@@ -18,30 +18,30 @@ public class LejeaftaleService {
 
         //estera & sebastian
         public void createLejeaftale(int bilId, int kundeId, int laKvitteringId,
-                                     LocalDate startDate, LocalDate slutDate, double prisKr) {
+                                     LocalDate startDate, LocalDate slutDate, double startPrisKr) {
 
             System.out.println("Startdate: "+startDate+" slutdate: "+slutDate);
-            valideringLejeaftale(bilId, kundeId, laKvitteringId, startDate, slutDate, prisKr);
+            valideringLejeaftale(bilId, kundeId, laKvitteringId, startDate, slutDate, startPrisKr);
 
             Lejeaftale lejeaftale = new Lejeaftale(
-                    bilId, kundeId, startDate, slutDate,  prisKr);
+                    bilId, kundeId, startDate, slutDate, startPrisKr);
 
             String type="startKvittering";
             int skadeMatrixId=1;
-            LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, startDate, prisKr, type);
+            LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, startDate, startPrisKr, type);
 
             lejeaftaleRepo.create(lejeaftale, laKvittering);
         }
 
     //estera & sebastian
     public void valideringLejeaftale(int bilId, int kundeId, int laKvitteringId,
-                                     LocalDate startDate, LocalDate slutDate, double prisKr){
+                                     LocalDate startDate, LocalDate slutDate, double startPrisKr){
         valideringBilId(bilId);
         valideringKundeId(kundeId);
         valideringlaKvitteringId(laKvitteringId);
         valideringstartDate(startDate.toString());
         valideringslutDate(slutDate.toString());
-        valideringprisKr(prisKr);
+        valideringstartPrisKr(startPrisKr);
     }
 
     // bilId INT NOT NULL, estera & sebastian
@@ -82,10 +82,10 @@ public class LejeaftaleService {
         }
     }
 
-    //prisKr DECIMAL NOT NULL, estera & sebastian
-    public void valideringprisKr(double pris){
+    //startPrisKr DECIMAL NOT NULL, estera & sebastian
+    public void valideringstartPrisKr(double pris){
         if(pris<=0){
-            throw new IllegalArgumentException("prisKr kan ikke være 0 eller mindre end 0");
+            throw new IllegalArgumentException("startPrisKr kan ikke være 0 eller mindre end 0");
         }
     }
 

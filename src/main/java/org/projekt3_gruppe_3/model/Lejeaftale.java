@@ -8,31 +8,31 @@ public class Lejeaftale {
     private int laKvitteringId;
     private LocalDate startDate;
     private LocalDate slutDate;
-    private double prisKr;
+    private double startPrisKr;
 
     // Til at oprette fra eksisterende objekt i DB
-    public Lejeaftale(int id, int bilId, int kundeId, int laKvitteringId, LocalDate startDate, LocalDate slutDate, double prisKr) {
+    public Lejeaftale(int id, int bilId, int kundeId, int laKvitteringId, LocalDate startDate, LocalDate slutDate, double startPrisKr) {
         this.id = id;
         this.bilId = bilId;
         this.kundeId = kundeId;
         this.laKvitteringId = laKvitteringId;
         this.startDate = startDate;
         this.slutDate = slutDate;
-        this.prisKr = prisKr;
+        this.startPrisKr = startPrisKr;
     }
 
     // Til at oprette nyt objekt til DB
-    public Lejeaftale(int bilId, int kundeId, LocalDate startDate, LocalDate slutDate, double prisKr) {
+    public Lejeaftale(int bilId, int kundeId, LocalDate startDate, LocalDate slutDate, double startPrisKr) {
         this.bilId = bilId;
         this.kundeId = kundeId;
         this.laKvitteringId = laKvitteringId;
         this.startDate = startDate;
         this.slutDate = slutDate;
-        this.prisKr = prisKr;
+        this.startPrisKr = startPrisKr;
     }
 
     public String toString() {
-        return "Id: " + id + " Bil id: " + bilId + " Kunde id: " + kundeId  + " startDate: " + startDate + " slutDate: " + slutDate + " pris: " + prisKr;
+        return "Id: " + id + " Bil id: " + bilId + " Kunde id: " + kundeId  + " startDate: " + startDate + " slutDate: " + slutDate + " pris: " + startPrisKr;
     }
 
     public int getBilId() {
@@ -75,12 +75,12 @@ public class Lejeaftale {
         this.slutDate = slutDate;
     }
 
-    public double getPrisKr() {
-        return prisKr;
+    public double getstartPrisKr() {
+        return startPrisKr;
     }
 
-    public void setPrisKr(double prisKr) {
-        this.prisKr = prisKr;
+    public void setstartPrisKr(double startPrisKr) {
+        this.startPrisKr = startPrisKr;
     }
 
 }

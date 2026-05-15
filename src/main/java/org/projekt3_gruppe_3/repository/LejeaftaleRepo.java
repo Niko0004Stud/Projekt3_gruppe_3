@@ -41,7 +41,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
                         resultSet.getInt("laKvitteringId"),
                         resultSet.getDate("startDate").toLocalDate(),
                         resultSet.getDate("slutDate").toLocalDate(),
-                        resultSet.getDouble("prisKr")
+                        resultSet.getDouble("startPrisKr")
                 ));
             }
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
 
 
     public void create(Lejeaftale lejeaftale, LaKvittering laKvittering){
-        String sql="INSERT INTO Lejeaftale (BilId, KundeId, laKvitteringId, startDate, slutDate, prisKr) " +
+        String sql="INSERT INTO Lejeaftale (BilId, KundeId, laKvitteringId, startDate, slutDate, startPrisKr) " +
                 "VALUES( ?, ?, ?, ?, ?, ?)";
         System.out.println("Du kom til create i lejeaftalerepo");
         try(Connection connection=dataSource.getConnection();
@@ -62,7 +62,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
             statement.setInt(3, lejeaftale.getLaKvitteringId());
             statement.setDate(4, Date.valueOf((LocalDate)  lejeaftale.getStartDate()));
             statement.setDate(5, Date.valueOf((LocalDate) lejeaftale.getSlutDate()));
-            statement.setDouble(6, lejeaftale.getPrisKr());
+            statement.setDouble(6, lejeaftale.getstartPrisKr());
             statement.executeUpdate();
 
             //automatisk oprettelse af kvittering ved oprettelse af en lejeaftale

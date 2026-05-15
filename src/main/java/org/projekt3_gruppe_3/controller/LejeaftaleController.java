@@ -38,12 +38,12 @@ public class LejeaftaleController {
             @RequestParam("skadeMatrixId") int skadeMatrix,
             @RequestParam("startDate") @DateTimeFormat(pattern = "DD-MM-YYYY") LocalDate startDate,
             @RequestParam("slutDate") @DateTimeFormat(pattern = "DD-MM-YYYY")LocalDate slutDate,
-            @RequestParam("prisKr") double prisKr,
+            @RequestParam("startPrisKr") double startPrisKr,
             Model model) {
 
       try{
         lejeaftaleService.createLejeaftale(bilId, kundeId, skadeMatrix,
-                startDate, slutDate, prisKr
+                startDate, slutDate, startPrisKr
         );
         return "redirect:/userpage";
       }catch (IllegalArgumentException e){
