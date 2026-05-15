@@ -15,6 +15,7 @@ public class BilService {
     @Autowired
     BilRepo bilRepo;
 
+    // CreateBil logik fra controller til repo af Nicklas
     public String sCreateBil(String vognnummer,
                              String stelnummer,
                              String maerke,
