@@ -17,29 +17,30 @@ public class LejeaftaleService {
         private Lejeaftale lejeaftale;
 
         //estera & sebastian
-        public void createLejeaftale(int bilId, int kundeId, int skadeMatrixId,
-                                     LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr) {
+        public void createLejeaftale(int bilId, int kundeId, int laKvitteringId,
+                                     LocalDate startDate, LocalDate slutDate, double prisKr) {
 
-            valideringLejeaftale(bilId, kundeId, skadeMatrixId, startDato, laengdeDays, slutDato, prisKr);
+            System.out.println("Startdate: "+startDate+" slutdate: "+slutDate);
+            valideringLejeaftale(bilId, kundeId, laKvitteringId, startDate, slutDate, prisKr);
 
             Lejeaftale lejeaftale = new Lejeaftale(
-                    bilId, kundeId, skadeMatrixId, startDato, laengdeDays, slutDato,  prisKr);
+                    bilId, kundeId, startDate, slutDate,  prisKr);
 
             String type="startKvittering";
-            LaKvittering laKvittering=new LaKvittering( skadeMatrixId, startDato, startDato, prisKr, type);
+            int skadeMatrixId=1;
+            LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, startDate, prisKr, type);
 
             lejeaftaleRepo.create(lejeaftale, laKvittering);
         }
 
     //estera & sebastian
-    public void valideringLejeaftale(int bilId, int kundeId, int skadeMatrixId,
-                                     LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr){
+    public void valideringLejeaftale(int bilId, int kundeId, int laKvitteringId,
+                                     LocalDate startDate, LocalDate slutDate, double prisKr){
         valideringBilId(bilId);
         valideringKundeId(kundeId);
-        valideringskadeMatrixId(skadeMatrixId);
-        valideringstartDato(startDato.toString());
-        valideringLaengdeDays(laengdeDays);
-        valideringslutDato(slutDato.toString());
+        valideringlaKvitteringId(laKvitteringId);
+        valideringstartDate(startDate.toString());
+        valideringslutDate(slutDate.toString());
         valideringprisKr(prisKr);
     }
 
@@ -57,33 +58,27 @@ public class LejeaftaleService {
         }
     }
 
-    //skadeMatrixId INT NOT NULL, estera & sebastian
-    public void valideringskadeMatrixId(int id){
+    //laKvitteringId INT NOT NULL, estera & sebastian
+    public void valideringlaKvitteringId(int id){
         if(id<=0){
-            throw new IllegalArgumentException("skadeMatrixId kan ikke være 0");
+            throw new IllegalArgumentException("laKvitteringId kan ikke være 0");
         }
     }
 
-    //startDato DATE NOT NULL, estera & sebastian
-    public void valideringstartDato(String startDato){
-        String trimmed=startDato.trim();
+    //startDate DATE NOT NULL, estera & sebastian
+    public void valideringstartDate(String startDate){
+        String trimmed=startDate.trim();
         if(trimmed.length()<4||trimmed.length()>12){
-            throw new IllegalArgumentException("startDato kan ikke være en mere 12 tegn");
+            throw new IllegalArgumentException("startDate kan ikke være en mere 12 tegn");
         }
     }
 
-    //laengdeDays INTEGER NOT NULL,estera & sebastian
-    public void valideringLaengdeDays(int dage){
-        if(dage<=0){
-            throw new IllegalArgumentException("LaengdeDays kan ikke være 0");
-        }
-    }
 
-    //slutDato DATE NOT NULL,estera & sebastian
-    public void valideringslutDato(String slutDato){
-        String trimmed=slutDato.trim();
+    //slutDate DATE NOT NULL,estera & sebastian
+    public void valideringslutDate(String slutDate){
+        String trimmed=slutDate.trim();
         if(trimmed.length()<4||trimmed.length()>12){
-            throw new IllegalArgumentException("startDato kan ikke være en mere 12 tegn");
+            throw new IllegalArgumentException("startDate kan ikke være en mere 12 tegn");
         }
     }
 

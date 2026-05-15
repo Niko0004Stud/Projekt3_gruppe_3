@@ -38,10 +38,9 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
                         resultSet.getInt("id"),
                         resultSet.getInt("bilId"),
                         resultSet.getInt("kundeId"),
-                        resultSet.getInt("skadeMatrixId"),
+                        resultSet.getInt("laKvitteringId"),
                         resultSet.getDate("startDate").toLocalDate(),
-                        resultSet.getInt("laengdeDays"),
-                        resultSet.getDate("slutDato").toLocalDate(),
+                        resultSet.getDate("slutDate").toLocalDate(),
                         resultSet.getDouble("prisKr")
                 ));
             }
@@ -53,18 +52,17 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
 
 
     public void create(Lejeaftale lejeaftale, LaKvittering laKvittering){
-        String sql="INSERT INTO Lejeaftale (BilId, KundeId,skadeMatrixId, startDate, laengdeDays, slutDate, prisKr) " +
-                "VALUES( ?, ?, ?, ?, ?, ?, ?)";
-
+        String sql="INSERT INTO Lejeaftale (BilId, KundeId, laKvitteringId, startDate, slutDate, prisKr) " +
+                "VALUES( ?, ?, ?, ?, ?, ?)";
+        System.out.println("Du kom til create i lejeaftalerepo");
         try(Connection connection=dataSource.getConnection();
             PreparedStatement statement=connection.prepareStatement(sql)) {
             statement.setInt(1, lejeaftale.getBilId());
             statement.setInt(2, lejeaftale.getKundeId());
-            statement.setInt(3, lejeaftale.getSkadeMatrixId());
-            statement.setDate(4, Date.valueOf((LocalDate) lejeaftale.getStartDate()));
-            statement.setInt(5, lejeaftale.getLaengeDays());
-            statement.setDate(6, Date.valueOf((LocalDate) lejeaftale.getSlutDate()));
-            statement.setDouble(7, lejeaftale.getPrisKr());
+            statement.setInt(3, lejeaftale.getLaKvitteringId());
+            statement.setDate(4, Date.valueOf((LocalDate)  lejeaftale.getStartDate()));
+            statement.setDate(5, Date.valueOf((LocalDate) lejeaftale.getSlutDate()));
+            statement.setDouble(6, lejeaftale.getPrisKr());
             statement.executeUpdate();
 
             //automatisk oprettelse af kvittering ved oprettelse af en lejeaftale

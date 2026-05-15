@@ -5,37 +5,34 @@ public class Lejeaftale {
     private int id;
     private int bilId;
     private int kundeId;
-    private int skadeMatrixId;//lidt i tvivl, der er snak
+    private int laKvitteringId;
     private LocalDate startDate;
-    private int laengeDays;
     private LocalDate slutDate;
     private double prisKr;
 
     // Til at oprette fra eksisterende objekt i DB
-    public Lejeaftale(int id, int bilId, int kundeId, int skadeMatrixId, LocalDate startDate, int laengeDays, LocalDate slutDate, double prisKr) {
+    public Lejeaftale(int id, int bilId, int kundeId, int laKvitteringId, LocalDate startDate, LocalDate slutDate, double prisKr) {
         this.id = id;
         this.bilId = bilId;
         this.kundeId = kundeId;
-        this.skadeMatrixId = skadeMatrixId;
+        this.laKvitteringId = laKvitteringId;
         this.startDate = startDate;
-        this.laengeDays = laengeDays;
         this.slutDate = slutDate;
         this.prisKr = prisKr;
     }
 
     // Til at oprette nyt objekt til DB
-    public Lejeaftale(int bilId, int kundeId, int skadeMatrixId, LocalDate startDato, int laengeDays, LocalDate slutDato, double prisKr) {
+    public Lejeaftale(int bilId, int kundeId, LocalDate startDate, LocalDate slutDate, double prisKr) {
         this.bilId = bilId;
         this.kundeId = kundeId;
-        this.skadeMatrixId = skadeMatrixId;
+        this.laKvitteringId = laKvitteringId;
         this.startDate = startDate;
-        this.laengeDays = laengeDays;
         this.slutDate = slutDate;
         this.prisKr = prisKr;
     }
 
-    public String toString(){
-        return "Id: "+id+" Bil id: "+bilId+" Kunde id: "+kundeId+" Skade Matrix id: "+skadeMatrixId+" startDate: "+startDate+" LængdeDays: "+laengeDays+" slutDato: "+slutDate+" pris: "+prisKr;
+    public String toString() {
+        return "Id: " + id + " Bil id: " + bilId + " Kunde id: " + kundeId  + " startDate: " + startDate + " slutDate: " + slutDate + " pris: " + prisKr;
     }
 
     public int getBilId() {
@@ -54,12 +51,12 @@ public class Lejeaftale {
         this.kundeId = kundeId;
     }
 
-    public int getSkadeMatrixId() {
-        return skadeMatrixId;
+    public int getLaKvitteringId(){
+        return laKvitteringId;
     }
 
-    public void setSkadeMatrixId(int skadeMatrixId) {
-        this.skadeMatrixId = skadeMatrixId;
+    public void setLaKvitteringId( int laKvitteringId){
+        this.laKvitteringId=laKvitteringId;
     }
 
     public LocalDate getStartDate() {
@@ -70,19 +67,11 @@ public class Lejeaftale {
         this.startDate = startDate;
     }
 
-    public int getLaengeDays() {
-        return laengeDays;
-    }
-
-    public void setLaengeDays(int laengeDays) {
-        this.laengeDays = laengeDays;
-    }
-
     public LocalDate getSlutDate() {
         return slutDate;
     }
 
-    public void setSlutDato(LocalDate slutDate) {
+    public void setSlutDate(LocalDate slutDate) {
         this.slutDate = slutDate;
     }
 

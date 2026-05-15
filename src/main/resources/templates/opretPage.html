@@ -64,14 +64,12 @@
             <input name="bilId" id="bilIdField" type="number">
             <label for="kundeIdField">KundeId</label>
             <input name="kundeId" id="kundeIdField" type="number">
-            <label for="skadeMatrixIdField">SkadeMatrixId</label>
-            <input name="skadeMatrixId" id="skadeMatrixIdField" type="number">
-            <label for="startDatoField">StartDato</label>
-            <input name="startDato" id="startDatoField" type="date">
-            <label for="laengdeDaysField">LaengdeDays</label>
-            <input name="laengdeDays" id="laengdeDaysField" type="number">
-            <label for="slutDatoField">SlutDato</label>
-            <input name="slutDato" id="slutDatoField" type="date">
+            <label for="laKvitteringIdField">LaKvitteringId</label>
+            <input name="laKvitteringId" id="laKvitteringIdField" type="number">
+            <label for="startDateField">StartDate</label>
+            <input name="startDate" id="startDateField" type="date">
+            <label for="slutDateField">SlutDate</label>
+            <input name="slutDate" id="slutDateField" type="date">
             <label for="prisKrField">PrisKr</label>
             <input name="prisKr" id="prisKrField" type="number">
             <button type="submit">Opret</button>
@@ -79,7 +77,7 @@
 
 
 <!--        skabelon til oprettelse-->
-<!--       <form th:action="@{/opret}" th:if="${OpretPageType==''}" method="post">-->
+<!--       <form th:action="@{/opret}" th:if="${opretPageType==''}" method="post">-->
 <!--           <label for="Field"></label>-->
 <!--            <input name="" id="Field" type="">-->
 <!--            <label for="Field"></label>-->
