@@ -2,6 +2,7 @@ package org.projekt3_gruppe_3.service;
 
 import org.projekt3_gruppe_3.model.LaKvittering;
 import org.projekt3_gruppe_3.model.Lejeaftale;
+import org.projekt3_gruppe_3.repository.LaKvitteringRepo;
 import org.projekt3_gruppe_3.repository.LejeaftaleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,10 @@ public class LejeaftaleService {
         private LejeaftaleRepo lejeaftaleRepo;
 
         private Lejeaftale lejeaftale;
+    @Autowired
+    private LaKvitteringRepo laKvitteringRepo;
 
-        //estera & sebastian
+    //estera & sebastian
         public void createLejeaftale(int bilId, int kundeId, int laKvitteringId,
                                      LocalDate startDate, LocalDate slutDate, double startPrisKr) {
 
@@ -31,6 +34,18 @@ public class LejeaftaleService {
             LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, slutDate, startPrisKr, type);
 
             lejeaftaleRepo.create(lejeaftale, laKvittering);
+        }
+
+        //estera
+        public  void updateLejeaftale(int bilId, int kundeId, int laKvitteringId, LocalDate startDate, LocalDate slutDate, double startPrisKr){
+
+            Lejeaftale lejeaftale=new Lejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
+
+            String type="slutKvittering";
+            int skadeMatrixId=1;
+            LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, slutDate, startPrisKr, type);
+            lejeaftaleRepo.update(lejeaftale, laKvittering);
+
         }
 
     //estera & sebastian
