@@ -8,5 +8,4 @@ public interface CruRepository<T>{
         List<T> getAll();
         T getById(int id);
 
-
 }
