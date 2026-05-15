@@ -18,19 +18,24 @@ public class LaKvitteringController {
     LaKvitteringRepo laKvitteringRepo;
 
     //estera
-    @GetMapping("/getAll")
+    @GetMapping("/getAllKvitteringer")
     public String getAll(Model model){
         model.addAttribute("laKvitteringer", laKvitteringRepo.getAll());
         System.out.println(laKvitteringRepo.getAll());
-        return "VisLaKvitteringer";
+        return "oversigtPage";
     }
 
     //estera
-    @GetMapping("/getById")
+    @GetMapping("/getLaKvitteringById")
     public String getById(@RequestParam("id") int id ,Model model){
         model.addAttribute("laKvittering", laKvitteringRepo.getById(id));
         System.out.println(laKvitteringRepo.getById(id));
-        return "VisLaKvitteringer";
+        return "oversigtPage";
     }
 
+    @GetMapping("/createLaKvittering")
+    public String createLaKvittering (
+            @RequestParam("skadeMatrixId") int skadeMatrix, Model model){
+        return "oversigtPage";
+    }
 }

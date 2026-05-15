@@ -14,10 +14,10 @@ public class SkadeController {
     @Autowired
     SkadeRepo skadeRepo;
 
-    @GetMapping("/getAll")
+    @GetMapping("/getAllSkader")
     public String getAll(Model model){
         model.addAttribute("skade", skadeRepo.getAll());
         System.out.println(skadeRepo.getAll());
-        return "redirect:/";//get all eller hvad??
+        return "redirect:/userpage";
     }
 }

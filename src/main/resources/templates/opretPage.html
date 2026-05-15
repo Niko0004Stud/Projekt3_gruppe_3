@@ -57,7 +57,7 @@
             <button type="submit">Opret</button>
         </form>
 
-        <form th:action="@{/opretLaKvittering}" th:if="${OpretPageType=='LaKvittering'}" method="post">
+        <form th:action="@{/opretLaKvittering}" th:if="${OpretPageType=='createLejeaftaleKvittering'}" method="post">
             <label for="skadeMatrixIdField">SkadeMatrixId</label>
             <input name="skadeMatrixId" id="skadeMatrixIdField" type="number">
             <label for="startDateField">StartDate</label>

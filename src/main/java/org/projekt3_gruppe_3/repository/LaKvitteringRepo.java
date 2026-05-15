@@ -86,6 +86,7 @@ public class LaKvitteringRepo implements CruRepository {
 
     }
 
+    //update met
     public void update(Object entity) {
 
     }
