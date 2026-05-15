@@ -1,7 +1,7 @@
 package org.projekt3_gruppe_3.repository;
 
 import org.projekt3_gruppe_3.model.Bil;
-import org.projekt3_gruppe_3.repository.interfaces.CrudRepository;
+import org.projekt3_gruppe_3.repository.interfaces.CruRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class BilRepo implements CrudRepository<Bil> {
+public class BilRepo implements CruRepository<Bil> {
 
     @Autowired
     DataSource dataSource;
@@ -61,7 +61,7 @@ public class BilRepo implements CrudRepository<Bil> {
     @Override
     public void update(Bil bil){
     }
-    @Override
+
     public void delete(int id){
     }
 }
