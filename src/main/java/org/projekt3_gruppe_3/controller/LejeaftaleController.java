@@ -35,7 +35,6 @@ public class LejeaftaleController {
     public String createLejeaftale(
             @RequestParam("bilId") int bilId,
             @RequestParam("kundeId") int kundeId,
-            @RequestParam(value = "laKvitteringId", required = false) int laKvitteringId,
             @RequestParam("startDate") @DateTimeFormat(pattern = "dd-mm-yyyy") LocalDate startDate,
             @RequestParam("slutDate") @DateTimeFormat(pattern = "dd-mm-yyyy")LocalDate slutDate,
             @RequestParam("startPrisKr") double startPrisKr,
@@ -43,7 +42,7 @@ public class LejeaftaleController {
 
       try{
         lejeaftaleService.createLejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
-        return "redirect:/userpage";
+        return "redirect:/getUserPageData";
       }catch (IllegalArgumentException e){
           model.addAttribute("error", e.getMessage());
           return "LejeaftaleForm";}

@@ -17,11 +17,7 @@ VALUES ('testAdmin', 'testpassword', 'admin');
 INSERT INTO User(username, password, sysrole)
 VALUES ('testDR', 'testpassword', 'dataregistrerer');
 
-INSERT INTO LaKvittering(skadeMatrixId, startDate, slutDate, totalPrisKr, type)
-VALUES (NULL, '2000-02-14', '2021-01-12', 36.8, 'bla');
 
-INSERT INTO Skade( beskrivelse, omkostning, registreringsDate)
-VALUES ('nej', 345.2, '2020-02-21');
 
 # INSERT INTO Bil(vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning)
 # VALUES (1, '3F', 5, 876, 665.8, 665.9, 987.8);

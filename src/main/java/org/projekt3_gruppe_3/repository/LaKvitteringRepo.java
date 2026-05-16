@@ -68,7 +68,7 @@ public class LaKvitteringRepo implements CruRepository<LaKvittering> {
 
     //estera
     public int createLaK(LaKvittering laKvittering){
-        String sql="INSERT INTO laKvittering (startDate,slutDate,totalPrisKr,type)" +
+        String sql="INSERT INTO LaKvittering (startDate,slutDate,totalPrisKr,type)" +
                 "VALUES( ?, ?, ?, ?)";
         try(Connection connection=dataSource.getConnection();
         PreparedStatement statement=connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
