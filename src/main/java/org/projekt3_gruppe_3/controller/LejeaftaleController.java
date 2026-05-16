@@ -42,9 +42,7 @@ public class LejeaftaleController {
             Model model) {
 
       try{
-        lejeaftaleService.createLejeaftale(bilId, kundeId, laKvitteringId,
-                startDate, slutDate, startPrisKr
-        );
+        lejeaftaleService.createLejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
         return "redirect:/userpage";
       }catch (IllegalArgumentException e){
           model.addAttribute("error", e.getMessage());
