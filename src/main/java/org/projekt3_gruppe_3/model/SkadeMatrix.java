@@ -22,6 +22,10 @@ public class SkadeMatrix {
         this.registreringsDate = registreringsDate;
     }
 
+    public SkadeMatrix() {
+
+    }
+
     public int getId() {
         return id;
     }

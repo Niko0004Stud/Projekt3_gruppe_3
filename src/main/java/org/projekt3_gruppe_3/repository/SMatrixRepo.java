@@ -32,7 +32,6 @@ public class SMatrixRepo implements CruRepository {
             while (resultSet.next()){
                 skadeMatrix.add(new SkadeMatrix(
                         resultSet.getInt("id"),
-                        resultSet.getString("beskrivelse"),
                         resultSet.getDouble("omkostning"),
                         resultSet.getDate("registreringsDate").toLocalDate()
                 ));
@@ -54,8 +53,7 @@ public class SMatrixRepo implements CruRepository {
                 if (resultSet.next()) {
                     skadeMatrix =new SkadeMatrix();
                     skadeMatrix.setId(resultSet.getInt("id"));
-                    skadeMatrix.setBeskrivelse(resultSet.getString("beskrivelse"));
-                    skadeMatrix.setOmkostning(resultSet.getDouble("omkostning"));
+                    skadeMatrix.setOmkostninger(resultSet.getDouble("omkostning"));
                     skadeMatrix.setRegistreringsDate(resultSet.getDate("registreringsDate").toLocalDate());
                 }
             }
