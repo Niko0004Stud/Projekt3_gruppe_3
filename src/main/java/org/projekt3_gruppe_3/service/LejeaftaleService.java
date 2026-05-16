@@ -28,9 +28,8 @@ public class LejeaftaleService {
 
             String type="startKvittering";
             LaKvittering laKvittering=new LaKvittering( startDate, slutDate, startPrisKr, type);
-            Lejeaftale lejeaftale = new Lejeaftale(
-                    bilId, kundeId, startDate, slutDate, startPrisKr);
-            laKvitteringRepo.create(laKvittering);
+            Lejeaftale lejeaftale = new Lejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
+            lejeaftale.setLaKvitteringId( laKvitteringRepo.createLaK(laKvittering));
             lejeaftaleRepo.create(lejeaftale);
         }
 
