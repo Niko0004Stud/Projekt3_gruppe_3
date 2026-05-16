@@ -46,6 +46,7 @@
             </div>
         </div>
         <div th:if="${user.getSysRole() == 'dataregistrerer'}">
+<!--            //skal melde tilbagevendt-->
 
             <h3>Biler</h3>
             <div th:each="bil : ${biler}">

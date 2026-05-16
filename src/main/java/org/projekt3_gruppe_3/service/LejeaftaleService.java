@@ -2,6 +2,7 @@ package org.projekt3_gruppe_3.service;
 
 import org.projekt3_gruppe_3.model.LaKvittering;
 import org.projekt3_gruppe_3.model.Lejeaftale;
+import org.projekt3_gruppe_3.repository.BilRepo;
 import org.projekt3_gruppe_3.repository.LaKvitteringRepo;
 import org.projekt3_gruppe_3.repository.LejeaftaleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class LejeaftaleService {
         private Lejeaftale lejeaftale;
     @Autowired
     private LaKvitteringRepo laKvitteringRepo;
+    @Autowired
+    private BilRepo bilRepo;
 
     //estera & sebastian
         public void createLejeaftale(int bilId, int kundeId, LocalDate startDate, LocalDate slutDate, double startPrisKr) {
@@ -31,6 +34,7 @@ public class LejeaftaleService {
             Lejeaftale lejeaftale = new Lejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
             lejeaftale.setLaKvitteringId(laKvitteringId);
             lejeaftaleRepo.create(lejeaftale);
+            bilRepo.updateStatusBil(bilId, "udlejet");
         }
 
         public void createLaKvittering(LocalDate startDate, LocalDate slutDate, double startPrisKr, String type){

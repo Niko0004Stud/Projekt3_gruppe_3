@@ -166,7 +166,6 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
         }
 
 
-
         return 1;
     }
 
