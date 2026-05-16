@@ -8,8 +8,8 @@ VALUES  ('1','2', LAST_INSERT_ID(), 5, 500,
 
 INSERT INTO Bil (vognnummer, stelnummer, modelId, udstyrsniveau,
                  staalpris, regAfgift, co2Udledning, statusBil)
-VALUES  ('56','55', LAST_INSERT_ID(), 5, 500,
-         400, 200, 'skalTilses');
+VALUES  ('6','5', LAST_INSERT_ID(), 5, 500,
+         400, 200, 'udlejet');
 
 # insert into SkadeMatrix (skadeId, bilId, omkostninger,registreringsDate)
 # VALUES  ('big dmg', '555555', 2020-06-09);

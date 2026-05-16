@@ -24,7 +24,8 @@
   <div>
       <label for="oversigt">Oversigter</label>
       <div  id="oversigt">
-          <form th:action="@{/getOversigtBil}" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'biltech'}" method="get">
+          <form th:action="@{/getOversigtBil}" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'biltech'
+           or user.getSysRole() == 'dataregistrerer'}" method="get">
               <input value="oversigtBil" name="oversigtPageType"  hidden>
               <button type="submit" >Biloversigt</button>
           </form>
@@ -46,17 +47,21 @@
             </div>
         </div>
         <div th:if="${user.getSysRole() == 'dataregistrerer'}">
+<!--            //skal melde tilbagevendt-->
 
             <h3>Biler</h3>
-            <div th:each="bil : ${biler}">
-                <p th:text="${bil.bilmodel.model}"></p>
+            <div th:each="bil : ${bilerStatus}">
+                <a th:href="@{/getOversigtBil(oversigtPageType='oversigtBil')}">
+                <p th:text="${bil.statusBil + ' - ' + bil.bilmodel.maerke
+                + ' - ' + bil.bilmodel.model + ' - ' + bil.vognnummer}"></p>
+                </a>
             </div>
         </div>
         <div th:if="${user.getSysRole() == 'biltech'}">
             <h4>Biler som skal tilses</h4>
 
             <div th:each="bil :${bilerStatus}">
-                <a th:href="@{/getOversigtBil(oversigtPageType='OversigtBil')}">
+                <a th:href="@{/getOversigtBil(oversigtPageType='oversigtBil')}">
                     <p th:text="${bil.statusBil + ' - ' + bil.bilmodel.maerke + ' - ' +
                 bil.bilmodel.model}"></p>
                 </a>
