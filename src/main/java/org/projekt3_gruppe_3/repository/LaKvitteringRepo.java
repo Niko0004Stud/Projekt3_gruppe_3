@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Repository
-public class LaKvitteringRepo implements CruRepository {
+public class LaKvitteringRepo implements CruRepository<LaKvittering> {
 
     @Autowired
     private DataSource dataSource;
@@ -67,28 +67,30 @@ public class LaKvitteringRepo implements CruRepository {
     }
 
     //estera
-    public void create(LaKvittering laKvittering){
-        String sql="INSERT INTO laKvittering (skadeMatrixId,startDate,slutDate,totalPrisKr,type)" +
-                "VALUES( ?, ?, ?, ?, ?)";
+    public int createLaK(LaKvittering laKvittering){
+        String sql="INSERT INTO laKvittering (startDate,slutDate,totalPrisKr,type)" +
+                "VALUES( ?, ?, ?, ?)";
         try(Connection connection=dataSource.getConnection();
-        PreparedStatement statement=connection.prepareStatement(sql)){
-            statement.setInt(1,laKvittering.getSkadeMatrixId());
-            statement.setDate(2, Date.valueOf((LocalDate) laKvittering.getStartDate()));
-            statement.setDate(3, Date.valueOf((LocalDate) laKvittering.getSlutDate()));
-            statement.setDouble(4,laKvittering.getTotalPrisKr());
-            statement.setString(5,laKvittering.getType());
+        PreparedStatement statement=connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)){
+            statement.setDate(1, Date.valueOf((LocalDate) laKvittering.getStartDate()));
+            statement.setDate(2, Date.valueOf((LocalDate) laKvittering.getSlutDate()));
+            statement.setDouble(3,laKvittering.getTotalPrisKr());
+            statement.setString(4,laKvittering.getType());
             statement.executeUpdate();
+
+            try(ResultSet generatedKeys= statement.getGeneratedKeys()){
+                if(generatedKeys.next()){
+                    return generatedKeys.getInt(1);
+                }
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
-    }
-
-    public void create(Object entity) {
-
+        return 1;
     }
 
     @Override
-    public void update(Object entity) {
+    public void create(LaKvittering laKvittering){
 
     }
 

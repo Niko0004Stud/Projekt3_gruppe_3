@@ -20,8 +20,7 @@ public class LaKvittering {
         this.type = type;
     }
 
-    public LaKvittering( int skadeMatrixId, LocalDate startDate, LocalDate slutDate, double totalPrisKr, String type) {
-        this.skadeMatrixId = skadeMatrixId;
+    public LaKvittering( LocalDate startDate, LocalDate slutDate, double totalPrisKr, String type) {
         this.startDate = startDate;
         this.slutDate = slutDate;
         this.totalPrisKr = totalPrisKr;

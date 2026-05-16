@@ -51,7 +51,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
     }
 
 
-    public void create(Lejeaftale lejeaftale, LaKvittering laKvittering){
+    public void create(Lejeaftale lejeaftale){
         String sql="INSERT INTO Lejeaftale (BilId, KundeId, laKvitteringId, startDate, slutDate, startPrisKr) " +
                 "VALUES( ?, ?, ?, ?, ?, ?)";
         System.out.println("Du kom til create i lejeaftalerepo");
@@ -64,16 +64,13 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
             statement.setDate(5, Date.valueOf((LocalDate) lejeaftale.getSlutDate()));
             statement.setDouble(6, lejeaftale.getstartPrisKr());
             statement.executeUpdate();
-
-            //automatisk oprettelse af kvittering ved oprettelse af en lejeaftale
-            laKvitteringRepo.create(laKvittering);
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
 
     //updatelejeaftale til at oprette slut kvittering. estera
-    public  void update(Lejeaftale lejeaftale, LaKvittering laKvittering){
+    public  void update(Lejeaftale lejeaftale){
         String sql="UPDATE lejeaftale SET BilId=?, KundeId=?, laKvitteringId=?, startDate=?, slutDate=?, totalPrisKr=?, WHERE id=?";
 
         try(Connection connection=dataSource.getConnection();
@@ -89,16 +86,6 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
         }catch (SQLException e){
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void create(Lejeaftale entity) {
-
-    }
-
-    @Override
-    public void update(Lejeaftale entity) {
-
     }
 
     @Override

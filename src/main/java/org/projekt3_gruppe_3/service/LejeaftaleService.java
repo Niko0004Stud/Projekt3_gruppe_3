@@ -26,14 +26,12 @@ public class LejeaftaleService {
             System.out.println("Startdate: "+startDate+" slutdate: "+slutDate);
             valideringLejeaftale(bilId, kundeId, laKvitteringId, startDate, slutDate, startPrisKr);
 
+            String type="startKvittering";
+            LaKvittering laKvittering=new LaKvittering( startDate, slutDate, startPrisKr, type);
             Lejeaftale lejeaftale = new Lejeaftale(
                     bilId, kundeId, startDate, slutDate, startPrisKr);
-
-            String type="startKvittering";
-            int skadeMatrixId=1;
-            LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, slutDate, startPrisKr, type);
-
-            lejeaftaleRepo.create(lejeaftale, laKvittering);
+            laKvitteringRepo.create(laKvittering);
+            lejeaftaleRepo.create(lejeaftale);
         }
 
         //estera
@@ -42,9 +40,8 @@ public class LejeaftaleService {
             Lejeaftale lejeaftale=new Lejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
 
             String type="slutKvittering";
-            int skadeMatrixId=1;
-            LaKvittering laKvittering=new LaKvittering(skadeMatrixId, startDate, slutDate, startPrisKr, type);
-            lejeaftaleRepo.update(lejeaftale, laKvittering);
+            LaKvittering laKvittering=new LaKvittering(startDate, slutDate, startPrisKr, type);
+            lejeaftaleRepo.update(lejeaftale);
 
         }
 

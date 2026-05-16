@@ -62,8 +62,8 @@ CREATE TABLE Skade(
 
 CREATE TABLE SkadeMatrix(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    skadeId INT NOT NULL,
-    FOREIGN KEY (skadeId) REFERENCES Skade(id),
+#     skadeId INT NOT NULL,
+#     FOREIGN KEY (skadeId) REFERENCES Skade(id),
     bilId INT NOT NULL,
     FOREIGN KEY (bilId) REFERENCES Bil(id),
     omkostninger DECIMAL NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE LaKvittering(
 CREATE TABLE Lejeaftale(
     id INT AUTO_INCREMENT PRIMARY KEY,
     bilId INT NOT NULL,
-    FOREIGN KEY (bilId) REFERENCES Bil(id),
+--     FOREIGN KEY (bilId) REFERENCES Bil(id),
     kundeId INT NOT NULL,
     FOREIGN KEY (kundeId) REFERENCES Kunde(id),
     LaKvitteringId INT NOT NULL,

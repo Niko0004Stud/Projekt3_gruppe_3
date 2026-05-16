@@ -4,12 +4,12 @@ INSERT INTO Bil (vognnummer, stelnummer, modelId, udstyrsniveau,
                  staalpris, regAfgift, co2Udledning, statusBil)
 VALUES  ('1','2', LAST_INSERT_ID(), 5, 500,
          400, 200, 'nyBil');
-         400, 200);
+#          400, 200);
 
 # insert into SkadeMatrix (skadeId, bilId, omkostninger,registreringsDate)
 # VALUES  ('big dmg', '555555', 2020-06-09);
-insert into SkadeMatrix (skadeId, bilId, omkostninger,registreringsDate)
-VALUES  (0,4, 5555, '2010-05-04');
+insert into SkadeMatrix ( bilId, omkostninger,registreringsDate)
+VALUES  (1, 5555, '2010-05-04');
 
 INSERT INTO User(username, password, sysrole)
 VALUES ('testAdmin', 'testpassword', 'admin');
@@ -23,11 +23,8 @@ VALUES (NULL, '2000-02-14', '2021-01-12', 36.8, 'bla');
 INSERT INTO Skade( beskrivelse, omkostning, registreringsDate)
 VALUES ('nej', 345.2, '2020-02-21');
 
-INSERT INTO SkadeMatrix(skadeId, bilId, omkostninger, registreringsDate)
-VALUES(1,5,65, '2021-05-12');
-
-INSERT INTO Bil(vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning)
-VALUES (1, '3F', 5, 876, 665.8, 665.9, 987.8);
+# INSERT INTO Bil(vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning)
+# VALUES (1, '3F', 5, 876, 665.8, 665.9, 987.8);
 
 
 # INSERT INTO ()
