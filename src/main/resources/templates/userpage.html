@@ -12,12 +12,11 @@
           <select name="opretPageType" id="opret" onchange="this.form.submit()">
               <option hidden>Vælg opretning</option>
               <option value="createUser" th:if="${user.getSysRole() == 'admin'}"  >Opret Bruger</option>
-              <option value="createLejeaftale" th:if="${user.getSysRole() == 'admin' or
-               user.getSysRole() == 'dataregistrerer'}" >Opret Lejeaftale</option>
-              <option value="createBil" th:if="${user.getSysRole() == 'admin' or
-               user.getSysRole() ==  'dataregistrerer'}" >Opret Bil</option>
-              <option value="createForhaandsaftale" th:if="${user.getSysRole() == 'admin' or
-               user.getSysRole() == 'dataregistrerer'}" >Opret Forhåndsaftale</option>
+              <option value="createBil" th:if="${user.getSysRole() == 'admin' or user.getSysRole() ==  'dataregistrerer'}" >Opret Bil</option>
+              <option value="createLejeaftale" th:if="${user.getSysRole() == 'admin' or 'dataregistrerer'}" >Opret Lejeaftale</option>
+              <option value="createForhaandsaftale" th:if="${user.getSysRole() == 'admin' or 'dataregistrerer'}" >Opret Forhåndsaftale</option>
+              <option value="createSkade" th:if="${user.getSysRole() == 'admin' or 'skadeOgUdbedring'}" >Opret Skade</option>
+              <option value="createSkadeMatrix" th:if="${user.getSysRole() == 'admin' or 'skadeOgUdbedring'}" >Opret SkadeMatrix</option>
               <option th:if="${user.getSysRole() == 'admin'}"></option>
           </select>
       </form>

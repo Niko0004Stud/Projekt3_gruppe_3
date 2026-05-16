@@ -28,21 +28,21 @@ public class UserService {
         switch(user.getSysRole()){
             case "admin":
                 model.addAttribute("biler",bilRepo.getAll());
-                model.addAttribute("lejeaftaler",lejeaftaleRepo.readAllLejeaftaler());
+                model.addAttribute("lejeaftaler",lejeaftaleRepo.getAll());
                 model.addAttribute("users", userRepo.getAll());
 
                 break;
 
             case "dataregistrerer":
                 model.addAttribute("biler", bilRepo.getAll());
-                model.addAttribute("lejeaftaler", lejeaftaleRepo.readAllLejeaftaler());
+                model.addAttribute("lejeaftaler", lejeaftaleRepo.getAll());
                 //der skal laves en specific get på biler med specifik status
 
                 break;
 
             case "forretningsudvikler":
                 model.addAttribute("biler", bilRepo.getAll());
-                model.addAttribute("lejeaftaler", lejeaftaleRepo.readAllLejeaftaler());
+                model.addAttribute("lejeaftaler", lejeaftaleRepo.getAll());
                 //der skal laves en specific get på biler med specifik status -
                 // og en specifik attribut.
 

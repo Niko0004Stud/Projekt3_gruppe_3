@@ -46,21 +46,43 @@
             <input name="co2Udledning" id="co2UdledningField" type="number">
             <button type="submit">Opret</button>
         </form>
-        <form th:action="@{/opretLejeaftale}" th:if="${opretPageType =='createLejeaftale'}" method="post">
-            <label for="bilIdField">bilId:</label>
-            <input name="bilId" id="bilIdField" type="text">
-            <label for="kundeIdField">kundeId:</label>
-            <input name="kundeId" id="kundeIdField" type="text">
-            <label for="laKvitteringIdField">laKvitteringId:</label>
-            <input name="laKvitteringId" id="laKvitteringIdField" type="text">
-            <label for="startDateField">startDate:</label>
-            <input name="startDate" id="startDateField" type="text">
-            <label for="slutDateField">slutDate:</label>
-            <input name="slutDate" id="slutDateField" type="text">
-            <label for="startPrisKrField">startPrisKr:</label>
-            <input name="startPrisKr" id="startPrisKrField" type="text">
+
+<!--estera -->
+        <form th:action="@{/opretSkade}" th:if="${opretPageType=='createSkade'}" method="post">
+            <label for="beskrivelseField">Beskrivelse</label>
+            <input name="beskrivelse" id="beskrivelseField" type="text">
+            <label for="omkostningField">Omkostning</label>
+            <input name="omkostning" id="omkostningField" type="number">
+            <label for="registreringsDateField">RegistreringsDate</label>
+            <input name="registreringsDate" id="registreringsDateField" type="date">
             <button type="submit">Opret</button>
-        </form>>
+        </form>
+
+<!--estera-->
+        <form th:action="@{/opretLejeaftale}" th:if="${opretPageType=='createLejeaftale'}" method="post">
+            <label for="bilIdField">BilId</label>
+            <input name="bilId" id="bilIdField" type="number">
+            <label for="kundeIdField">KundeId</label>
+            <input name="kundeId" id="kundeIdField" type="number">
+            <label for="startDateField">StartDate</label>
+            <input name="startDate" id="startDateField" type="date">
+            <label for="slutDateField">SlutDate</label>
+            <input name="slutDate" id="slutDateField" type="date">
+            <label for="startPrisKrField">StartPrisKr</label>
+            <input name="startPrisKr" id="startPrisKrField" type="number">
+            <button type="submit">Opret</button>
+         </form>
+
+
+<!--        skabelon til oprettelse-->
+<!--       <form th:action="@{/opret}" th:if="${opretPageType==''}" method="post">-->
+<!--           <label for="Field"></label>-->
+<!--            <input name="" id="Field" type="">-->
+<!--            <label for="Field"></label>-->
+<!--            <input name="" id="Field" type="">-->
+<!--           <button type="submit">Opret</button>-->
+<!--       </form>-->
+
     </div>
 </main>
 </body>

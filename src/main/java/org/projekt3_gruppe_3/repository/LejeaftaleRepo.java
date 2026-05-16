@@ -1,6 +1,8 @@
 package org.projekt3_gruppe_3.repository;
 
+import org.projekt3_gruppe_3.model.LaKvittering;
 import org.projekt3_gruppe_3.model.Lejeaftale;
+import org.projekt3_gruppe_3.repository.interfaces.CruRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,13 +17,14 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 @Repository
-public class LejeaftaleRepo {
-    //1.3 metode C from CRUD: CREATE
+public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
 
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private LaKvitteringRepo laKvitteringRepo;
 
-    public ArrayList<Lejeaftale> readAllLejeaftaler(){
+    public ArrayList<Lejeaftale> getAll(){
         ArrayList<Lejeaftale> lejeaftaler = new ArrayList<>();
         String sql = "SELECT * FROM Lejeaftale";
 
@@ -35,11 +38,10 @@ public class LejeaftaleRepo {
                         resultSet.getInt("id"),
                         resultSet.getInt("bilId"),
                         resultSet.getInt("kundeId"),
-                        resultSet.getInt("skadeMatrixId"),
+                        resultSet.getInt("laKvitteringId"),
                         resultSet.getDate("startDate").toLocalDate(),
-                        resultSet.getInt("laengdeDays"),
-                        resultSet.getDate("slutDato").toLocalDate(),
-                        resultSet.getDouble("prisKr")
+                        resultSet.getDate("slutDate").toLocalDate(),
+                        resultSet.getDouble("startPrisKr")
                 ));
             }
         } catch (SQLException e) {
@@ -48,24 +50,47 @@ public class LejeaftaleRepo {
         return lejeaftaler;
     }
 
-    public void createLejeaftale(Lejeaftale lejeaftale){
-        String sql="INSERT INTO Lejeaftale (BilId, KundeId,skadeMatrixId, startDate, laengdeDays, slutDato, prisKr) " +
-                "VALUES(?,?,?,?,?,?,?)";
 
-
+    public void create(Lejeaftale lejeaftale){
+        String sql="INSERT INTO Lejeaftale (bilId, KundeId, laKvitteringId, startDate, slutDate, startPrisKr) " +
+                "VALUES( ?, ?, ?, ?, ?, ?)";
+        System.out.println("Du kom til create i lejeaftalerepo");
         try(Connection connection=dataSource.getConnection();
             PreparedStatement statement=connection.prepareStatement(sql)) {
             statement.setInt(1, lejeaftale.getBilId());
             statement.setInt(2, lejeaftale.getKundeId());
-            statement.setInt(3, lejeaftale.getSkadeMatrixId());
-            statement.setDate(4, Date.valueOf((LocalDate) lejeaftale.getStartDato()));
-            statement.setInt(5, lejeaftale.getLaengeDays());
-            statement.setDate(6, Date.valueOf((LocalDate) lejeaftale.getSlutDato()));
-            statement.setDouble(7, lejeaftale.getPrisKr());
+            statement.setInt(3, lejeaftale.getLaKvitteringId());
+            statement.setDate(4, Date.valueOf((LocalDate)  lejeaftale.getStartDate()));
+            statement.setDate(5, Date.valueOf((LocalDate) lejeaftale.getSlutDate()));
+            statement.setDouble(6, lejeaftale.getstartPrisKr());
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
-}
 
+    //updatelejeaftale til at oprette slut kvittering. estera
+    public  void update(Lejeaftale lejeaftale){
+        String sql="UPDATE Lejeaftale SET bilId=?, KundeId=?, laKvitteringId=?, startDate=?, slutDate=?, totalPrisKr=?, WHERE id=?";
+
+        try(Connection connection=dataSource.getConnection();
+            PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setInt(1,lejeaftale.getBilId());
+            statement.setInt(2, lejeaftale.getKundeId());
+            statement.setInt(3, lejeaftale.getLaKvitteringId());
+            statement.setDate(4,Date.valueOf((LocalDate)  lejeaftale.getStartDate()) );
+            statement.setDate(5, Date.valueOf((LocalDate) lejeaftale.getSlutDate()));
+            statement.setDouble(6, lejeaftale.getstartPrisKr());
+            statement.setInt(7, lejeaftale.getId());
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public Lejeaftale getById(int id) {
+        return null;
+    }
+
+}
