@@ -49,6 +49,7 @@ public class UserService {
                 break;
 
             case "biltech":
+                model.addAttribute("bilerStatus", bilRepo.getAllByStatus("skalTilses"));
                     //der skal laves en specific get på biler med specifik status
 
         }

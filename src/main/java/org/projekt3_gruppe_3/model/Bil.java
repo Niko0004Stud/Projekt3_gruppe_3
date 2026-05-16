@@ -47,6 +47,9 @@ public class Bil {
         this.co2Udledning = co2Udledning;
         this.statusBil = statusBil;
     }
+    public Bil(){
+
+    }
 
     public int getId() {
         return id;

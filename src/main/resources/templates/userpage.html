@@ -13,10 +13,10 @@
               <option hidden>Vælg opretning</option>
               <option value="createUser" th:if="${user.getSysRole() == 'admin'}"  >Opret Bruger</option>
               <option value="createBil" th:if="${user.getSysRole() == 'admin' or user.getSysRole() ==  'dataregistrerer'}" >Opret Bil</option>
-              <option value="createLejeaftale" th:if="${user.getSysRole() == 'admin' or 'dataregistrerer'}" >Opret Lejeaftale</option>
-              <option value="createForhaandsaftale" th:if="${user.getSysRole() == 'admin' or 'dataregistrerer'}" >Opret Forhåndsaftale</option>
-              <option value="createSkade" th:if="${user.getSysRole() == 'admin' or 'skadeOgUdbedring'}" >Opret Skade</option>
-              <option value="createSkadeMatrix" th:if="${user.getSysRole() == 'admin' or 'skadeOgUdbedring'}" >Opret SkadeMatrix</option>
+              <option value="createLejeaftale" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" >Opret Lejeaftale</option>
+              <option value="createForhaandsaftale" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" >Opret Forhåndsaftale</option>
+              <option value="createSkade" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'biltech'}" >Opret Skade</option>
+              <option value="createSkadeMatrix" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'biltech'}" >Opret SkadeMatrix</option>
               <option th:if="${user.getSysRole() == 'admin'}"></option>
           </select>
       </form>
@@ -52,6 +52,19 @@
                 <p th:text="${bil.bilmodel.model}"></p>
             </div>
         </div>
+        <div th:if="${user.getSysRole() == 'biltech'}">
+            <h4>Biler som skal tilses</h4>
+
+            <div th:each="bil :${bilerStatus}">
+                <a th:href="@{/getOversigtBil(oversigtPageType='oversigtBil')}">
+                <p th:text="${bil.statusBil + ' - ' + bil.bilmodel.maerke + ' - ' +
+                bil.bilmodel.model}"></p>
+                </a>
+
+            </div>
+        </div>
+
+
     </section>
 
     <!-- logout lavet af Natasha-->

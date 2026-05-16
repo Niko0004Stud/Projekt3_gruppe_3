@@ -81,6 +81,33 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
         }
         return bilmodel;
     }
+    public List<Bil> getAllByStatus(String statusBil){
+        List<Bil> bilList = new ArrayList<>();
+
+        String sql = "SELECT * FROM Bil WHERE StatusBil = ?";
+
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+
+            preparedStatement.setString(1, statusBil);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+
+                Bil bil = new Bil();
+                bil.setId(resultSet.getInt("id"));
+                bil.setVognnummer(resultSet.getString("vognnummer"));
+                bil.setStelnummer(resultSet.getString("stelnummer"));
+                bil.setStatusBil(resultSet.getString("statusBil"));
+                bil.setBilmodel(getBilmodelById(resultSet.getInt("modelId")));
+                bilList.add(bil);
+                System.out.println(bil.getBilmodel());
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return bilList;
+    }
 
     @Override
     public Bil getById(int id){
