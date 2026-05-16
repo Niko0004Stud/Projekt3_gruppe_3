@@ -48,11 +48,11 @@
         </form>
 
 <!--estera -->
-        <form th:action="@{/opretSkade}" th:if="${opretPageType=='createSkade'}" method="post">
-            <label for="beskrivelseField">Beskrivelse</label>
-            <input name="beskrivelse" id="beskrivelseField" type="text">
-            <label for="omkostningField">Omkostning</label>
-            <input name="omkostning" id="omkostningField" type="number">
+        <form th:action="@{/opretSkadeMatrix}" th:if="${opretPageType=='createSkadeMatrix'}" method="post">
+            <label for="bilIdeField">BilId</label>
+            <input name="bilId" id="bilIdeField" type="text">
+            <label for="omkostningerField">Omkostninger</label>
+            <input name="omkostninger" id="omkostningerField" type="number">
             <label for="registreringsDateField">RegistreringsDate</label>
             <input name="registreringsDate" id="registreringsDateField" type="date">
             <button type="submit">Opret</button>
