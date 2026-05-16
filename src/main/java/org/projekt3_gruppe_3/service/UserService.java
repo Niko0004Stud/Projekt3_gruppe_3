@@ -34,7 +34,7 @@ public class UserService {
                 break;
 
             case "dataregistrerer":
-                model.addAttribute("biler", bilRepo.getAll());
+                model.addAttribute("bilerStatus", bilRepo.getAllByStatus("reserveret"));
                 model.addAttribute("lejeaftaler", lejeaftaleRepo.getAll());
                 //der skal laves en specific get på biler med specifik status
 

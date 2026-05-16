@@ -28,8 +28,10 @@ public class BilService {
                              String statusBil){
 
 
-        bilRepo.createBil(new Bil(vognnummer, stelnummer, udstyrsNiveau, staalpris, regAfgift, co2Udledning, statusBil), new Bilmodel(model, maerke, beskrivelse));
-        return "redirect:/userpage";
+        bilRepo.createBil(new Bil(vognnummer, stelnummer,
+                udstyrsNiveau, staalpris, regAfgift, co2Udledning,
+                statusBil), new Bilmodel(model, maerke, beskrivelse));
+        return "redirect:/getUserPageData";
     }
 
     public List<Bil> sReadAllBil(){

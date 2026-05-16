@@ -120,7 +120,7 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
 
     public void createBil(Bil bil, Bilmodel bilmodel){
         String sql = "INSERT INTO Bil (vognnummer, stelnummer, modelId, udstyrsNiveau, staalpris, regAfgift, co2Udledning, statusBil)"+
-                "VALUES (?,?,?,?,?,?,?)";
+                "VALUES (?,?,?,?,?,?,?,?)";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)){

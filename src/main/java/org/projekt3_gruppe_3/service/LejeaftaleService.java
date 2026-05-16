@@ -34,7 +34,7 @@ public class LejeaftaleService {
             Lejeaftale lejeaftale = new Lejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
             lejeaftale.setLaKvitteringId(laKvitteringId);
             lejeaftaleRepo.create(lejeaftale);
-            bilRepo.updateStatusBil(bilId, "udlejet");
+            bilRepo.updateStatusBil(bilId, "reserveret");
         }
 
         public void createLaKvittering(LocalDate startDate, LocalDate slutDate, double startPrisKr, String type){

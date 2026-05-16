@@ -46,7 +46,7 @@ public class BilController {
 
         bilService.sUpdateStatusBil(id, updateStatus);
 
-        return "redirect:/userpage";
+        return "redirect:/getUserPageData";
     }
 
 }
