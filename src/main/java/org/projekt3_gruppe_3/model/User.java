@@ -1,10 +1,10 @@
 package org.projekt3_gruppe_3.model;
 
 public class User {
-    int id;
-    String username;
-    String password;
-    String sysRole;
+    private int id;
+    private String username;
+    private String password;
+    private String sysRole;
 
     public User(int id, String username, String password, String sysRole) {
         this.id = id;

@@ -20,4 +20,12 @@ public class LoginController {
 
         return loginService.sTryLogin(username, password, session);
     }
+
+    @GetMapping("/tryLogout")
+    public String TryLogout(HttpSession session){
+
+        session.invalidate();
+
+        return "redirect:/";
+    }
 }

@@ -5,20 +5,82 @@
     <title>Brugerside</title>
 </head>
 <body>
-<main>
-  <div> <!--Alle opretninger tilføjes her -->
+<main>  <!-- Opret struktur her lavet af Nicklas -->
+  <div> <!--Alle opretninger tilføjes her. Husk at definere hvilke roller der må se dem -->
       <form th:action="@{/getCreatePage}" method="get">
-          <label for="opret">Opret</label>
+          <label for="opret">Opretninger</label>
           <select name="opretPageType" id="opret" onchange="this.form.submit()">
               <option hidden>Vælg opretning</option>
-              <option th:if="${user.getSysRole() == 'admin'}" value="createUser" >Opret Bruger</option>
-              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createLejeaftale">Opret Lejeaftale</option>
-              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createBil">Opret Bil</option>
-              <option th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" value="createForhaandsaftale">Opret Forhåndsaftale</option>
+              <option value="createUser" th:if="${user.getSysRole() == 'admin'}"  >Opret Bruger</option>
+              <option value="createBil" th:if="${user.getSysRole() == 'admin' or user.getSysRole() ==  'dataregistrerer'}" >Opret Bil</option>
+              <option value="createLejeaftale" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" >Opret Lejeaftale</option>
+              <option value="createForhaandsaftale" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'dataregistrerer'}" >Opret Forhåndsaftale</option>
+              <option value="createSkade" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'biltech'}" >Opret Skade</option>
+              <option value="createSkadeMatrix" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'biltech'}" >Opret SkadeMatrix</option>
               <option th:if="${user.getSysRole() == 'admin'}"></option>
           </select>
       </form>
   </div>
+  <div>
+      <label for="oversigt">Oversigter</label>
+      <div  id="oversigt">
+          <form th:action="@{/getOversigtBil}" th:if="${user.getSysRole() == 'admin' or user.getSysRole() == 'biltech'
+           or user.getSysRole() == 'dataregistrerer'}" method="get">
+              <input value="oversigtBil" name="oversigtPageType"  hidden>
+              <button type="submit" >Biloversigt</button>
+          </form>
+      </div>
+  </div>
+    <section>
+        <!-- dashboard struktur lavet af sebastian-->
+        <h2>Dashboard</h2>
+
+        <div th:if="${user.getSysRole() == 'admin'}">
+
+            <h3>Biler</h3>
+            <div th:each="bil : ${biler}">
+                <p th:text="${bil.bilmodel.maerke + ' - ' + bil.bilmodel.model}"></p>
+            </div>
+            <h4>Users</h4>
+            <div th:each="u : ${users}">
+                <p th:text="${u.username + ' - ' + u.password}"></p>
+            </div>
+        </div>
+        <div th:if="${user.getSysRole() == 'dataregistrerer'}">
+<!--            //skal melde tilbagevendt-->
+
+            <h3>Biler</h3>
+            <div th:each="bil : ${bilerStatus}">
+                <a th:href="@{/getOversigtBil(oversigtPageType='oversigtBil')}">
+                <p th:text="${bil.statusBil + ' - ' + bil.bilmodel.maerke
+                + ' - ' + bil.bilmodel.model + ' - ' + bil.vognnummer}"></p>
+                </a>
+            </div>
+        </div>
+        <div th:if="${user.getSysRole() == 'biltech'}">
+            <h4>Biler som skal tilses</h4>
+
+            <div th:each="bil :${bilerStatus}">
+                <a th:href="@{/getOversigtBil(oversigtPageType='oversigtBil')}">
+                    <p th:text="${bil.statusBil + ' - ' + bil.bilmodel.maerke + ' - ' +
+                bil.bilmodel.model}"></p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- logout lavet af Natasha-->
+    <form th:action="@{/tryLogout}" method="get">
+        <button type="submit">Log ud</button>
+    </form>
 </main>
 </body>
 </html>
+<!--<form th:action="@{/getOverviewPage}" method="get">-->
+<!--    <label for="oversigt">Oversigter</label>-->
+<!--    <select name="oversigtPageType"  onchange="this.form.submit()">-->
+<!--        <option hidden>Vælg Oversigt</option>-->
+<!--        <option value="oversigtBil" th:if="${user.getSysRole() == 'admin' or 'dataregistrerer' or 'skadeOgUdbedring' or 'forretningsudvikler'}">Biler</option>-->
+<!--    </select>-->
+<!--</form>-->

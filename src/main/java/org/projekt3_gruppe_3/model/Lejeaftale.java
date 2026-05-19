@@ -5,37 +5,42 @@ public class Lejeaftale {
     private int id;
     private int bilId;
     private int kundeId;
-    private int skadeMatrixId;//lidt i tvivl, der er snak
-    private LocalDate startDato;
-    private int laengeDays;
-    private LocalDate slutDato;
-    private double prisKr;
+    private int laKvitteringId;
+    private LocalDate startDate;
+    private LocalDate slutDate;
+    private double startPrisKr;
 
     // Til at oprette fra eksisterende objekt i DB
-    public Lejeaftale(int id, int bilId, int kundeId, int skadeMatrixId, LocalDate startDato, int laengeDays, LocalDate slutDato, double prisKr) {
+    public Lejeaftale(int id, int bilId, int kundeId, int laKvitteringId, LocalDate startDate, LocalDate slutDate, double startPrisKr) {
         this.id = id;
         this.bilId = bilId;
         this.kundeId = kundeId;
-        this.skadeMatrixId = skadeMatrixId;
-        this.startDato = startDato;
-        this.laengeDays = laengeDays;
-        this.slutDato = slutDato;
-        this.prisKr = prisKr;
+        this.laKvitteringId = laKvitteringId;
+        this.startDate = startDate;
+        this.slutDate = slutDate;
+        this.startPrisKr = startPrisKr;
     }
 
     // Til at oprette nyt objekt til DB
-    public Lejeaftale(int bilId, int kundeId, int skadeMatrixId, LocalDate startDato, int laengeDays, LocalDate slutDato, double prisKr) {
+    public Lejeaftale(int bilId, int kundeId, LocalDate startDate, LocalDate slutDate, double startPrisKr) {
         this.bilId = bilId;
         this.kundeId = kundeId;
-        this.skadeMatrixId = skadeMatrixId;
-        this.startDato = startDato;
-        this.laengeDays = laengeDays;
-        this.slutDato = slutDato;
-        this.prisKr = prisKr;
+        this.laKvitteringId = laKvitteringId;
+        this.startDate = startDate;
+        this.slutDate = slutDate;
+        this.startPrisKr = startPrisKr;
     }
 
-    public String toString(){
-        return "Id: "+id+" Bil id: "+bilId+" Kunde id: "+kundeId+" Skade Matrix id: "+skadeMatrixId+" startDate: "+startDato+" LængdeDays: "+laengeDays+" slutDato: "+slutDato+" pris: "+prisKr;
+    public String toString() {
+        return "Id: " + id + " Bil id: " + bilId + " Kunde id: " + kundeId  + " startDate: " + startDate + " slutDate: " + slutDate + " pris: " + startPrisKr;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getBilId() {
@@ -54,44 +59,36 @@ public class Lejeaftale {
         this.kundeId = kundeId;
     }
 
-    public int getSkadeMatrixId() {
-        return skadeMatrixId;
+    public int getLaKvitteringId(){
+        return laKvitteringId;
     }
 
-    public void setSkadeMatrixId(int skadeMatrixId) {
-        this.skadeMatrixId = skadeMatrixId;
+    public void setLaKvitteringId( int laKvitteringId){
+        this.laKvitteringId=laKvitteringId;
     }
 
-    public LocalDate getStartDato() {
-        return startDato;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStartDato(LocalDate startDato) {
-        this.startDato = startDato;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public int getLaengeDays() {
-        return laengeDays;
+    public LocalDate getSlutDate() {
+        return slutDate;
     }
 
-    public void setLaengeDays(int laengeDays) {
-        this.laengeDays = laengeDays;
+    public void setSlutDate(LocalDate slutDate) {
+        this.slutDate = slutDate;
     }
 
-    public LocalDate getSlutDato() {
-        return slutDato;
+    public double getstartPrisKr() {
+        return startPrisKr;
     }
 
-    public void setSlutDato(LocalDate slutDato) {
-        this.slutDato = slutDato;
-    }
-
-    public double getPrisKr() {
-        return prisKr;
-    }
-
-    public void setPrisKr(double prisKr) {
-        this.prisKr = prisKr;
+    public void setstartPrisKr(double startPrisKr) {
+        this.startPrisKr = startPrisKr;
     }
 
 }

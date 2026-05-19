@@ -1,6 +1,9 @@
 package org.projekt3_gruppe_3.service;
 
+import org.projekt3_gruppe_3.model.LaKvittering;
 import org.projekt3_gruppe_3.model.Lejeaftale;
+import org.projekt3_gruppe_3.repository.BilRepo;
+import org.projekt3_gruppe_3.repository.LaKvitteringRepo;
 import org.projekt3_gruppe_3.repository.LejeaftaleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,77 +17,95 @@ public class LejeaftaleService {
         private LejeaftaleRepo lejeaftaleRepo;
 
         private Lejeaftale lejeaftale;
+    @Autowired
+    private LaKvitteringRepo laKvitteringRepo;
+    @Autowired
+    private BilRepo bilRepo;
 
-        public void createLejeaftale(int bilId, int kundeId, int skadeMatrixId,
-                                     LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr) {
+    //estera & sebastian
+        public void createLejeaftale(int bilId, int kundeId, LocalDate startDate, LocalDate slutDate, double startPrisKr) {
 
-            valideringLejeaftale(bilId, kundeId, skadeMatrixId, startDato, laengdeDays, slutDato, prisKr);
+            System.out.println("Startdate: "+startDate+" slutdate: "+slutDate);
+            valideringLejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
+            String type="startKvittering";
+            LaKvittering laKvittering=new LaKvittering( startDate, slutDate, startPrisKr, type);
 
-            Lejeaftale lejeaftale = new Lejeaftale(
-                    bilId, kundeId, skadeMatrixId, startDato, laengdeDays, slutDato,  prisKr);
-
-            lejeaftaleRepo.createLejeaftale(lejeaftale);
+            int laKvitteringId=laKvitteringRepo.createLaK(laKvittering );
+            Lejeaftale lejeaftale = new Lejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
+            lejeaftale.setLaKvitteringId(laKvitteringId);
+            lejeaftaleRepo.create(lejeaftale);
+            bilRepo.updateStatusBil(bilId, "reserveret");
         }
 
-    public void valideringLejeaftale(int bilId, int kundeId, int skadeMatrixId,
-                                     LocalDate startDato, int laengdeDays, LocalDate slutDato, double prisKr){
+        public void createLaKvittering(LocalDate startDate, LocalDate slutDate, double startPrisKr, String type){
+            type="startKvittering";
+            LaKvittering laKvittering=new LaKvittering( startDate, slutDate, startPrisKr, type);
+            laKvitteringRepo.createLaK(laKvittering);
+        }
+
+
+        //estera
+        public  void updateLejeaftale(int bilId, int kundeId, int laKvitteringId, LocalDate startDate, LocalDate slutDate, double startPrisKr){
+
+            Lejeaftale lejeaftale=new Lejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
+
+            String type="slutKvittering";
+            LaKvittering laKvittering=new LaKvittering(startDate, slutDate, startPrisKr, type);
+            lejeaftaleRepo.update(lejeaftale);
+
+        }
+
+    //estera & sebastian
+    public void valideringLejeaftale(int bilId, int kundeId, LocalDate startDate, LocalDate slutDate, double startPrisKr){
         valideringBilId(bilId);
         valideringKundeId(kundeId);
-        valideringskadeMatrixId(skadeMatrixId);
-        valideringstartDato(startDato.toString());
-        valideringLaengdeDays(laengdeDays);
-        valideringslutDato(slutDato.toString());
-        valideringprisKr(prisKr);
+        valideringstartDate(startDate.toString());
+        valideringslutDate(slutDate.toString());
+        valideringstartPrisKr(startPrisKr);
     }
 
-    // bilId INT NOT NULL,
+    // bilId INT , estera & sebastian
     public void valideringBilId(int id){
         if(id<=0){
-            throw new IllegalArgumentException("BilId kan ikke være 0");
+            throw new IllegalArgumentException("BilId værdi skal være en heltal større end 0");
         }
     }
 
-    //kundeId INT NOT NULL,
+    //kundeId INT, estera & sebastian
     public void valideringKundeId(int id){
         if(id<=0){
             throw new IllegalArgumentException("KundeId kan ikke være 0");
         }
     }
 
-    //skadeMatrixId INT NOT NULL,
-    public void valideringskadeMatrixId(int id){
+    //laKvitteringId INT, estera & sebastian
+    public void valideringlaKvitteringId(int id){
         if(id<=0){
-            throw new IllegalArgumentException("skadeMatrixId kan ikke være 0");
+            throw new IllegalArgumentException("laKvitteringId kan ikke være 0");
         }
     }
 
-    //startDato DATE NOT NULL,
-    public void valideringstartDato(String startDato){
-        String trimmed=startDato.trim();
+    //startDate DATE, estera & sebastian
+    public void valideringstartDate(String startDate){
+        String trimmed=startDate.trim();
         if(trimmed.length()<4||trimmed.length()>12){
-            throw new IllegalArgumentException("startDato kan ikke være en mere 12 tegn");
+            throw new IllegalArgumentException("startDate kan ikke være en mere 12 tegn");
         }
     }
 
-    //laengdeDays INTEGER NOT NULL,
-    public void valideringLaengdeDays(int dage){
-        if(dage<=0){
-            throw new IllegalArgumentException("LaengdeDays kan ikke være 0");
-        }
-    }
 
-    //slutDato DATE NOT NULL,
-    public void valideringslutDato(String slutDato){
-        String trimmed=slutDato.trim();
+    //slutDate DATE,estera & sebastian
+    public void valideringslutDate(String slutDate){
+        String trimmed=slutDate.trim();
         if(trimmed.length()<4||trimmed.length()>12){
-            throw new IllegalArgumentException("startDato kan ikke være en mere 12 tegn");
+            throw new IllegalArgumentException("startDate kan ikke være en mere 12 tegn");
         }
     }
 
-    //prisKr DECIMAL NOT NULL
-    public void valideringprisKr(double pris){
+    //startPrisKr DECIMAL, estera & sebastian
+    public void valideringstartPrisKr(double pris){
         if(pris<=0){
-            throw new IllegalArgumentException("prisKr kan ikke være 0 eller mindre end 0");
+            throw new IllegalArgumentException("startPrisKr kan ikke være 0 eller mindre end 0");
         }
     }
 

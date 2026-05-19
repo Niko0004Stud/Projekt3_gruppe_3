@@ -14,7 +14,7 @@ public class LoginService {
     public String sTryLogin(String username, String password, HttpSession session){
         if(loginRepo.rTryLogin(username, password)!=null){
             session.setAttribute("user", loginRepo.rTryLogin(username, password));
-            return "redirect:/userpage";
+            return "redirect:/getUserPageData";
         }
         return "redirect:/";
     }

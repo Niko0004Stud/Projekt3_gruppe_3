@@ -22,29 +22,27 @@ public class LejeaftaleController {
     @Autowired
     LejeaftaleService lejeaftaleService;
 
+    //estera & sebastian
     @GetMapping("/showAllLejeaftaler")
     public String showAllLejeaftaler(){
-        System.out.println(lejeaftaleRepo.readAllLejeaftaler());
+        System.out.println(lejeaftaleRepo.getAll());
 
         return"redirect:/";
     }
 
-    @PostMapping("/lejeaftale/create")
+    //estera & sebastian
+    @PostMapping("opretLejeaftale")
     public String createLejeaftale(
             @RequestParam("bilId") int bilId,
             @RequestParam("kundeId") int kundeId,
-            @RequestParam("skadeMatrixId") int skadeMatrix,
-            @RequestParam("startDato") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDato,
-            @RequestParam("laengdeDays") int laengdeDays,
-            @RequestParam("slutDato") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate slutDato,
-            @RequestParam("prisKr") double prisKr,
+            @RequestParam("startDate") @DateTimeFormat(pattern = "dd-mm-yyyy") LocalDate startDate,
+            @RequestParam("slutDate") @DateTimeFormat(pattern = "dd-mm-yyyy")LocalDate slutDate,
+            @RequestParam("startPrisKr") double startPrisKr,
             Model model) {
 
       try{
-        lejeaftaleService.createLejeaftale(bilId, kundeId, skadeMatrix,
-                startDato, laengdeDays, slutDato, prisKr
-        );
-        return "redirect:/lejeaftale/list";
+        lejeaftaleService.createLejeaftale(bilId, kundeId, startDate, slutDate, startPrisKr);
+        return "redirect:/getUserPageData";
       }catch (IllegalArgumentException e){
           model.addAttribute("error", e.getMessage());
           return "LejeaftaleForm";}

@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>Opretningspage</title>
 </head>
-<body>
-<main>
-    <div>
+<body>      <!-- Overordnet struktur og logik af Nicklas -->
+<main>      <!-- Andre former for opretning tilføjes med nye <form></form>, som -->
+    <div>   <!-- alle sender til "/opretUser", men har forskellige slags opretPageType-->
         <form th:action="@{/opretUser}" th:if="${opretPageType == 'createUser'}" method="post">
             <label for="usernameField">Username:</label>
             <input name="username" id="usernameField" type="text"  required>
             <label for="passwordField">Password:</label>
-            <input name="password" id="passwordField" type="text" >
+            <input name="password" id="passwordField" type="text" required >
             <label for="sysRoleDropdown">Systemrolle</label>
-            <ul id="sysRoleDropdown">
+            <ul id="sysRoleDropdown" >
                 <li>
                     <label for="adminRadio">Admin:</label>
                     <input name="sysRole" value="admin" id="adminRadio" type="radio">
@@ -30,7 +30,6 @@
         <form th:action="@{/opretForhaandsaftaler}"  th:if="${opretPageType =='createForhaandsaftale'}" method="post">
             <label for="bilIdField">Bil Id:</label>
             <input name="Bil Id" id="bilIdField" type="text"  required>
-
             <label for="KundeIdField"> Kunde Id:</label>
             <input name="Kunde Id" id="KundeIdField" type="text" required>
 
@@ -43,6 +42,63 @@
             <label for="RegDateField">  RegDate:</label>
             <input name="RegDate" id="RegDateField" type="date" required>
         </form>
+        <form th:action="@{/opretBil}" th:if="${opretPageType == 'createBil'}" method="post">
+            <label for="vognnummerField">Vognnummer:</label>
+            <input name="vognnummer" id="vognnummerField" type="text">
+            <label for="stelnummerField">Stelnummer:</label>
+            <input name="stelnummer" id="stelnummerField" type="text">
+            <label for="maerkeField">Mærke:</label>
+            <input name="maerke" id="maerkeField" type="text">
+            <label for="modelField">Model:</label>
+            <input name="model" id="modelField" type="text">
+            <label for="udstyrsNiveauField">UdstyrsNiveau:</label>
+            <input name="udstyrsNiveau" id="udstyrsNiveauField" type="number">
+            <label for="staalprisField">Stålpris:</label>
+            <input name="staalpris" id="staalprisField" type="number">
+            <label for="regAfgiftField">Registreringsafgift:</label>
+            <input name="regAfgift" id="regAfgiftField" type="number">
+            <label for="co2UdledningField">co2Udledning:</label>
+            <input name="co2Udledning" id="co2UdledningField" type="number">
+            <button type="submit">Opret</button>
+        </form>
+
+<!--estera -->
+        <form th:action="@{/opretSkadeMatrix}" th:if="${opretPageType=='createSkadeMatrix'}" method="post">
+            <label for="bilIdeField">BilId</label>
+            <input name="bilId" id="bilIdeField" type="text">
+            <label for="omkostningerField">Omkostninger</label>
+            <input name="omkostninger" id="omkostningerField" type="number">
+            <label for="registreringsDateField">RegistreringsDate</label>
+            <input name="registreringsDate" id="registreringsDateField" type="date">
+            <button type="submit">Opret</button>
+        </form>
+
+<!--estera-->
+        <form th:action="@{/opretLejeaftale}" th:if="${opretPageType=='createLejeaftale'}" method="post">
+            <label for="bilIdField">BilId</label>
+            <input name="bilId" id="bilIdField" type="number">
+            <label for="kundeIdField">KundeId</label>
+            <input name="kundeId" id="kundeIdField" type="number">
+            <label for="startDateField">StartDate</label>
+            <input name="startDate" id="startDateField" type="date">
+            <label for="slutDateField">SlutDate</label>
+            <input name="slutDate" id="slutDateField" type="date">
+            <label for="startPrisKrField">StartPrisKr</label>
+            <input name="startPrisKr" id="startPrisKrField" type="number">
+            <button type="submit">Opret</button>
+         </form>
+
+
+<!--        skabelon til oprettelse-->
+<!--       <form th:action="@{/opret}" th:if="${opretPageType==''}" method="post">-->
+<!--           <label for="Field"></label>-->
+<!--            <input name="" id="Field" type="">-->
+<!--            <label for="Field"></label>-->
+<!--            <input name="" id="Field" type="">-->
+<!--           <button type="submit">Opret</button>-->
+<!--       </form>-->
+
+            
     </div>
 </main>
 </body>

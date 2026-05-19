@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Oversigtspage</title>
+</head>
+<body>
+<header>
+    <div> <!-- Til hvis vi eventuelt vil have navigation i oversigts header -->
+<!--        <div th:if="${user.getSysRole() == 'admin' or 'dataregistrerer'}">-->
+<!--            <a th:href="@{/oversigtBil}" type="button">Biloversigt</a>-->
+<!--        </div>-->
+    </div>
+</header>
+<main>
+    <div>
+        <div th:each="bil : ${bilList}" th:if="${oversigtPageType == 'oversigtBil'}">
+            <div>
+                <h3 th:text="${bil.bilmodel.maerke} +' - '+${ bil.bilmodel.model + ' - ' + bil.vognnummer}"></h3>
+                <form th:action="@{/updateStatusBil}" method="post">
+                    <input name="id" th:value="${bil.getId()}" hidden>
+                    <input name="updateStatus" value="skalTilses" th:if="${bil.getStatusBil()=='udlejet'
+                     and user.getSysRole() == 'dataregistrerer' or user.getSysRole() == 'admin' }" hidden>
+                    <input name="updateStatus" value="udlejet" th:if="${bil.getStatusBil()=='reserveret'
+                    and user.getSysRole() == 'bilTech' or user.getSysRole() == 'admin' }" hidden>
+                    <button type="submit">Update</button>
+                </form>
+                <form>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
+
