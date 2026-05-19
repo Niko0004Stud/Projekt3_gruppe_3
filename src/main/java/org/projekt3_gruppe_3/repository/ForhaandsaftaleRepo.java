@@ -1,7 +1,9 @@
 package org.projekt3_gruppe_3.repository;
 
+import org.projekt3_gruppe_3.model.Bil;
 import org.projekt3_gruppe_3.model.Forhaandsaftale;
 import org.projekt3_gruppe_3.model.Lejeaftale;
+import org.projekt3_gruppe_3.repository.interfaces.CruRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -9,13 +11,16 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
+//Natasha
 
 @Repository
-public class ForhaandsaftaleRepo {
+public class ForhaandsaftaleRepo implements CruRepository<Forhaandsaftale> {
     @Autowired
     private DataSource dataSource;
 
-    public ArrayList<Forhaandsaftale> readAllForhaandsaftaler() {
+    public List<Forhaandsaftale> getAll() {
         ArrayList<Forhaandsaftale> forhaandsaftaler = new ArrayList<>();
         String sql = "SELECT * FROM Forhaandsaftale";
 
@@ -40,24 +45,32 @@ public class ForhaandsaftaleRepo {
         return forhaandsaftaler;
     }
 
-    public void createForhaandsaftale(Forhaandsaftale forhaandsaftale){
-        String sql="INSERT INTO forhaandsaftaler (id, kundeId, bilId,fhaKvitteringId,RegDate,StartPrisKr ) " +
-                "VALUES(?,?,?,?,?,?)";
+    public void create(Forhaandsaftale forhaandsaftale){
+        String sql="INSERT INTO Forhaansaftale (bilId, kundeId, FhaKvitteringId, registreringsDate, startPrisKr ) " +
+                "VALUES(?,?,?,?,?)";
 
 
         try(Connection connection=dataSource.getConnection();
             PreparedStatement statement=connection.prepareStatement(sql)) {
-            statement.setInt(1, forhaandsaftale.getId());
-            statement.setInt(2, forhaandsaftale.getBilId());
-            statement.setInt(3, forhaandsaftale.getkundeID());
-            statement.setInt(4, forhaandsaftale.getFhaKvitteringId());
-            statement.setDate(5, Date.valueOf((forhaandsaftale.RegDate())));
-            statement.setDouble(6, forhaandsaftale.getStartPrisKr());
+            statement.setInt(1, forhaandsaftale.getBilId());
+            statement.setInt(2, forhaandsaftale.getkundeID());
+            statement.setInt(3, forhaandsaftale.getFhaKvitteringId());
+            statement.setDate(4, Date.valueOf((forhaandsaftale.RegDate())));
+            statement.setDouble(5, forhaandsaftale.getStartPrisKr());
 
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public Forhaandsaftale getById(int id){
+
+        return null;
+    }
+
+    public void update(Forhaandsaftale forhaandsaftale){
+
     }
 }
 

@@ -1,30 +1,39 @@
 package org.projekt3_gruppe_3.model;
 import java.time.LocalDate;
 
-
+//Natasha
 public class Forhaandsaftale {
    private int id;
    private int bilId;
    private int kundeID;
-   private int FhaKvitteringId;
+   private int fhaKvitteringId;
    private LocalDate RegDate;
    private double StartPrisKr;
 
 
    public Forhaandsaftale(int id,int bilId,
                           int kundeID,
-                          int FhaKvitteringId,
+                          int fhaKvitteringId,
                           LocalDate RegDate, double StartPrisKr) {
        this.id = id;
        this.bilId = bilId;
        this.kundeID = kundeID;
-       this.FhaKvitteringId = FhaKvitteringId;
+       this.fhaKvitteringId = fhaKvitteringId;
        this.RegDate = RegDate;
        this.StartPrisKr = StartPrisKr;
 
    }
 
-public Forhaandsaftale (){
+public Forhaandsaftale (int bilId,
+                        int kundeID,
+                        int fhaKvitteringId,
+                        LocalDate RegDate, double StartPrisKr){
+
+    this.bilId = bilId;
+    this.kundeID = kundeID;
+    this.fhaKvitteringId = fhaKvitteringId;
+    this.RegDate = RegDate;
+    this.StartPrisKr = StartPrisKr;
 
        }
 
@@ -36,7 +45,7 @@ public Forhaandsaftale (){
    }
 
    public int getFhaKvitteringId(){
-       return FhaKvitteringId;
+       return fhaKvitteringId;
    }
 
    public int getkundeID(){
