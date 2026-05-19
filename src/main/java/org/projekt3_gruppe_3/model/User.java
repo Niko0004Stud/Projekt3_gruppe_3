@@ -19,6 +19,10 @@ public class User {
         this.sysRole = sysRole;
     }
 
+    public User(){
+
+    }
+
     public int getId() {
         return id;
     }

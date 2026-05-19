@@ -33,12 +33,14 @@ public class BilController {
     }
 
     @GetMapping("/getOversigtBil")
-    public String cReadAllBil(@RequestParam("oversigtPageType") String oversigtPageType, HttpSession session, Model model, Model modelPType){
+    public String cReadAllBil(@RequestParam("oversigtPageType") String oversigtPageType, HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
-        modelPType.addAttribute("oversigtPageType", oversigtPageType);
+        model.addAttribute("oversigtPageType", oversigtPageType);
         model.addAttribute("bilList",bilService.sReadAllBil());
         model.addAttribute("user", user);
+
         return "oversigtPage";
+
     }
 
     @PostMapping("updateStatusBil")
