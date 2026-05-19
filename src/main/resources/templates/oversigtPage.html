@@ -16,14 +16,33 @@
     <div>
         <div th:each="bil : ${bilList}" th:if="${oversigtPageType == 'oversigtBil'}">
             <div>
-                <h3 th:text="${bil.bilmodel.maerke} +' - '+${ bil.bilmodel.model + ' - ' + bil.vognnummer}"></h3>
+                <h3 th:text="${bil.bilmodel.maerke +' - '+ bil.bilmodel.model + ' - ' + bil.vognnummer}"></h3>
                 <form th:action="@{/updateStatusBil}" method="post">
-                    <input name="id" th:value="${bil.getId()}" hidden>
-                    <input name="updateStatus" value="skalTilses" th:if="${bil.getStatusBil()=='udlejet'
-                     and user.getSysRole() == 'dataregistrerer' or user.getSysRole() == 'admin' }" hidden>
-                    <input name="updateStatus" value="udlejet" th:if="${bil.getStatusBil()=='reserveret'
-                    and user.getSysRole() == 'bilTech' or user.getSysRole() == 'admin' }" hidden>
+                    <input name="bilId" th:value="${bil.id}" hidden>
+
+                    <input name="oversigtPageType" th:value="${oversigtPageType}" hidden>
+
+                    <div th:if="${bil.statusBil =='reserveret'
+                         and (user.sysRole == 'bilTech' or user.sysRole == 'admin')}">
+                        <input name="updateStatus" value="udlejet" hidden>
+                        <button type="submit">Update</button>
+                    </div>
+
+                    <div th:if="${bil.statusBil=='udlejet'
+                     and (user.sysRole == 'dataregistrerer' or user.sysRole == 'admin')}">
+                    <input name="updateStatus" value="skalTilses" hidden>
                     <button type="submit">Update</button>
+                        </div>
+
+                    <div th:if="${bil.statusBil == 'skalTilses'
+                    and (user.sysRole == 'bilTech' or user.sysRole == 'admin')}">
+                        <input name="updateStatus" value="salgsKlar" hidden>
+                        <button type="submit">Update</button>
+                    </div>
+
+
+
+
                 </form>
                 <form>
 

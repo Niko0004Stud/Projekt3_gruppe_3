@@ -1,7 +1,6 @@
 package org.projekt3_gruppe_3.controller;
 
 import jakarta.servlet.http.HttpSession;
-import org.projekt3_gruppe_3.model.SuperUser;
 import org.projekt3_gruppe_3.model.User;
 import org.projekt3_gruppe_3.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -24,19 +23,22 @@ public class UserPageController {
     }
 
     @GetMapping("/getCreatePage")
-    public String cGetCreatePage(@RequestParam("opretPageType") String opretPageType, Model model){
+    public String cGetCreatePage(@RequestParam("opretPageType")String opretPageType,
+                                 @RequestParam(value="bilId", required=false) Integer bilId, Model model){
         model.addAttribute("opretPageType", opretPageType);
+        model.addAttribute("bilId", bilId);
 
         return "opretPage";
     }
 
-    @GetMapping("getUserPageData")
-    public String cGetUserPage(HttpSession session, Model model){
+    @GetMapping("/getUserPageData")
+    public String cGetUserPage(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
 
         userService.getUserPageData(user, model);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
 
         return "userPage";
     }
+
 }
