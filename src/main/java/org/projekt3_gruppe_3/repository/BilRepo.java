@@ -81,6 +81,7 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
         }
         return bilmodel;
     }
+
     public List<Bil> getAllByStatus(String statusBil){
         List<Bil> bilList = new ArrayList<>();
 
@@ -188,7 +189,7 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
     @Override
     public void update(Bil bil){
     }
-    @Override
+
     public void delete(int id){
     }
 }

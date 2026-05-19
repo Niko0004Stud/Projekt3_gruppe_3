@@ -38,7 +38,7 @@ public class UserPageController {
         userService.getUserPageData(user, model);
         model.addAttribute("user", user);
 
-        return "userPage";
+        return "userpage";
     }
 
 }

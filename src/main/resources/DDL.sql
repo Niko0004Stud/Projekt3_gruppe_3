@@ -78,7 +78,7 @@ CREATE TABLE Forhaansaftale(
     FOREIGN KEY (bilId) REFERENCES Bil(id),
     kundeId INT NOT NULL,
     FhaKvitteringId INT NOT NULL,
-    FOREIGN KEY (FhaKvitteringId) REFERENCES FhaKvittering(id),
+#     FOREIGN KEY (FhaKvitteringId) REFERENCES FhaKvittering(id),
     registreringsDate DATE NOT NULL,
     startPrisKr DECIMAL NOT NULL
 );

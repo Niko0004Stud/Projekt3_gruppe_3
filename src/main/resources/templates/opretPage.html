@@ -27,6 +27,23 @@
             </ul>
             <button type="submit">Opret</button>
         </form>
+        <!--Natasha -->
+        <form th:action="@{/opretForhaandsaftale}"  th:if="${opretPageType =='createForhaandsaftale'}" method="post">
+            <label for="bilIdField">Bil Id:</label>
+            <input name="bilId" id="FhabilIdField" type="text"  required>
+            <label for="KundeIdField"> Kunde Id:</label>
+            <input name="kundeId" id="FhaKundeIdField" type="text" required>
+
+            <label for="fhaKvitteringIdField"> ForhåndsKvittering:</label>
+            <input name="fhaKvitteringId" id="fhaKvitteringIdField" type="text" required>
+
+            <label for="StartPrisKrField"> Start Pris :</label>
+            <input name="startPrisKr" id="FhaStartPrisKrField" type="number" required>
+
+            <label for="RegDateField">  RegDate:</label>
+            <input name="regDate" id="RegDateField" type="date" required>
+            <button type="submit">Opret</button>
+        </form>
         <form th:action="@{/opretBil}" th:if="${opretPageType == 'createBil'}" method="post">
             <label for="vognnummerField">Vognnummer:</label>
             <input name="vognnummer" id="vognnummerField" type="text">
@@ -82,6 +99,7 @@
 <!--           <button type="submit">Opret</button>-->
 <!--       </form>-->
 
+            
     </div>
 </main>
 </body>
