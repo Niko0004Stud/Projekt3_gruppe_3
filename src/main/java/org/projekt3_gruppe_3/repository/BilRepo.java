@@ -188,7 +188,7 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
     @Override
     public void update(Bil bil){
     }
-    @Override
+
     public void delete(int id){
     }
 }
