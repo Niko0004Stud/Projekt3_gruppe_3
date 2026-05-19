@@ -27,20 +27,22 @@
             </ul>
             <button type="submit">Opret</button>
         </form>
-        <form th:action="@{/opretForhaandsaftaler}"  th:if="${opretPageType =='createForhaandsaftale'}" method="post">
+        <!--Natasha -->
+        <form th:action="@{/opretForhaandsaftale}"  th:if="${opretPageType =='createForhaandsaftale'}" method="post">
             <label for="bilIdField">Bil Id:</label>
-            <input name="Bil Id" id="bilIdField" type="text"  required>
+            <input name="bilId" id="FhabilIdField" type="text"  required>
             <label for="KundeIdField"> Kunde Id:</label>
-            <input name="Kunde Id" id="KundeIdField" type="text" required>
+            <input name="kundeId" id="FhaKundeIdField" type="text" required>
 
             <label for="fhaKvitteringIdField"> ForhåndsKvittering:</label>
             <input name="fhaKvitteringId" id="fhaKvitteringIdField" type="text" required>
 
             <label for="StartPrisKrField"> Start Pris :</label>
-            <input name="StartPrisKr" id="StartPrisKrField" type="number" required>
+            <input name="startPrisKr" id="FhaStartPrisKrField" type="number" required>
 
             <label for="RegDateField">  RegDate:</label>
-            <input name="RegDate" id="RegDateField" type="date" required>
+            <input name="regDate" id="RegDateField" type="date" required>
+            <button type="submit">Opret</button>
         </form>
         <form th:action="@{/opretBil}" th:if="${opretPageType == 'createBil'}" method="post">
             <label for="vognnummerField">Vognnummer:</label>

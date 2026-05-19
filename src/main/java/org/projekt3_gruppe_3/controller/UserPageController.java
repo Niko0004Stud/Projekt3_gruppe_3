@@ -1,7 +1,6 @@
 package org.projekt3_gruppe_3.controller;
 
 import jakarta.servlet.http.HttpSession;
-import org.projekt3_gruppe_3.model.SuperUser;
 import org.projekt3_gruppe_3.model.User;
 import org.projekt3_gruppe_3.service.UserService;
 import org.springframework.stereotype.Controller;
