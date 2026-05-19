@@ -1,21 +1,20 @@
 package org.projekt3_gruppe_3.repository;
 
+import org.projekt3_gruppe_3.model.Bil;
 import org.projekt3_gruppe_3.model.SkadeMatrix;
 import org.projekt3_gruppe_3.repository.interfaces.CruRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
 //estera
 @Repository
-public class SMatrixRepo implements CruRepository {
+public class SMatrixRepo implements CruRepository<SkadeMatrix> {
 
     @Autowired
     private DataSource dataSource;
@@ -23,7 +22,7 @@ public class SMatrixRepo implements CruRepository {
 
     public ArrayList<SkadeMatrix> getAll() {
         ArrayList<SkadeMatrix> skadeMatrix =new ArrayList<>();
-        String sql="SELECT * FROM Skade";
+        String sql="SELECT * FROM SkadeMatrix";
 
         try (Connection connection= dataSource.getConnection();
              PreparedStatement statement= connection.prepareStatement(sql)){
@@ -44,7 +43,7 @@ public class SMatrixRepo implements CruRepository {
 
     public SkadeMatrix getById(int id) {
         SkadeMatrix skadeMatrix =null;
-        String sql="SELECT * FROM Skade WHERE id=?";
+        String sql="SELECT * FROM SkadeMatrix WHERE id=?";
 
         try(Connection connection=dataSource.getConnection();
             PreparedStatement statement=connection.prepareStatement(sql)) {
@@ -64,11 +63,15 @@ public class SMatrixRepo implements CruRepository {
         return skadeMatrix;
     }
 
-    public void create() {
-        String sql="INSERT INTO skade (beskrivelse, omkostning, registreringsDate) " +
+    @Override
+    public void create(SkadeMatrix skadeMatrix) {
+        String sql="INSERT INTO SkadeMatrix (bilId, omkostninger, registreringsDate) " +
                 "VALUES( ?, ?, ?)";
         try(Connection connection=dataSource.getConnection();
             PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setInt(1, skadeMatrix.getBilId());
+            statement.setDouble(2, skadeMatrix.getOmkostninger());
+            statement.setDate(3, Date.valueOf((LocalDate) skadeMatrix.getRegistreringsDate()));
             statement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
@@ -77,13 +80,9 @@ public class SMatrixRepo implements CruRepository {
 
 
 
-    @Override
-    public void create(Object entity) {
-
-    }
 
     @Override
-    public void update(Object entity) {
+    public void update(SkadeMatrix skadeMatrix) {
 
     }
 

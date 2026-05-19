@@ -35,7 +35,7 @@
         <!-- dashboard struktur lavet af sebastian-->
         <h2>Dashboard</h2>
 
-        <div th:if="${user.getSysRole() == 'admin'}">
+        <div th:if="${user.sysRole == 'admin'}">
 
             <h3>Biler</h3>
             <div th:each="bil : ${biler}">
@@ -46,10 +46,16 @@
                 <p th:text="${u.username + ' - ' + u.password}"></p>
             </div>
         </div>
-        <div th:if="${user.getSysRole() == 'dataregistrerer'}">
+        <div th:if="${user.sysRole == 'dataregistrerer'}">
 <!--            //skal melde tilbagevendt-->
 
             <h3>Biler</h3>
+            <div class="dashboard-buttons">
+                <a class="dashboard-btn" th:href="@{/getOversigtBil(oversigtPageType='oversigtBil')}">
+                    Alle biler
+                </a>
+
+            </div>
             <div th:each="bil : ${bilerStatus}">
                 <a th:href="@{/getOversigtBil(oversigtPageType='oversigtBil')}">
                 <p th:text="${bil.statusBil + ' - ' + bil.bilmodel.maerke
@@ -57,7 +63,7 @@
                 </a>
             </div>
         </div>
-        <div th:if="${user.getSysRole() == 'biltech'}">
+        <div th:if="${user.sysRole == 'biltech'}">
             <h4>Biler som skal tilses</h4>
 
             <div th:each="bil :${bilerStatus}">

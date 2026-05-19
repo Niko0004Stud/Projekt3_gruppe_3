@@ -25,4 +25,5 @@ public class UserController {
 //        userService.sCreateUser(user);
         return "redirect:/userpage";
     }
+
 }

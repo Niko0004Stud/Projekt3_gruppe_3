@@ -66,8 +66,7 @@
 
 <!--estera -->
         <form th:action="@{/opretSkadeMatrix}" th:if="${opretPageType=='createSkadeMatrix'}" method="post">
-            <label for="bilIdeField">BilId</label>
-            <input name="bilId" id="bilIdeField" type="text">
+            <input th:value="${bilId}" name="bilId" id="bilIdeField" type="text" hidden>
             <label for="omkostningerField">Omkostninger</label>
             <input name="omkostninger" id="omkostningerField" type="number">
             <label for="registreringsDateField">RegistreringsDate</label>

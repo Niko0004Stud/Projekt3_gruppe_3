@@ -34,19 +34,26 @@ public class BilController {
 
     @GetMapping("/getOversigtBil")
     public String cReadAllBil(@RequestParam("oversigtPageType") String oversigtPageType, HttpSession session, Model model, Model modelPType){
-        //User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         modelPType.addAttribute("oversigtPageType", oversigtPageType);
         model.addAttribute("bilList",bilService.sReadAllBil());
+        model.addAttribute("user", user);
         return "oversigtPage";
     }
 
     @PostMapping("updateStatusBil")
-    public String cUpdateStatusBil(@RequestParam("id") int id,
-                                   @RequestParam("updateStatus") String updateStatus){
+    public String cUpdateStatusBil(@RequestParam("bilId") int bilId,
+                                   @RequestParam("updateStatus") String updateStatus,
+                                   Model model){
 
-        bilService.sUpdateStatusBil(id, updateStatus);
 
-        return "redirect:/getUserPageData";
+        if(updateStatus.equals("salgsKlar")){
+//            model.addAttribute("bilid", bilId);
+            return "redirect:/getCreatePage?opretPageType=createSkadeMatrix&bilId=" + bilId;
+        }
+        bilService.sUpdateStatusBil(bilId, updateStatus);
+
+        return "redirect:/getOversigtBil?oversigtPageType=oversigtBil";
     }
 
 }
