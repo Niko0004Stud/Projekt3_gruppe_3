@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
@@ -71,7 +72,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
 
     //updatelejeaftale til at oprette slut kvittering. estera
     public  void update(Lejeaftale lejeaftale){
-        String sql="UPDATE Lejeaftale SET bilId=?, kundeId=?, laKvitteringId=?, startDate=?, slutDate=?, totalPrisKr=?, WHERE id=?";
+        String sql="UPDATE Lejeaftale SET bilId=?, kundeId=?, laKvitteringId=?, startDate=?, slutDate=?, totalPrisKr=?" +" WHERE id=?";
 
         try(Connection connection=dataSource.getConnection();
             PreparedStatement statement=connection.prepareStatement(sql)){
@@ -87,6 +88,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public Lejeaftale getById(int id) {

@@ -81,7 +81,8 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
         }
         return bilmodel;
     }
-    public List<Bil> getAllByStatus(String statusBil){
+
+    public List<Bil> getAllByStatuss(String statusBil){
         List<Bil> bilList = new ArrayList<>();
 
         String sql = "SELECT * FROM Bil WHERE StatusBil = ?";
