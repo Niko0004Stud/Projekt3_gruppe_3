@@ -23,7 +23,7 @@ public class UserController {
 
 //        User user = new User(username, password, sysRole);
 //        userService.sCreateUser(user);
-        return "redirect:/userpage";
+        return "redirect:/getUserPageData";
     }
 
 }

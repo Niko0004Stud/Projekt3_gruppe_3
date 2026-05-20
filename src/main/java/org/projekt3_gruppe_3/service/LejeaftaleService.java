@@ -37,6 +37,7 @@ public class LejeaftaleService {
             bilRepo.updateStatusBil(bilId, "reserveret");
         }
 
+        //estera
         public void createLaKvittering(LocalDate startDate, LocalDate slutDate, double startPrisKr, String type){
             type="startKvittering";
             LaKvittering laKvittering=new LaKvittering( startDate, slutDate, startPrisKr, type);
@@ -64,28 +65,28 @@ public class LejeaftaleService {
         valideringstartPrisKr(startPrisKr);
     }
 
-    // bilId INT , estera & sebastian
+    // estera & sebastian
     public void valideringBilId(int id){
         if(id<=0){
             throw new IllegalArgumentException("BilId værdi skal være en heltal større end 0");
         }
     }
 
-    //kundeId INT, estera & sebastian
+    //estera & sebastian
     public void valideringKundeId(int id){
         if(id<=0){
             throw new IllegalArgumentException("KundeId kan ikke være et tal under 1");
         }
     }
 
-    //laKvitteringId INT, estera & sebastian
+    // estera & sebastian
     public void valideringlaKvitteringId(int id){
         if(id<=0){
             throw new IllegalArgumentException("laKvitteringId kan ikke være et tal under 1");
         }
     }
 
-    //startDate DATE, estera & sebastian
+    // estera & sebastian
     public void valideringstartDate(String startDate){
         String trimmed=startDate.trim();
         if(trimmed.length()<4||trimmed.length()>12){
@@ -94,7 +95,7 @@ public class LejeaftaleService {
     }
 
 
-    //slutDate DATE,estera & sebastian
+    //estera & sebastian
     public void valideringslutDate(String slutDate){
         String trimmed=slutDate.trim();
         if(trimmed.length()<4||trimmed.length()>12){
@@ -102,7 +103,7 @@ public class LejeaftaleService {
         }
     }
 
-    //startPrisKr DECIMAL, estera & sebastian
+    // estera & sebastian
     public void valideringstartPrisKr(double pris){
         if(pris<=0){
             throw new IllegalArgumentException("startPrisKr kan ikke være 0 eller mindre end 0");
