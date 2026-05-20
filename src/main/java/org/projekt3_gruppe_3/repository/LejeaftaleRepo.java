@@ -25,6 +25,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
     @Autowired
     private LaKvitteringRepo laKvitteringRepo;
 
+    //estera
     public ArrayList<Lejeaftale> getAll(){
         ArrayList<Lejeaftale> lejeaftaler = new ArrayList<>();
         String sql = "SELECT * FROM Lejeaftale";
@@ -51,7 +52,7 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
         return lejeaftaler;
     }
 
-
+    //estera
     public void create(Lejeaftale lejeaftale){
         String sql="INSERT INTO Lejeaftale (bilId, kundeId, laKvitteringId, startDate, slutDate, startPrisKr) " +
                 "VALUES( ?, ?, ?, ?, ?, ?)";
