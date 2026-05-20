@@ -51,7 +51,7 @@ public class BilController_UnitTest {
         // Execution
         String result = bilController.cReadAllBil(oversigtPageType, session, model);
 
-        //PostCondition
+        //Postcondition
         assertEquals("oversigtPage", result);
         verify(model).addAttribute("bilList", bilList);
 

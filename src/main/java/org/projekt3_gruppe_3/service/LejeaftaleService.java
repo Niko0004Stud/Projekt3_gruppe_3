@@ -74,14 +74,14 @@ public class LejeaftaleService {
     //kundeId INT, estera & sebastian
     public void valideringKundeId(int id){
         if(id<=0){
-            throw new IllegalArgumentException("KundeId kan ikke være 0");
+            throw new IllegalArgumentException("KundeId kan ikke være et tal under 1");
         }
     }
 
     //laKvitteringId INT, estera & sebastian
     public void valideringlaKvitteringId(int id){
         if(id<=0){
-            throw new IllegalArgumentException("laKvitteringId kan ikke være 0");
+            throw new IllegalArgumentException("laKvitteringId kan ikke være et tal under 1");
         }
     }
 
