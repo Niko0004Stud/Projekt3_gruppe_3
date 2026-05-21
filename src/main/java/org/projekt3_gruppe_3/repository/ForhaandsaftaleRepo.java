@@ -36,8 +36,8 @@ public class ForhaandsaftaleRepo implements CruRepository<Forhaandsaftale> {
                                 resultSet.getInt("kundeId"),
                                 resultSet.getInt("bilId"),
                                 resultSet.getInt("fhaKvitteringId"),
-                                resultSet.getDate("RegDate").toLocalDate(),
-                                resultSet.getDouble("StartPrisKr")));
+                                resultSet.getDate("registeringsDate").toLocalDate(),
+                                resultSet.getDouble("startPrisKr")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
