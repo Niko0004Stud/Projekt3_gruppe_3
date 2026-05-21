@@ -21,6 +21,13 @@ public class BilRepo implements CruRepository<Bil>, DRepository<Bil> {
     @Autowired
     DataSource dataSource;
 
+    // Til hvis vi ønsker at vise et alternativ til @Autowired
+    /*private DataSource dataSource;
+
+    public BilRepo(DataSource dataSource){
+        this.dataSource = dataSource;
+    }*/
+
     @Override
     public List<Bil> getAll() {
         List<Bil> bilList = new ArrayList<>();
