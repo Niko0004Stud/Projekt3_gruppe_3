@@ -47,4 +47,20 @@ public class LejeaftaleController {
           model.addAttribute("error", e.getMessage());
           return "LejeaftaleForm";}
     }
+
+//    @PostMapping("updateLejeaftale")
+//    public String updateLejeaftale(
+//            @RequestParam("bilId") int bilId,
+//            @RequestParam("kundeId") int kundeId,
+//            @RequestParam("startDate") @DateTimeFormat(pattern = "dd-mm-yyyy") LocalDate startDate,
+//            @RequestParam("slutDate") @DateTimeFormat(pattern = "dd-mm-yyyy")LocalDate slutDate,
+//            @RequestParam("totalPrisKr") double totalPrisKr,
+//            Model model){
+//        if(updateLejeaftale.equals("lejeaftaleSlut")){
+//            return"redirect:/getUserPageData";
+//        }
+//        lejeaftaleService.updateLejeaftale(bilId, kundeId, startDate, slutDate, totalPrisKr);
+//        return "redirect:/getUserPageData";
+//    }
+
 }

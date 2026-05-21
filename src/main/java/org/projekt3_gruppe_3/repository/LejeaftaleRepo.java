@@ -71,6 +71,19 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
         }
     }
 
+    public  void updateLak(int id, int laKvitteringId){
+        String sql="UPDATE Lejeaftale SET laKvitteringId = ? WHERE id = ?";
+
+        try(Connection connection=dataSource.getConnection();
+            PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setInt(1,laKvitteringId);
+            statement.setInt(2,id);
+            statement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     //updatelejeaftale til at oprette slut kvittering. estera
     public  void update(Lejeaftale lejeaftale){
         String sql="UPDATE Lejeaftale SET bilId=?, kundeId=?, laKvitteringId=?, startDate=?, slutDate=?, totalPrisKr=?" +" WHERE id=?";
@@ -89,7 +102,6 @@ public class LejeaftaleRepo implements CruRepository<Lejeaftale> {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public Lejeaftale getById(int id) {

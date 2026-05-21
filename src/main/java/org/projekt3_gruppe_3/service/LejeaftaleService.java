@@ -48,7 +48,9 @@ public class LejeaftaleService {
         public void slutLaKvittering(int skadeMatrixId, LocalDate startDate, LocalDate slutDate, double totalPrisKr, String type){
             type="slutLaKvittering";
             LaKvittering laKvittering= new LaKvittering(skadeMatrixId, startDate, slutDate, totalPrisKr, type);
-            //laKvitteringRepo.  ;
+            int laKvitteringId = lejeaftale.getLaKvitteringId();
+            int id=lejeaftale.getId();
+            lejeaftaleRepo.updateLak(id,laKvitteringId);
         }
 
         //estera
